@@ -1,11 +1,4 @@
-/// ==UserScript==
-/// @name         Base methods
-/// @version      1.0
-/// @include      *
-/// @icon         https://www.quintessanderson.com/img/js-icon.jpg
-/// require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
-/// ==/UserScript==
-class Methods {
+class BASEMETHODS = {
   sleep = (sec = 0.5) => {
     return new Promise((res) => {
       setTimeout(() => res(), sec * 1000);
@@ -58,8 +51,7 @@ class Methods {
   download = (content, fileName, fileFormat) => {
     switch (fileFormat) {
       case "txt":
-        content =
-          "data:text/plain;charset=utf-8," + encodeURIComponent(content);
+        content = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
         break;
       case "csv":
         content =
@@ -93,7 +85,7 @@ class Methods {
     },
   };
 }
-const methods = new Methods
-for (let prop in methods) {
-  window[prop] = methods[prop]
+let baseMethods = new BASEMETHODS
+for (let method in baseMethods) {
+  window[method] = baseMethods[method]
 }
