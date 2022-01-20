@@ -1,10 +1,10 @@
-// ==UserScript==
-// @name         Base methods
-// @version      1.0
-// @include      *
-// @icon         https://www.quintessanderson.com/img/js-icon.jpg
-// require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
-// ==/UserScript==
+/// ==UserScript==
+/// @name         Base methods
+/// @version      1.0
+/// @include      *
+/// @icon         https://www.quintessanderson.com/img/js-icon.jpg
+/// require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
+/// ==/UserScript==
 class Methods {
   sleep = (sec = 0.5) => {
     return new Promise((res) => {
@@ -94,3 +94,6 @@ class Methods {
   };
 }
 const methods = new Methods
+for (let prop in methods) {
+  window[prop] = methods[prop]
+}
