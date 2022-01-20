@@ -85,7 +85,6 @@ class BASEMETHODS = {
     },
   };
 }
-let baseMethods = new BASEMETHODS
-for (let method in baseMethods) {
-  window[method] = baseMethods[method]
+function getMethods() {
+  return new BASEMETHODS()
 }
