@@ -1,3 +1,10 @@
+// ==UserScript==
+// @name         Base methods
+// @version      1.0
+// @include      *
+// @icon         https://www.quintessanderson.com/img/js-icon.jpg
+// require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
+// ==/UserScript==
 window.sleep = (sec = 0.5) => {
   return new Promise((res) => {
     setTimeout(() => res(), sec * 1000);

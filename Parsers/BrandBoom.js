@@ -1,3 +1,12 @@
+// ==UserScript==
+// @name         BrandBoom
+// @namespace    https://www.brandboom.com/*
+// @version      1.0
+// @match        https://www.brandboom.com/*
+// @icon         chrome://favicon/http://www.brandboom.com/
+// require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
+// ==/UserScript==
+
 window.deleteItems = () => window.LocalStorageUtil.delete(window.localStrName);
 window.LocalStorageUtil = {
   get(key = null) {
@@ -54,9 +63,9 @@ window.getBtns = () => {
   return btns;
 };
 window.parseItem = async () => {
-  window.itemsInfo += await window.getItemInfo()
+  window.itemsInfo += await window.getItemInfo();
   window.LocalStorageUtil.set(window.localStrName, window.itemsInfo);
-}
+};
 window.parseAll = async () => {
   let btns = window.getBtns();
   let btnsCounter = 0;
