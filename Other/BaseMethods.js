@@ -1,4 +1,4 @@
-class BASEMETHODS = {
+class BASEMETHODS {
   sleep = (sec = 0.5) => {
     return new Promise((res) => {
       setTimeout(() => res(), sec * 1000);
@@ -51,7 +51,8 @@ class BASEMETHODS = {
   download = (content, fileName, fileFormat) => {
     switch (fileFormat) {
       case "txt":
-        content = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
+        content =
+          "data:text/plain;charset=utf-8," + encodeURIComponent(content);
         break;
       case "csv":
         content =
@@ -85,6 +86,6 @@ class BASEMETHODS = {
     },
   };
 }
-function getMethods() {
-  return new BASEMETHODS()
-}
+window.getMethods = () => {
+  return new BASEMETHODS();
+};
