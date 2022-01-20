@@ -93,3 +93,4 @@ class Methods {
     },
   };
 }
+const methods = new Methods
