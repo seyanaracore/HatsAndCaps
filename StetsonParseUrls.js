@@ -61,6 +61,9 @@ window.download = (content, fileName, fileFormat) => {
   a.setAttribute("download", fileName + "." + fileFormat);
   a.click();
 };
+window.downloadLinks = () => {
+  window.download(window.itemsLinksList.join(),"itemsLinks", "txt")
+}
 window.parseLinks = async () => {
   const itemLink = window.$(".catalog-grid-item__link")[0].href;
   window.articlesList.shift();
