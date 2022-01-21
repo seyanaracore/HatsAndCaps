@@ -71,6 +71,7 @@ window.itemsLinksListName = "itemsLinksList";
 window.itemsInfoListName = "itemsInfoList";
 window.initialPage = "https://preorder.fwshats.de/en/catalogsearch/";
 window.itemsErrorsListName = "itemsErrorsList";
+window.itemsLinksList = 
 window.sleepTime = 3;
 
 try {
@@ -337,7 +338,7 @@ window.startParse = async () => {
       "Список ссылок пуст. Введите их через запятую:"
     );
 
-    if (window[window.itemsLinksListName].length) {
+    if (window[window.itemsLinksListName]?.length) {
       //Если ссылки введены
       //Форматирование, обработка введённых данных
       window[window.itemsLinksListName] = window[
