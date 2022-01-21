@@ -1,3 +1,4 @@
+//Утилиты
 window.LocalStorageUtil = {
   get(key = null) {
     if (!key) return;
@@ -39,7 +40,7 @@ window.createCSV = ({ content, headers, handler } = content) => {
   //Содержание
   content.forEach((item) => {
     //Массив объектов
-    for (let value of Object.values(item)) {
+    for (value of Object.values(item)) {
       //1 объект = 1 строка
       fileData += `${value}${sep}`; //1 свойство = 1 столбец
     }
@@ -69,6 +70,7 @@ window.download = (content, fileName, fileFormat) => {
 window.itemsLinksListName = "itemsLinksList";
 window.itemsInfoListName = "itemsInfoList";
 window.initialPage = "https://preorder.fwshats.de/en/catalogsearch/";
+window.itemsErrorsListName = "itemsErrorsList";
 window.sleepTime = 3;
 
 try {
@@ -84,7 +86,8 @@ try {
 window.toFirstItem = () => {
   window.location.href = window[window.itemsLinksListName][0];
 };
-
+window.getErrors = () =>
+  window.LocalStorageUtil.get(window.itemsErrorsListName) || [];
 window.getItemInfo = () => {
   //RegExp
   const onlyNumReg = /[^0-9]/g;
@@ -141,39 +144,44 @@ window.getItemInfo = () => {
         });
       });
     }
-    return variants;
+    return variants.length ? variants : null;
   };
   const getItemProps = () => {
     const itemPropsHeadersElements = [
       ...window.$(".product-view__property-label"),
     ];
-    const itemProps = {};
+    if (!itemPropsHeadersElements.length) return null
+
+    let itemProps = {};
 
     itemPropsHeadersElements.forEach((prop) => {
-      if (prop.textContent.trim().toLowerCase() == "care instructions") {
-        return;
-      }
-      const propName = prop.textContent.trim();
-      const propContent = prop.nextSibling.nextSibling.textContent.trim();
+      const propName = prop?.textContent?.trim() || "error"
+      const propContent = prop?.nextSibling?.nextSibling?.textContent?.trim() || "error"
+
+      if (propName.toLowerCase() == "care instructions") return;
+
       itemProps[propName] = propContent;
     });
     return itemProps;
   };
   const getName = () => {
-    return window
-      .$("[itemprop='name']")[0]
-      .textContent.replace("\n", "")
-      .trim();
+    return (
+      window.$("[itemprop='name']")[0]?.textContent?.replace("\n", "").trim() ||
+      null
+    );
   };
   const getPreOrderPrice = () => {
-    return window
-      .$(".price__value.price__value--special .price")[0]
-      .textContent.replace(onlySymReg, "");
+    return (
+      window
+        .$(".price__value.price__value--special .price")[0]
+        ?.textContent.replace(onlySymReg, "") || null
+    );
   };
   const getSizes = () => {
-    return [...window.$("[option-attr-code='size']")].map(
-      (size) => size.textContent
+    const sizes = [...window.$("[option-attr-code='size']")].map(
+      (size) => size?.textContent || "error"
     );
+    return sizes.length ? sizes : null;
   };
 
   //Данные
@@ -182,6 +190,16 @@ window.getItemInfo = () => {
   const name = getName();
   const sizes = getSizes();
   const itemProps = getItemProps();
+  if (!variants || !preOrderPrice || !name || !sizes || !itemProps) {
+    let itemsErrorsList = window.getErrors();
+
+    itemsErrorsList = [...new Set(itemsErrorsList)];
+    itemsErrorsList.push(window.location.href.split("-").at(-1));
+
+    window.LocalStorageUtil.set(itemsErrorsList, window.itemsErrorsListName);
+    console.log("New Error!!!", itemsErrorsList.length)
+    return null;
+  }
 
   let itemInfo = {
     variants,
@@ -230,7 +248,7 @@ window.downloadCSV = () => {
         let obj = { ...item };
         delete obj[prop];
 
-        for (let element in arrElement) {
+        for (element in arrElement) {
           obj[element] = arrElement[element];
         }
 
@@ -259,17 +277,26 @@ window.clearInfo = () => {
   window.LocalStorageUtil.delete(window.itemsInfoListName);
   console.log("Информация о товарах была очищена.");
 };
+window.clearErrors = () => {
+  const isConfrim = confirm("Очистить лог ошибок?");
+  if (!isConfrim) return;
+  window.LocalStorageUtil.delete(window.itemsErrorsListName);
+  console.log("Лог ошибок очищен.");
+}
 
 window.clearAllData = () => {
   window.clearLinks();
   window.clearInfo();
+  window.clearErrors()
 };
 
 window.parseInfo = async () => {
   await window.sleep(window.sleepTime); //Задержка для загрузки данных и избежания блокировки соединения
   let itemInfo = window.getItemInfo(); //Получение данных о товаре
 
-  window[window.itemsInfoListName].push(itemInfo); //Добавить в массив данные о товаре
+  if (itemInfo) {
+    window[window.itemsInfoListName].push(itemInfo); //Добавить в массив данные о товаре
+  }
   window[window.itemsLinksListName].shift(); //Удалить ссылку товара
 
   console.log(itemInfo);
@@ -346,8 +373,9 @@ console.log(`
   "clearInfo()" - очистить информацию о товарах.
   "clearLinks()" - очистить ссылки на товары.
   "startParse()" - запуск парсинга.
+  "getErrors()" - получить ошибочные артикула
   "${window.itemsLinksListName}" - ссылки на товары.
   "${window.itemsInfoListName}" - информация о товарах.
   `);
 //Парсинг
-//window.startParse();
+window.startParse();
