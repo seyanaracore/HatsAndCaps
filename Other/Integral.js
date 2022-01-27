@@ -5,6 +5,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://home.integraldos.ru/213/finance/*
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/Integral.js
 // @icon         chrome://favicon/http://home.integraldos.ru/
 // @grant        none
 //____________________________________________________________________________________________
