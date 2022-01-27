@@ -6,31 +6,7 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonItemsInfoParser.js
 //____________________________________________________________________________________________
 
-
 //Утилиты
-window.LocalStorageUtil = {
-  get(key = null) {
-    if (!key) return;
-    try {
-      return JSON.parse(localStorage.getItem(key));
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  set(key = null, value) {
-    if (!key) return;
-    localStorage.setItem(key, JSON.stringify(value));
-  },
-  delete(key = null) {
-    if (!key) return;
-    localStorage.removeItem(key);
-  },
-};
-window.sleep = (sec = 0.5) => {
-  return new Promise((res) => {
-    setTimeout(() => res(), sec * 1000);
-  });
-};
 window.createCSV = ({ content, headers, handler } = content) => {
   const sep = ";";
   let fileData = `sep=${sep}\n`;
@@ -57,31 +33,12 @@ window.createCSV = ({ content, headers, handler } = content) => {
   });
   return fileData;
 };
-window.download = (content, fileName, fileFormat) => {
-  switch (fileFormat) {
-    case "txt":
-      content = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
-      break;
-    case "csv":
-      content =
-        "data:text/plain;charset=utf-8," +
-        encodeURIComponent(window.createCSV(content));
-      break;
-  }
-
-  let a = document.createElement("a");
-  a.style.display = "none";
-  a.href = content;
-  a.setAttribute("download", fileName + "." + fileFormat);
-  a.click();
-};
 //Константы
 window.itemsLinksListName = "itemsLinksList";
 window.itemsInfoListName = "itemsInfoList";
 window.initialPage = "https://preorder.fwshats.de/en/catalogsearch/";
 window.itemsErrorsListName = "itemsErrorsList";
-window.itemsLinksList =
-window.sleepTime = 3;
+window.itemsLinksList = window.sleepTime = 3;
 
 try {
   window.$ = jQuery;
@@ -160,13 +117,14 @@ window.getItemInfo = () => {
     const itemPropsHeadersElements = [
       ...window.$(".product-view__property-label"),
     ];
-    if (!itemPropsHeadersElements.length) return null
+    if (!itemPropsHeadersElements.length) return null;
 
     let itemProps = {};
 
     itemPropsHeadersElements.forEach((prop) => {
-      const propName = prop?.textContent?.trim() || "error"
-      const propContent = prop?.nextSibling?.nextSibling?.textContent?.trim() || "error"
+      const propName = prop?.textContent?.trim() || "error";
+      const propContent =
+        prop?.nextSibling?.nextSibling?.textContent?.trim() || "error";
 
       if (propName.toLowerCase() == "care instructions") return;
 
@@ -207,7 +165,7 @@ window.getItemInfo = () => {
     itemsErrorsList.push(window.location.href.split("-").at(-1));
 
     window.LocalStorageUtil.set(itemsErrorsList, window.itemsErrorsListName);
-    console.log("New Error!!!", itemsErrorsList.length)
+    console.log("New Error!!!", itemsErrorsList.length);
     return null;
   }
 
@@ -292,12 +250,12 @@ window.clearErrors = () => {
   if (!isConfrim) return;
   window.LocalStorageUtil.delete(window.itemsErrorsListName);
   console.log("Лог ошибок очищен.");
-}
+};
 
 window.clearAllData = () => {
   window.clearLinks();
   window.clearInfo();
-  window.clearErrors()
+  window.clearErrors();
 };
 
 window.parseInfo = async () => {

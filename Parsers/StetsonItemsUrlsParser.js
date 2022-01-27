@@ -1,9 +1,11 @@
-window.sleep = (sec = 0.5) => {
-  return new Promise((res) => {
-    setTimeout(() => res(), sec * 1000);
-  });
-};
-//Константы
+//____________________________________________________________________________________________
+// @name         Stetson items urls parser
+// @namespace    http://goorin.ru/
+// @match        https://preorder.fwshats.de/en/*
+// @icon         chrome://favicon/http://preorder.fwshats.de/
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonItemsUrlsParser.js
+//____________________________________________________________________________________________
+
 window.articlesListName = "articlesList";
 window.articlesErrorsListName = "articlesErrorsList";
 window.itemsLinksListName = "itemsLinksList";
@@ -17,25 +19,6 @@ try {
   });
   return;
 }
-//Утилиты
-window.LocalStorageUtil = {
-  get(key = null) {
-    if (!key) return;
-    try {
-      return JSON.parse(localStorage.getItem(key));
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  set(key = null, value) {
-    if (!key) return;
-    localStorage.setItem(key, JSON.stringify(value));
-  },
-  delete(key = null) {
-    if (!key) return;
-    localStorage.removeItem(key);
-  },
-};
 //Методы
 window.search = (value) => {
   if (value) {
@@ -45,25 +28,7 @@ window.search = (value) => {
     console.error("No value for search");
   }
 };
-window.download = (content, fileName, fileFormat) => {
-  switch (fileFormat) {
-    case "txt":
-      content = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
-      break;
-    case "png":
-      content = content.toDataURL("image/webp");
-      break;
-  }
 
-  let a = document.createElement("a");
-  a.style.display = "none";
-  a.href = content;
-  a.setAttribute("download", fileName + "." + fileFormat);
-  a.click();
-};
-window.downloadLinks = () => {
-  window.download(window.itemsLinksList.join(),"itemsLinks", "txt")
-}
 window.parseLinks = async () => {
   const itemLink = window.$(".catalog-grid-item__link")[0].href;
   window.articlesList.shift();
