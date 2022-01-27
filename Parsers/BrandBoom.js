@@ -27,14 +27,15 @@ window.getBtns = () => {
     .filter((btn) => btn.style.display != "none");
   return btns;
 };
-
-window.parseItem = async () => {
-  const itemObj = await window.getItemInfo();
+window.decomposeObjToTable =(obj) => {
   let itemObjString = "";
-  for (let prop in itemObj) {
-    itemObjString += itemObj[prop] + `\t`;
+  for (let prop in obj) {
+    itemObjString += obj[prop] + `\t`;
   }
-  window.itemsInfo += itemObjString;
+  return itemObjString;
+}
+window.parseItem = async () => {
+  window.itemsInfo += decomposeObjToTable(await window.getItemInfo());
   window.LocalStorageUtil.set(window.localStrName, window.itemsInfo);
 };
 
@@ -60,39 +61,59 @@ window.getItemInfo = async (btn) => {
   }
 
   await window.sleep(window.sleepTime);
-  let closeBtn = window.$("#product-review-widget .modal-close")
+  let closeBtn = window.$("#product-review-widget .modal-close");
+  //Parse info_______________________________________________________
   const itemInfoObj = {};
-  //Parse info
+  //Image link
   try {
-    itemInfoObj.imageLink = window.$("#pr-viewer-box img")?.src;
-    if (!itemInfoObj.imageLink) throw new Error();
+    itemInfoObj[window.columns[0]] = window.$("#pr-viewer-box img")?.src;
+    if (!itemInfoObj[window.columns[0]]) throw new Error();
   } catch (e) {
     await window.sleep(3);
-    itemInfoObj.imageLink = window.$("#pr-viewer-box img").src;
+    itemInfoObj[window.columns[0]] = window.$("#pr-viewer-box img").src;
   }
-
-  itemInfoObj.style = window.$(".product-style div")?.textContent || "-";
-  itemInfoObj.sex = window.$(".product-type div")?.textContent || "-";
-  itemInfoObj.category = window.$(".product-category div")?.textContent || "-";
-  itemInfoObj.priceLocal =
+  //Style
+  itemInfoObj[window.columns[1]] =
+    window.$(".product-style div")?.textContent || "-";
+  //Name
+  itemInfoObj[window.columns[2]] = window.$(".pr-title").textContent || "-";
+  //Color
+  itemInfoObj[window.columns[3]] =
+    window.$(".product-options div")?.textContent || "-";
+  //Category
+  itemInfoObj[window.columns[4]] =
+    window.$(".product-category div")?.textContent || "-";
+  //Sex
+  itemInfoObj[window.columns[5]] =
+    window.$(".product-type div")?.textContent || "-";
+  //Season
+  itemInfoObj[window.columns[6]] =
+    window.$(".product-season div")?.textContent || "-";
+  //Material
+  itemInfoObj[window.columns[7]] =
+    window.$(".product-vendor div")?.textContent || "-";
+  //Price
+  itemInfoObj[window.columns[8]] =
     window
       .$(".product-price .original")
       ?.textContent.replace(/[^0-9.]/g, "")
       .replace(".", ",") || "-";
-  itemInfoObj.priceRetail =
+  //Price retail
+  itemInfoObj[window.columns[9]] =
     window
       .$(".product-price .product-retail")
       ?.textContent.replace(/[^0-9.]/g, "")
       .replace(".", ",") || "-";
-  itemInfoObj.material = window.$(".product-vendor div")?.textContent || "-";
-  itemInfoObj.name = window.$(".pr-title").textContent || "-";
-  itemInfoObj.season = window.$(".product-season div")?.textContent || "-";
-  itemInfoObj.sizes = window.$(".product-size div")?.textContent || "-";
-  itemInfoObj.color = window.$(".product-options div")?.textContent || "-";
-  itemInfoObj.description =
+  //Sizes
+  itemInfoObj[window.columns[10]] =
+    window.$(".product-size div")?.textContent || "-";
+  //Description
+  itemInfoObj[window.columns[11]] =
     window.$(".product-description div")?.textContent || "-";
 
-  closeBtn.click();
+  if (btn) {
+    closeBtn.click();
+  }
   return itemInfoObj;
 };
 window.getExcel = () => {
@@ -109,7 +130,7 @@ window.columns = [
   "Season",
   "Material",
   "Price",
-  "Price Retail",
+  "PriceRetail",
   "Sizes",
   "Description",
 ];
@@ -123,7 +144,7 @@ console.log(
   `"clearCart()" в корзине, для её очистки;
 "parseAll()" парсинг 1 блока в зоне видимости;
 "parseItem()" парсинг и запись 1 открой вещи;
-"getItemInfo()" вывод информации о товаре в консоль;
+"await getItemInfo()" вывод информации о товаре в консоль;
 "getExcel()" получение конечной информации;
 `
 );
