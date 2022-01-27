@@ -30,13 +30,13 @@ window.copyToClipboard = (string) => {
 window.download = (content, fileName, fileFormat) => {
   const createCSV = ({ content, headers, sep = ";" } = content) => {
     let fileData = `sep=${sep}\n`;
-  
+
     //Заголовки
     if (headers.length)
       fileData += Array.isArray(headers)
         ? `${headers.join(sep)}\n`
         : `${headers}\n`;
-  
+
     //Содержание
     content.forEach((item) => {
       //Массив объектов

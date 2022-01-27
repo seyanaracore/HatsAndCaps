@@ -8,38 +8,7 @@
 // ==/UserScript==
 
 window.deleteItems = () => window.LocalStorageUtil.delete(window.localStrName);
-window.LocalStorageUtil = {
-  get(key = null) {
-    if (!key) return;
-    try {
-      return JSON.parse(localStorage.getItem(key));
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  set(key = null, value) {
-    if (!key) return;
-    localStorage.setItem(key, JSON.stringify(value));
-  },
-  delete(key = null) {
-    if (!key) return;
-    localStorage.removeItem(key);
-  },
-};
-window.copyToClipboard = (string) => {
-  let area = document.createElement("textarea");
-  document.body.appendChild(area);
-  area.value = string;
-  area.select();
-  document.execCommand("copy");
-  document.body.removeChild(area);
-  console.log("copied");
-};
-window.sleep = (sec = 0.5) => {
-  return new Promise((res) => {
-    setTimeout(() => res(), sec * 1000);
-  });
-};
+
 window.selectAllCartItems = () =>
   document
     .querySelectorAll(".cb-orderline.d-print-none")
