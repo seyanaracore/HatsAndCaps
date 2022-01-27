@@ -34,7 +34,7 @@ window.parseItem = async () => {
   for (let prop in itemObj) {
     itemObjString += itemObj[prop] + `\t`;
   }
-  window.itemsInfo += itemObjStringl;
+  window.itemsInfo += itemObjString;
   window.LocalStorageUtil.set(window.localStrName, window.itemsInfo);
 };
 
