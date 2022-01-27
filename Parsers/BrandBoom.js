@@ -52,7 +52,9 @@ window.parseAll = async () => {
   console.log("finished");
 };
 window.getItemInfo = async (btn) => {
-  btn.parentElement.parentElement.parentElement.childNodes[2].lastElementChild.lastElementChild.childNodes[0].click();
+  if (btn) {
+    btn.parentElement.parentElement.parentElement.childNodes[2].lastElementChild.lastElementChild.childNodes[0].click();
+  }
   await window.sleep(window.sleepTime);
   let closeBtn = document.querySelector("#product-review-widget .modal-close");
   let style = "-";
