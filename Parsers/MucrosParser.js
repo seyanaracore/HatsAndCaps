@@ -1,13 +1,10 @@
-// ==UserScript==
+//____________________________________________________________________________________________
 // @name         MucrosCatalog
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
 // @match        https://mucrosweavers.ie/*
 // @icon         chrome://favicon/http://mucrosweavers.ie/
 // @require      https://raw.githubusercontent.com/seyanaracore/JSAssets/main/index.js
-// ==/UserScript==
+//____________________________________________________________________________________________
 window.getInfo = () => {
   const sizesVariants = ["One Size", "S", "M", "L", "XL", "XXL"];
   const items = document.querySelectorAll(".wp-block-column.products");
