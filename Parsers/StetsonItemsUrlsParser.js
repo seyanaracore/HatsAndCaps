@@ -6,6 +6,7 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonItemsUrlsParser.js
 //____________________________________________________________________________________________
 
+
 window.articlesListName = "articlesList";
 window.articlesErrorsListName = "articlesErrorsList";
 window.itemsLinksListName = "itemsLinksList";
