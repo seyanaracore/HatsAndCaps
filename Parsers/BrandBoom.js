@@ -1,12 +1,3 @@
-// ==UserScript==
-// @name         BrandBoom
-// @namespace    https://www.brandboom.com/*
-// @version      1.0
-// @match        https://www.brandboom.com/*
-// @icon         chrome://favicon/http://www.brandboom.com/
-// @require       https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Other/BaseMethods.js
-// ==/UserScript==
-
 window.deleteItems = () => window.LocalStorageUtil.delete(window.localStrName);
 
 window.selectAllCartItems = () =>
@@ -129,6 +120,7 @@ console.log(
   `"clearCart()" в корзине, для её очистки;
 "parseAll()" парсинг 1 блока в зоне видимости;
 "parseItem()" парсинг и запись 1 открой вещи;
+"getItemInfo()" вывод информации о товаре в консоль;
 "getExcel()" получение конечной информации;
 `
 );
