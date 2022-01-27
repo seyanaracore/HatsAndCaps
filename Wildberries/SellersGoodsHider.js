@@ -1,3 +1,11 @@
+//____________________________________________________________________________________________
+// @name         Hide sellers items
+// @namespace    https://hatsandcaps.ru/
+// @match        https://www.wildberries.ru/catalog/0/search.aspx?*
+// @icon         chrome://favicon/http://www.wildberries.ru/
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Wildberries/SellersGoodsHider.js
+// @grant        none
+//____________________________________________________________________________________________
 const sellerNames = [
     "Стиляжки",
     "Markuss",
