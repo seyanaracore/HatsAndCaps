@@ -1,3 +1,14 @@
+//____________________________________________________________________________________________
+// @name         Base methods
+// @namespace    https://hatsandcaps.ru/
+// @version      1.0
+// @match        *://*
+// @match        *://*/*
+// @match        *://*/*/*
+// @match        *://*/*/*/*
+// @icon         https://avatars.mds.yandex.net/i?id=d72422cb4c1114a80d464a479f882eb1-5676890-images-thumbs&n=13
+//____________________________________________________________________________________________
+
 window.sleep = (sec = 0.5) => {
   return new Promise((res) => {
     setTimeout(() => res(), sec * 1000);
