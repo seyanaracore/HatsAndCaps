@@ -1,19 +1,24 @@
+window.$ = (selector) => document.querySelector(selector);
+
 window.deleteItems = () => window.LocalStorageUtil.delete(window.localStrName);
 
-window.selectAllCartItems = () =>
-  document
+window.selectAllCartItems = () => {
+  return document
     .querySelectorAll(".cb-orderline.d-print-none")
     .forEach((btn) => btn.click());
+};
+
 window.clearCart = async () => {
   window.selectAllCartItems();
   await window.sleep(0.2);
-  document.querySelector(".primary-btn.btn.btn-white.order-only").click();
+  window.$(".primary-btn.btn.btn-white.order-only").click();
   await window.sleep(1);
-  document.querySelector(".modal-footer > .btn").click();
+  window.$(".modal-footer > .btn").click();
   window.deleteItems();
 };
+
 window.getBtns = () => {
-  let products = [...document.querySelectorAll(".product")].filter(
+  let products = [...window.$All(".product")].filter(
     (product) => !product.classList.contains("ordered")
   );
   let btns = products
@@ -22,10 +27,17 @@ window.getBtns = () => {
     .filter((btn) => btn.style.display != "none");
   return btns;
 };
+
 window.parseItem = async () => {
-  window.itemsInfo += await window.getItemInfo();
+  const itemObj = await window.getItemInfo();
+  let itemObjString = "";
+  for (let prop in itemObj) {
+    itemObjString += itemObj[prop] + `\t`;
+  }
+  window.itemsInfo += itemObjStringl;
   window.LocalStorageUtil.set(window.localStrName, window.itemsInfo);
 };
+
 window.parseAll = async () => {
   let btns = window.getBtns();
   let btnsCounter = 0;
@@ -46,51 +58,42 @@ window.getItemInfo = async (btn) => {
   if (btn) {
     btn.parentElement.parentElement.parentElement.childNodes[2].lastElementChild.lastElementChild.childNodes[0].click();
   }
+
   await window.sleep(window.sleepTime);
-  let closeBtn = document.querySelector("#product-review-widget .modal-close");
-  let style = "-";
-  let sex = "-";
-  let category = "-";
-  let material = "-";
-  let name = "-";
-  let season = "-";
-  let sizes = "-";
-  let color = "-";
-  let description = "-";
-  let imageLink = "-";
-  let priceLocal = "-";
-  let priceRetail = "-";
+  let closeBtn = window.$("#product-review-widget .modal-close")
+  const itemInfoObj = {};
+  //Parse info
   try {
-    imageLink = document.querySelector("#pr-viewer-box img")?.src;
-    if (!imageLink) throw new Error();
+    itemInfoObj.imageLink = window.$("#pr-viewer-box img")?.src;
+    if (!itemInfoObj.imageLink) throw new Error();
   } catch (e) {
     await window.sleep(3);
-    imageLink = document.querySelector("#pr-viewer-box img").src;
+    itemInfoObj.imageLink = window.$("#pr-viewer-box img").src;
   }
-  style = document.querySelector(".product-style div")?.textContent || "-";
-  sex = document.querySelector(".product-type div")?.textContent || "-";
-  category =
-    document.querySelector(".product-category div")?.textContent || "-";
-  priceLocal =
-    document
-      .querySelector(".product-price .original")
+
+  itemInfoObj.style = window.$(".product-style div")?.textContent || "-";
+  itemInfoObj.sex = window.$(".product-type div")?.textContent || "-";
+  itemInfoObj.category = window.$(".product-category div")?.textContent || "-";
+  itemInfoObj.priceLocal =
+    window
+      .$(".product-price .original")
       ?.textContent.replace(/[^0-9.]/g, "")
       .replace(".", ",") || "-";
-  priceRetail =
-    document
-      .querySelector(".product-price .product-retail")
+  itemInfoObj.priceRetail =
+    window
+      .$(".product-price .product-retail")
       ?.textContent.replace(/[^0-9.]/g, "")
       .replace(".", ",") || "-";
-  material = document.querySelector(".product-vendor div")?.textContent || "-";
-  name = document.querySelector(".pr-title").textContent || "-";
-  season = document.querySelector(".product-season div")?.textContent || "-";
-  sizes = document.querySelector(".product-size div")?.textContent || "-";
-  color = document.querySelector(".product-options div")?.textContent || "-";
-  description =
-    document.querySelector(".product-description div")?.textContent || "-";
-  let itemInfo = `${imageLink}\t${style}\t${name}\t${color}\t${category}\t${sex}\t${season}\t${material}\t${priceLocal}\t${priceRetail}\t${sizes}\t${description}\n`;
+  itemInfoObj.material = window.$(".product-vendor div")?.textContent || "-";
+  itemInfoObj.name = window.$(".pr-title").textContent || "-";
+  itemInfoObj.season = window.$(".product-season div")?.textContent || "-";
+  itemInfoObj.sizes = window.$(".product-size div")?.textContent || "-";
+  itemInfoObj.color = window.$(".product-options div")?.textContent || "-";
+  itemInfoObj.description =
+    window.$(".product-description div")?.textContent || "-";
+
   closeBtn.click();
-  return itemInfo;
+  return itemInfoObj;
 };
 window.getExcel = () => {
   window.copyToClipboard(window.LocalStorageUtil.get(window.localStrName));
