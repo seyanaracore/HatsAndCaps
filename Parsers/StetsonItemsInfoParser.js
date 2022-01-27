@@ -1,3 +1,12 @@
+//____________________________________________________________________________________________
+// @name         Stetson items info parser
+// @namespace    http://goorin.ru/
+// @match        https://preorder.fwshats.de/en/*
+// @icon         chrome://favicon/http://preorder.fwshats.de/
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonItemsInfoParser.js
+//____________________________________________________________________________________________
+
+
 //Утилиты
 window.LocalStorageUtil = {
   get(key = null) {
@@ -71,7 +80,7 @@ window.itemsLinksListName = "itemsLinksList";
 window.itemsInfoListName = "itemsInfoList";
 window.initialPage = "https://preorder.fwshats.de/en/catalogsearch/";
 window.itemsErrorsListName = "itemsErrorsList";
-window.itemsLinksList = 
+window.itemsLinksList =
 window.sleepTime = 3;
 
 try {
