@@ -1,3 +1,14 @@
+//____________________________________________________________________________________________
+// @name         Get last report
+// @namespace    https://hatsandcaps.ru/
+// @version      1.0
+// @description  try to take over the world!
+// @author       You
+// @match        https://home.integraldos.ru/213/finance/*
+// @icon         chrome://favicon/http://home.integraldos.ru/
+// @grant        none
+//____________________________________________________________________________________________
+
 function copySMAinfo(e) {
   e.target.parentElement.preventDefault;
   navigator.clipboard.writeText(code + " " + date + " " + sum);
