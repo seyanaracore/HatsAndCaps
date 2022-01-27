@@ -1,3 +1,15 @@
+//____________________________________________________________________________________________
+// @name         BrandBoom
+// @namespace    https://www.brandboom.com/*
+// @version      1.0
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.brandboom.com/*
+// @icon         chrome://favicon/http://www.brandboom.com/
+// @grant        none
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/BrandBoom.js
+//____________________________________________________________________________________________
+
 window.$ = (selector) => document.querySelector(selector);
 
 window.deleteItems = () => window.LocalStorageUtil.delete(window.localStrName);
