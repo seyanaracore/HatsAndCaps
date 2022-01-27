@@ -1,9 +1,9 @@
 //____________________________________________________________________________________________
-// @name         MucrosCatalog
+// @name         Catalog parser
 // @namespace    http://tampermonkey.net/
 // @match        https://mucrosweavers.ie/*
 // @icon         chrome://favicon/http://mucrosweavers.ie/
-// @require      https://raw.githubusercontent.com/seyanaracore/JSAssets/main/index.js
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/MucrosParser.js
 //____________________________________________________________________________________________
 window.getInfo = () => {
   const sizesVariants = ["One Size", "S", "M", "L", "XL", "XXL"];
