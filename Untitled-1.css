@@ -1,8 +1,8 @@
-/* 843 delete */
-/* 764 delete .custom-item*/
+/* 843 удалить всю строку */
+/* 764 удалить .custom-item, */
 
-/* 504 delete .custom-item */
-/* 503 delete .custom-content*/
+/* 504 удалить .custom-item, */
+/* 503 удалить .custom-content, */
 .custom-content {
   display: flex;
   flex-wrap: wrap;
@@ -40,37 +40,41 @@
     width: calc(25% - 7.5px);
   }
 }
+/* slider */
+body.mobile .grid {
+  margin: 0 auto;
+}
+  
 
 /* Advantages */
-/* 163 delete flex */
-.moduletableblock-3 ul {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
+@media only screen and (max-width: 1366px) {
+  body.mobile .moduletableblock-3 ul li {
+      justify-content: center;
+      flex: initial;
+  }
 }
-.moduletableblock-3 ul li {
-  padding: 10px 0;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-}
-
-@media only screen and (max-width: 768px) {
-  .moduletableblock-3 ul {
+@media only screen and (max-width: 766px) {
+  body.mobile .moduletableblock-3 ul li {
+      flex: initial;
+      justify-content: flex-start;
+  }
+  body.mobile .moduletableblock-3 ul {
+    margin: 0 auto;
     flex-direction: column;
+    width: fit-content;
   }
-  .moduletableblock-3 {
-    padding: 10px 0px;
-  }
-  .moduletableblock-3 ul li {
-    align-self: center;
-    width: calc(100% / 3);
-    justify-content: flex-start;
-  }
+}
+.moduletableblock-3 ul {
+  margin: 0 0;
+  justify-content: space-around;
+}
+.moduletableblock-3 ul li{
+  flex: initial;
+  min-width: min-content;
 }
 
 /* footer */
-/* module3,4 to title to h4 */
+/* module3,4 заголовок заглавными и сделать в H4, либо убрать p и сделать как заголовок модуля */
 @media only screen and (max-width: 768px) {
   .footer-block__item {
     width: 100%;
@@ -79,9 +83,15 @@
     margin: 0 !important;
   }
 }
-/* slider */
-@media only screen and (max-width: 1366px) {
-  body.mobile .grid {
-    margin: 0 auto;
+@media only screen and (min-width: 768px) {
+  .footer-block__item.medium-up--one-fifth:not(:first-child) {
+    padding-left: 20px;
   }
 }
+.moduletablefooter-4 .list-inline {
+  margin-left: 0px;
+}
+
+
+
+
