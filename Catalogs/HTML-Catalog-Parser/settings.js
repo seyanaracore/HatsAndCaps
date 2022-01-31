@@ -1,6 +1,9 @@
 const manufacturer = "Herman"
-const materialsSeparator = "Colors";
-const headers = `Model,Materials`;
+const materialsSeparator = "|";
+const sizesSeparator = "Sizes";
+const colorsSeparator = "Colors";
+const csvSep = ";"
+const headers = `Model${csvSep}Info`;
 
 const parsingTypes = {
     selectors: ["h3", ".s6", "h2", ".s9", ".s12", ".s14"],

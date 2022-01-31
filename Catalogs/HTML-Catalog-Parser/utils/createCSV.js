@@ -1,9 +1,9 @@
 const createFile = (content, headers) => {
-    let fileData = `sep=,\n`
+    let fileData = `sep=${csvSep}\n`
     if(headers) fileData+=`${headers}\n`
     content.forEach(item => {
         for(prop in item) {
-            fileData+=`${item[prop]},`
+            fileData+=`${item[prop]}${csvSep}`
         }
         fileData += `\n`
     });
