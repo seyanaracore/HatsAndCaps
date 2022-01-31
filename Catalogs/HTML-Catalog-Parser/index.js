@@ -5,39 +5,49 @@
 //<script src="./index.js" defer></script>
 
 const stringHandler = (string) => {
-  return string.replace(/\[.*\]/,"").replace(/\r?\n/g, "").replace(/\t/g, "").trim()
-}
+  return string
+    .replace(/\[.*\]/, "")
+    .replace(/\r?\n/g, "")
+    .replace(/\t/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+};
 
 const getInfo = (item) => {
-  let initialDomElement = item
-  let itemInfoList = []
+  let initialDomElement = item;
+  let itemInfoList = [];
 
-  //Материал
+  //Материал__________________________________________________________________________________
   let nextDomElement = initialDomElement.nextSibling;
   while (!nextDomElement.textContent.includes(materialsSeparator)) {
     nextDomElement = nextDomElement.nextSibling;
   }
-  let metarials = stringHandler(nextDomElement.textContent)
-  if(!itemInfoList.includes(metarials)) itemInfoList.push(metarials)
+  let metarials = nextDomElement.textContent;
+  if (!itemInfoList.find((el) => el.includes(materialsSeparator))) {
+    itemInfoList.push(metarials);
+  }
 
-  //Цвета
+  //Цвета_____________________________________________________________________________________
   nextDomElement = initialDomElement.nextSibling;
   while (!nextDomElement.textContent.includes(colorsSeparator)) {
     nextDomElement = nextDomElement.nextSibling;
   }
-  let colors = stringHandler(nextDomElement.textContent)
-  if(!itemInfoList.includes(colors)) itemInfoList.push(colors)
+  let colors = nextDomElement.textContent;
+  if (!itemInfoList.find((el) => el.includes(colorsSeparator))) {
+    itemInfoList.push(colors);
+  }
 
-  //Размеры
+  //Размеры___________________________________________________________________________________
   nextDomElement = initialDomElement.nextSibling;
   while (!nextDomElement.textContent.includes(sizesSeparator)) {
     nextDomElement = nextDomElement.nextSibling;
   }
-  let sizes = stringHandler(nextDomElement.textContent)
-  if(!itemInfoList.includes(sizes)) itemInfoList.push(sizes)
-
-  console.log(itemInfoList.join(" "));
-  return itemInfoList.join(" ");
+  let sizes = nextDomElement.textContent;
+  if (!itemInfoList.find((el) => el.includes(sizesSeparator))) {
+    itemInfoList.push(sizes);
+  }
+  //__________________________________________________________________________________________
+  return stringHandler(itemInfoList.join(" "));
 };
 
 const getItemsInfo = (itemsHeaders) => {
@@ -57,7 +67,10 @@ const getItemsInfo = (itemsHeaders) => {
 
 const itemsHeaders =
   parseBy === "styles"
-    ? getItemsHeadersByStyles(parsingTypes[parseBy].stylesVariantsList, parsingTypes[parseBy].selector)
+    ? getItemsHeadersByStyles(
+        parsingTypes[parseBy].stylesVariantsList,
+        parsingTypes[parseBy].selector
+      )
     : getItemsHeadersBySelector(parsingTypes[parseBy]);
 const items = getItemsInfo(itemsHeaders);
 

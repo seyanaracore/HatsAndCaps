@@ -1,7 +1,7 @@
 const manufacturer = "Herman"
 const materialsSeparator = "|";
 const sizesSeparator = "Sizes";
-const colorsSeparator = "Colors";
+const colorsSeparator = "Color";
 const csvSep = ";"
 const headers = `Model${csvSep}Info`;
 
