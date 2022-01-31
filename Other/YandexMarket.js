@@ -8,6 +8,7 @@
 
 window.copy = (event) => {
   navigator.clipboard.writeText(event.target.textContent.trim());
+  alert("copied")
 };
 
 const items = document.querySelectorAll(
