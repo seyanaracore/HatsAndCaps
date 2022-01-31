@@ -18,8 +18,8 @@ const getItemsInfo = (itemsHeaders) => {
   itemsHeaders.forEach((item) => {
     let itemObject = {};
     //table content
-    itemObject.header = item.textContent.replace(/\[.*\]/,"").replace("\n", "").replace("\t", "").trim();
-    itemObject.materials = getMaterial(item).replace(/\[.*\]/,"").replace("\n", "").replace("\t", "").trim();
+    itemObject.header = item.textContent.replace(/\[.*\]/,"").replace("\n", "").replace(`\t`, "").trim();
+    itemObject.materials = getMaterial(item).replace(/\[.*\]/,"").replace("\n", "").replace(`\t`, "").trim();
 
     itemsList.push(itemObject);
   });
