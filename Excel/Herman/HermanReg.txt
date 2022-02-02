@@ -1,0 +1,12 @@
+-HERMAN
+const reg = /[^A-Z|0-9]/
+const reg1 = /\(.*\)/
+const reg2 = /[0-9]$/
+const reg3 = /[0-9]$/
+NEW
+2021
+2020
+2019
+2019
+ANTHRACITE -> ANTH
+ANTHR -> ANTH
