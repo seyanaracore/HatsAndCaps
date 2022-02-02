@@ -1,5 +1,5 @@
 const manufacturer = "Herman"
-const materialsSeparator = "|";
+const materialsSeparator = "%";
 const sizesSeparator = "Sizes";
 const colorsSeparator = "Color";
 const csvSep = ";"
