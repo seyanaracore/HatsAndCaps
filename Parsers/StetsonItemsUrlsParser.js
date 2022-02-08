@@ -6,6 +6,29 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonItemsUrlsParser.js
 //____________________________________________________________________________________________
 
+window.LocalStorageUtil = {
+  get(key = null) {
+    if (!key) return;
+    try {
+      return JSON.parse(localStorage.getItem(key));
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  set(key = null, value) {
+    if (!key) return;
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  delete(key = null) {
+    if (!key) return;
+    localStorage.removeItem(key);
+  },
+};
+window.sleep = (sec = 0.5) => {
+  return new Promise((res) => {
+    setTimeout(() => res(), sec * 1000);
+  });
+};
 
 window.articlesListName = "articlesList";
 window.articlesErrorsListName = "articlesErrorsList";
@@ -26,26 +49,30 @@ window.search = (value) => {
     window.location.href =
       "https://preorder.fwshats.de/en/catalogsearch/result/?q=" + value;
   } else {
-    console.error("No value for search");
+    console.log("No value for search");
+    alert("Finish");
   }
 };
+window.setArticlesList = () => {
+  window.LocalStorageUtil.set(window.articlesListName, window.articlesList);
+};
+window.getErros = () => [
+  ...new Set(window.LocalStorageUtil.get(window.articlesErrorsListName) || []),
+];
 
 window.parseLinks = async () => {
-  const itemLink = window.$(".catalog-grid-item__link")[0].href;
+  const itemLink = window.$(".catalog-grid-item__link")[0]?.href;
   window.articlesList.shift();
+  window.setArticlesList();
+
   if (itemLink) {
     window.itemsLinksList.push(itemLink);
-
-    window.LocalStorageUtil.set(window.articlesListName, window.articlesList);
     window.LocalStorageUtil.set(
       window.itemsLinksListName,
       window.itemsLinksList
     );
   } else {
-    let articlesErrorsList =
-      window.LocalStorageUtil.get(window.articlesErrorsListName) || [];
-
-    articlesErrorsList = [...new Set(articlesErrorsList)];
+    let articlesErrorsList = window.getErros();
     articlesErrorsList.push(window.location.href.split("q=")[1]);
 
     window.LocalStorageUtil.set(
@@ -86,7 +113,7 @@ if (window.articlesList?.length) {
     window.articlesList = window.articlesList.split(",");
     window.articlesList = [...new Set(window.articlesList)];
 
-    window.LocalStorageUtil.set(window.articlesListName, window.articlesList);
+    window.setArticlesList();
     window.search(window.articlesList[0]);
   }
 }
