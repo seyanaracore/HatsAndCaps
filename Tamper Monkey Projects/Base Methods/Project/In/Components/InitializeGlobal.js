@@ -26,10 +26,6 @@ export const initializeVariables = (variablesList) => {
    }
 
    for (let item of variablesList) {
-      if (typeof item === "string") {
-         window[item] = eval(item);
-      } else {
-         console.warn(item + " is not a string.");
-      }
+      window[item.name] = item.value;
    }
 };

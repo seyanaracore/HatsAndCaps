@@ -9,87 +9,6 @@ module.exports = __webpack_require__(666);
 
 /***/ }),
 
-/***/ 441:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GJ": function() { return /* binding */ initializeMethods; },
-/* harmony export */   "Jj": function() { return /* binding */ initializeClass; },
-/* harmony export */   "lP": function() { return /* binding */ initializeVariables; }
-/* harmony export */ });
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var arrayError = "An array is expected";
-var initializeMethods = function initializeMethods(methodsList) {
-  if (!Array.isArray(methodsList)) {
-    return console.error(arrayError);
-  }
-
-  var _iterator = _createForOfIteratorHelper(methodsList),
-      _step;
-
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var method = _step.value;
-      window[method.name] = method;
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-};
-var initializeClass = function initializeClass(classList) {
-  if (!Array.isArray(classList)) {
-    return console.error(arrayError);
-  }
-
-  var _iterator2 = _createForOfIteratorHelper(classList),
-      _step2;
-
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var item = _step2.value;
-      window[item.name] = new item();
-    }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-};
-var initializeVariables = function initializeVariables(variablesList) {
-  if (!Array.isArray(variablesList)) {
-    return console.error(arrayError);
-  }
-
-  var _iterator3 = _createForOfIteratorHelper(variablesList),
-      _step3;
-
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var item = _step3.value;
-
-      if (typeof item === "string") {
-        window[item] = eval(item);
-      } else {
-        console.warn(item + " is not a string.");
-      }
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
-};
-
-/***/ }),
-
 /***/ 666:
 /***/ (function(module) {
 
@@ -913,8 +832,71 @@ var __webpack_exports__ = {};
 !function() {
 "use strict";
 
-// EXTERNAL MODULE: ./Project/In/Components/InitializeGlobal.js
-var InitializeGlobal = __webpack_require__(441);
+;// CONCATENATED MODULE: ./Project/In/Components/InitializeGlobal.js
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var arrayError = "An array is expected";
+var initializeMethods = function initializeMethods(methodsList) {
+  if (!Array.isArray(methodsList)) {
+    return console.error(arrayError);
+  }
+
+  var _iterator = _createForOfIteratorHelper(methodsList),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var method = _step.value;
+      window[method.name] = method;
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+};
+var initializeClass = function initializeClass(classList) {
+  if (!Array.isArray(classList)) {
+    return console.error(arrayError);
+  }
+
+  var _iterator2 = _createForOfIteratorHelper(classList),
+      _step2;
+
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var item = _step2.value;
+      window[item.name] = new item();
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+};
+var initializeVariables = function initializeVariables(variablesList) {
+  if (!Array.isArray(variablesList)) {
+    return console.error(arrayError);
+  }
+
+  var _iterator3 = _createForOfIteratorHelper(variablesList),
+      _step3;
+
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+      var item = _step3.value;
+      window[item.name] = item.value;
+    }
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+};
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -1284,8 +1266,8 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 
-(0,InitializeGlobal/* initializeClass */.Jj)([localStorageUtil]);
-(0,InitializeGlobal/* initializeMethods */.GJ)([Components_sleep, downloadData, Components_copyToClipboard, Components_toBottomElement, InitializeGlobal/* initializeMethods */.GJ, InitializeGlobal/* initializeClass */.Jj, InitializeGlobal/* initializeVariables */.lP]);
+initializeClass([localStorageUtil]);
+initializeMethods([Components_sleep, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
 }();
 /******/ })()
 ;
