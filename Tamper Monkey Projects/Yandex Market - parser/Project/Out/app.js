@@ -1162,8 +1162,7 @@ var startParse = /*#__PURE__*/function () {
 window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks]); //Вывод информации в консоль
 
 console.log(consoleInfo); //Start
-
-Parser();
+// startParse();
 }();
 /******/ })()
 ;
