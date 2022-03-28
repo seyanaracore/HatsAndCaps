@@ -1,4 +1,4 @@
-import { clearAllData, clearInfo, clearLinks } from "./Components/ClearData";
+import { clearAllData, clearErrors, clearInfo, clearLinks } from "./Components/ClearData";
 import { getErrors, getItemsData, getLinks } from "./Components/dataGetters";
 import { setItemsLinks } from "./Components/dataSetters";
 import { consoleInfo } from "./Utils/constants";
@@ -18,6 +18,7 @@ window.initializeMethods([
    downloadParsedData,
    setItemsLinks,
    toNextLink,
+   clearErrors
 ]);
 
 //Вывод информации в консоль

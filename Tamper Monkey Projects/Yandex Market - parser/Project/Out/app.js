@@ -874,7 +874,7 @@ var itemsLinksListName = settings.itemsLinksListName,
     writePageUrl = settings.writePageUrl,
     validatePageUrl = settings.validatePageUrl;
 
-var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
+var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"clearErrors()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
 ;// CONCATENATED MODULE: ./Project/In/Components/dataGetters.js
 
 var getItemsData = function getItemsData() {
@@ -1022,14 +1022,16 @@ function _defineProperty(obj, key, value) {
 }
 ;// CONCATENATED MODULE: ./Project/In/Components/Page/PageDataHandler.js
 var getItemInfo = function getItemInfo() {
-  var _document$querySelect, _document$querySelect2;
+  var _document$querySelect, _document$querySelect2, _document$querySelect3;
 
   var name = (_document$querySelect = document.querySelector('[data-tid="c0924aa2"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.textContent;
   var color = ((_document$querySelect2 = document.querySelector('[data-tid="d44db34b"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.textContent) || "none";
+  var imageLink = (_document$querySelect3 = document.querySelector('[data-tid="c15635ad 510deb4a"] img')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.src;
   if (!name) return null;
   return {
     name: name,
-    color: color
+    color: color,
+    imageLink: imageLink
   };
 };
 
@@ -1175,7 +1177,7 @@ var startParse = /*#__PURE__*/function () {
 
  //Initialize Global
 
-window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks, ToNextLink]); //Вывод информации в консоль
+window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks, ToNextLink, clearErrors]); //Вывод информации в консоль
 
 console.log(consoleInfo);
 }();
