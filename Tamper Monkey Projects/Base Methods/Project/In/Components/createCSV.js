@@ -9,16 +9,21 @@ const createCSV = (params = { content, headers, sep }) => {
 
    const contentType = Array.isArray(content) ? "array" : typeof content;
 
-   if (headers === "template" && contentType === "array") {
-      if (!(typeof content[0] === "object")) {
-         throw new Error("For template headers need a first object");
+   if (
+      (headers === "template" && contentType === "array") ||
+      contentType === "object"
+   ) {
+      if (!(typeof content[0] === "object" || typeof content === "object")) {
+         throw new Error("For template headers need a object");
       }
-      headers = Object.keys(content[0]);
-   }
-
-   if (headers && !Array.isArray(headers)) {
+      headers =
+         contentType === "array"
+            ? Object.keys(content[0])
+            : Object.keys(content);
+   } else if (headers && !Array.isArray(headers)) {
       throw new Error("The headers must be in array format");
    }
+
    if (!content) {
       throw new Error("Content is empty");
    }

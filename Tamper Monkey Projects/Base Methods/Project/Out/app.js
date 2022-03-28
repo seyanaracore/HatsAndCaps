@@ -942,15 +942,13 @@ var createCSV = function createCSV() {
     var headers = params.headers;
     var contentType = Array.isArray(content) ? "array" : _typeof(content);
 
-    if (headers === "template" && contentType === "array") {
-      if (!(_typeof(content[0]) === "object")) {
-        throw new Error("For template headers need a first object");
+    if (headers === "template" && contentType === "array" || contentType === "object") {
+      if (!(_typeof(content[0]) === "object" || _typeof(content) === "object")) {
+        throw new Error("For template headers need a object");
       }
 
-      headers = Object.keys(content[0]);
-    }
-
-    if (headers && !Array.isArray(headers)) {
+      headers = contentType === "array" ? Object.keys(content[0]) : Object.keys(content);
+    } else if (headers && !Array.isArray(headers)) {
       throw new Error("The headers must be in array format");
     }
 
