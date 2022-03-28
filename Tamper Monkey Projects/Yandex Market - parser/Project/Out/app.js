@@ -1023,11 +1023,11 @@ function _defineProperty(obj, key, value) {
 }
 ;// CONCATENATED MODULE: ./Project/In/Components/Page/PageDataHandler.js
 var getItemInfo = function getItemInfo() {
-  var _document$querySelect, _document$querySelect2, _document$querySelect3;
+  var _document$querySelect, _document$querySelect2, _document$querySelect3, _document$querySelect4;
 
   var name = (_document$querySelect = document.querySelector('[data-tid="c0924aa2"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.textContent;
-  var color = ((_document$querySelect2 = document.querySelector('[data-tid="d44db34b"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.textContent) || "none";
-  var imageLink = (_document$querySelect3 = document.querySelector('[data-tid="c15635ad 510deb4a"] img')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.src;
+  var color = ((_document$querySelect2 = document.querySelector('[data-tid="d44db34b"]')) === null || _document$querySelect2 === void 0 ? void 0 : (_document$querySelect3 = _document$querySelect2.textContent) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.replace("Цвет товара:", "")) || "none";
+  var imageLink = (_document$querySelect4 = document.querySelector('[data-tid="c15635ad 510deb4a"] img')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.src;
   if (!name) return null;
   return {
     name: name,
