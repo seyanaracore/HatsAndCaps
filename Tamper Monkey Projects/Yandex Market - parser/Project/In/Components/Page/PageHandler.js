@@ -1,6 +1,6 @@
 import { sleepTime, writePageUrl } from "../../Utils/constants";
 import { getErrors, getItemsData } from "../dataGetters";
-import { setItemsLinks } from "../dataSetters";
+import { setItemsInfo, setItemsLinks } from "../dataSetters";
 import toNextLink from "../ToNextLink";
 import getItemInfo from "./PageDataHandler";
 

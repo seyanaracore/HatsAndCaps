@@ -867,7 +867,7 @@ var settings = {
   validatePageUrl: false
 };
 var itemsLinksListName = settings.itemsLinksListName,
-    constants_itemsInfoListName = settings.itemsInfoListName,
+    itemsInfoListName = settings.itemsInfoListName,
     constants_itemsErrorsListName = settings.itemsErrorsListName,
     initialPage = settings.initialPage,
     sleepTime = settings.sleepTime,
@@ -878,7 +878,7 @@ var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u04
 ;// CONCATENATED MODULE: ./Project/In/Components/dataGetters.js
 
 var getItemsData = function getItemsData() {
-  return window.LocalStorageUtil.get(constants_itemsInfoListName) || [];
+  return window.LocalStorageUtil.get(itemsInfoListName) || [];
 };
 var dataGetters_getLinks = function getLinks() {
   return window.LocalStorageUtil.get(itemsLinksListName) || [];
@@ -933,7 +933,7 @@ function _toConsumableArray(arr) {
 var setItemsLinks = function setItemsLinks(itemsLinks) {
   window.LocalStorageUtil.set(itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
 };
-var dataSetters_setItemsInfo = function setItemsInfo(itemsInfo) {
+var setItemsInfo = function setItemsInfo(itemsInfo) {
   window.LocalStorageUtil.set(itemsInfoListName, itemsInfo);
 };
 var dataSetters_setErrorsList = function setErrorsList(errorsList) {
