@@ -844,7 +844,7 @@ var settings = {
 };
 var itemsLinksListName = settings.itemsLinksListName,
     itemsInfoListName = settings.itemsInfoListName,
-    constants_itemsErrorsListName = settings.itemsErrorsListName,
+    itemsErrorsListName = settings.itemsErrorsListName,
     initialPage = settings.initialPage,
     sleepTime = settings.sleepTime,
     writePageUrl = settings.writePageUrl,
@@ -868,7 +868,7 @@ var clearInfo = function clearInfo() {
 var clearErrors = function clearErrors() {
   var isConfrim = confirm("Очистить лог ошибок?");
   if (!isConfrim) return;
-  window.LocalStorageUtil["delete"](constants_itemsErrorsListName);
+  window.LocalStorageUtil["delete"](itemsErrorsListName);
   console.log("Лог ошибок очищен.");
 };
 var clearAllData = function clearAllData() {
@@ -885,7 +885,7 @@ var dataGetters_getLinks = function getLinks() {
   return window.LocalStorageUtil.get(itemsLinksListName) || [];
 };
 var getErrors = function getErrors() {
-  return window.LocalStorageUtil.get(constants_itemsErrorsListName) || [];
+  return window.LocalStorageUtil.get(itemsErrorsListName) || [];
 };
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -937,7 +937,7 @@ var setItemsLinks = function setItemsLinks(itemsLinks) {
 var setItemsInfo = function setItemsInfo(itemsInfo) {
   window.LocalStorageUtil.set(itemsInfoListName, itemsInfo);
 };
-var dataSetters_setErrorsList = function setErrorsList(errorsList) {
+var setErrorsList = function setErrorsList(errorsList) {
   window.LocalStorageUtil.set(itemsErrorsListName, errorsList);
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/downloadData.js
