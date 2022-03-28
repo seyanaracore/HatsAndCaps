@@ -20,6 +20,3 @@ window.initializeMethods([
 
 //Вывод информации в консоль
 console.log(consoleInfo);
-
-//Start
-// startParse();

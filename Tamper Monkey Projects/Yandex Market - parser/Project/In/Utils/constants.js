@@ -18,8 +18,7 @@ export const {
    validatePageUrl
 } = settings;
 
-export const consoleInfo = `
-"clearAllData()" - очистить данные.
+export const consoleInfo = `"clearAllData()" - очистить данные.
 "clearInfo()" - очистить информацию о товарах.
 "clearLinks()" - очистить ссылки на товары.
 "startParse()" - запуск парсинга.
