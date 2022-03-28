@@ -2,6 +2,7 @@ import { sleepTime, writePageUrl } from "../../Utils/constants";
 import { getErrors, getItemsData } from "../dataGetters";
 import { setItemsLinks } from "../dataSetters";
 import toNextLink from "../ToNextLink";
+import getItemInfo from "./PageDataHandler";
 
 const pageHandler = async () => {
    await window.sleep(sleepTime); //Задержка для загрузки данных и избежания блокировки соединения

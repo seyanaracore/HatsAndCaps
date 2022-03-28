@@ -1020,6 +1020,20 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 }
+;// CONCATENATED MODULE: ./Project/In/Components/Page/PageDataHandler.js
+var getItemInfo = function getItemInfo() {
+  var _document$querySelect, _document$querySelect2;
+
+  var name = (_document$querySelect = document.querySelector('[data-tid="c0924aa2"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.textContent;
+  var color = ((_document$querySelect2 = document.querySelector('[data-tid="d44db34b"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.textContent) || "none";
+  if (!name) return null;
+  return {
+    name: name,
+    color: color
+  };
+};
+
+/* harmony default export */ var PageDataHandler = (getItemInfo);
 ;// CONCATENATED MODULE: ./Project/In/Components/Page/PageHandler.js
 
 
@@ -1028,6 +1042,7 @@ function _defineProperty(obj, key, value) {
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
 
 
 
@@ -1050,7 +1065,7 @@ var pageHandler = /*#__PURE__*/function () {
             itemsLinksList = getLinks();
             itemsErrorsList = getErrors();
             handlingURL = itemsLinksList[0];
-            itemInfo = getItemInfo(); //Получение данных о товаре
+            itemInfo = PageDataHandler(); //Получение данных о товаре
 
             if (itemInfo) {
               itemsInfoList.push(writePageUrl ? _objectSpread(_objectSpread({}, itemInfo), {}, {
