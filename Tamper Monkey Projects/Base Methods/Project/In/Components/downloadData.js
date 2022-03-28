@@ -13,7 +13,7 @@ const download = (content, fileName, fileFormat) => {
       }
       case "csv": {
          data =
-            "data:text/plain;charset=ANSI," +
+            "data:text/plain;charset=utf-8," +
             encodeURIComponent(createCSV({ ...content }));
          break;
       }

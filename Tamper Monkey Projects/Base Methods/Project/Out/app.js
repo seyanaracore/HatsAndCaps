@@ -1041,7 +1041,7 @@ var download = function download(content, fileName, fileFormat) {
 
     case "csv":
       {
-        data = "data:text/plain;charset=ANSI," + encodeURIComponent(Components_createCSV(_objectSpread({}, content)));
+        data = "data:text/plain;charset=utf-8," + encodeURIComponent(Components_createCSV(_objectSpread({}, content)));
         break;
       }
   }
