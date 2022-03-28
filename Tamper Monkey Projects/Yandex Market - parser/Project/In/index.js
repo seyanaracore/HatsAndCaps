@@ -4,6 +4,7 @@ import { setItemsLinks } from "./Components/dataSetters";
 import { consoleInfo } from "./Utils/constants";
 import downloadParsedData from "./Components/downloadData";
 import startParse from "./Components/Page/Parser";
+import toNextLink from "./Components/ToNextLink";
 
 //Initialize Global
 window.initializeMethods([
@@ -16,6 +17,7 @@ window.initializeMethods([
    getItemsData,
    downloadParsedData,
    setItemsLinks,
+   toNextLink,
 ]);
 
 //Вывод информации в консоль

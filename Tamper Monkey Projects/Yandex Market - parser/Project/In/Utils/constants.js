@@ -23,8 +23,9 @@ export const consoleInfo = `"clearAllData()" - очистить данные.
 "clearLinks()" - очистить ссылки на товары.
 "startParse()" - запуск парсинга.
 "getErrors()" - получить ошибочные артикула
-"getLinks()" - ссылки на товары.
-"getItemsData()" - информация о товарах.
+"getLinks()" - получить ссылки на товары.
+"getItemsData()" - получить информация о товарах.
+"toNextLink()" - перейти по первой ссылке.
 "downloadParsedData()" - загрузить результат.
 "setItemsLinks(linksList) - установить ссылки на товары."
 `;
