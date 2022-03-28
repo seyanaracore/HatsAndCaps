@@ -832,30 +832,6 @@ var __webpack_exports__ = {};
 !function() {
 "use strict";
 
-;// CONCATENATED MODULE: ./Project/In/Components/ClearData.js
-var clearLinks = function clearLinks() {
-  var isConfrim = confirm("Удалить все ссылки на товары?");
-  if (!isConfrim) return;
-  window.LocalStorageUtil["delete"](window.itemsLinksListName);
-  console.log("Ссылки на товары были удалены.");
-};
-var clearInfo = function clearInfo() {
-  var isConfrim = confirm("Удалить всю информацию о товарах?");
-  if (!isConfrim) return;
-  window.LocalStorageUtil["delete"](window.itemsInfoListName);
-  console.log("Информация о товарах была очищена.");
-};
-var clearErrors = function clearErrors() {
-  var isConfrim = confirm("Очистить лог ошибок?");
-  if (!isConfrim) return;
-  window.LocalStorageUtil["delete"](window.itemsErrorsListName);
-  console.log("Лог ошибок очищен.");
-};
-var clearAllData = function clearAllData() {
-  clearLinks();
-  clearInfo();
-  clearErrors();
-};
 ;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
 var settings = {
   itemsLinksListName: "itemsLinksList",
@@ -875,6 +851,31 @@ var itemsLinksListName = settings.itemsLinksListName,
     validatePageUrl = settings.validatePageUrl;
 
 var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"clearErrors()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
+;// CONCATENATED MODULE: ./Project/In/Components/ClearData.js
+
+var clearLinks = function clearLinks() {
+  var isConfrim = confirm("Удалить все ссылки на товары?");
+  if (!isConfrim) return;
+  window.LocalStorageUtil["delete"](itemsLinksListName);
+  console.log("Ссылки на товары были удалены.");
+};
+var clearInfo = function clearInfo() {
+  var isConfrim = confirm("Удалить всю информацию о товарах?");
+  if (!isConfrim) return;
+  window.LocalStorageUtil["delete"](itemsInfoListName);
+  console.log("Информация о товарах была очищена.");
+};
+var clearErrors = function clearErrors() {
+  var isConfrim = confirm("Очистить лог ошибок?");
+  if (!isConfrim) return;
+  window.LocalStorageUtil["delete"](constants_itemsErrorsListName);
+  console.log("Лог ошибок очищен.");
+};
+var clearAllData = function clearAllData() {
+  clearLinks();
+  clearInfo();
+  clearErrors();
+};
 ;// CONCATENATED MODULE: ./Project/In/Components/dataGetters.js
 
 var getItemsData = function getItemsData() {
