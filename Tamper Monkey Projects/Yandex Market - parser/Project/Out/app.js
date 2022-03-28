@@ -1159,8 +1159,7 @@ var startParse = /*#__PURE__*/function () {
 
  //Initialize Global
 
-window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks]); // window.initializeVariables([{ name: "", value: "" }]);
-//Вывод информации в консоль
+window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks]); //Вывод информации в консоль
 
 console.log(consoleInfo); //Start
 
