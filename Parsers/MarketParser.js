@@ -1,3 +1,4 @@
+const lcKey = "yandexMarketLinks"
 const getFormattedArticle = (article) => {
    let art = article.split("");
 
@@ -36,20 +37,36 @@ const assignLists = (links, articles) => {
    });
 };
 
-const downloadCSV = (csvContent) => {
+const downloadParsedLinks = (csvContent) => {
+   const contentDownload = csvContent ? csvContent : window.LocalStorageUtil.get(lcKey)
    window.download(
-      { content: csvContent, headers: Object.keys(csvContent[0]) },
-      "yandex-market",
+      { content: contentDownload, headers: "template" },
+      "yandex-market-links",
       "csv"
    );
 };
+const parseLinks = () => {
+   const links = getLinks();
+   const articles = getArticles();
+   const prevLinks = window.LocalStorageUtil.get(lcKey) || [];
 
-const links = getLinks();
-const articles = getArticles();
-const prevLinks = window.LocalStorageUtil.get("yandexMarket") || [];
+   const assignedLists = [...prevLinks, ...assignLists(links, articles)];
 
-const assignedLists = [...prevLinks, ...assignLists(links, articles)];
+   window.LocalStorageUtil.set(lcKey, assignedLists);
 
-window.LocalStorageUtil.set("yandexMarket", assignedLists);
+   console.log("parsed: " + assignedLists.length)
+}
+const clearParsedLinks = () => {
+   window.LocalStorageUtil.delete(lcKey)
+   console.log("Storage cleared")
+}
+const getLastArticle = () => {
+   console.log(window.LocalStorageUtil.get(lcKey).at(-1).article)
+}
 
-console.log("parsed: "+ assignedLists.length)
+window.initializeMethods([parseLinks, clearParsedLinks, downloadParsedLinks, getLastArticle])
+console.log(`parseLinks() - спарсить ссылки.
+clearParsedLinks() - очистить спаршенные ссылки.
+downloadParsedLinks() - скачать спаршенные ссылки.
+getLastArticle() - получить последний спаршенный артикул.
+`)
