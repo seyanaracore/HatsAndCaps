@@ -1,9 +1,10 @@
-import { getErrors } from "./dataGetters"
+import { getErrors, getLinks } from "./dataGetters"
 import { setItemsLinks } from "./dataSetters"
 
 const transferErrorLinks = () => {
 	const errorLinks = getErrors()
-	setItemsLinks(errorLinks)
+	const links = getLinks()
+	if (errorLinks.length) setItemsLinks([...links, ...errorLinks])
 }
 
 export default transferErrorLinks
