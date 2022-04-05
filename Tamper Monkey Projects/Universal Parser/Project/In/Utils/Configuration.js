@@ -22,13 +22,3 @@ class Configuration {
 }
 
 export default Configuration
-
-export const {
-	itemsLinksListName,
-	itemsInfoListName,
-	itemsErrorsListName,
-	initialPage,
-	sleepTime,
-	writePageUrl,
-	validatePageUrl
-} = Configuration.get();

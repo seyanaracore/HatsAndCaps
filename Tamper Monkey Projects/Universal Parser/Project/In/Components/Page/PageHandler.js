@@ -1,8 +1,10 @@
-import { sleepTime, writePageUrl } from "../../Utils/Configuration";
-import { getErrors, getItemsData } from "../dataGetters";
-import { setErrorsList, setItemsInfo, setItemsLinks } from "../dataSetters";
+import { getErrors, getItemsData } from "../DataGetters";
+import { setErrorsList, setItemsInfo, setItemsLinks } from "../DataSetters";
 import toNextLink from "../ToNextLink";
 import PageDataHandler from "./PageDataHandler";
+import Configuration from "../../Utils/Configuration";
+
+const { sleepTime, writePageUrl } = Configuration.get()
 
 const pageHandler = async () => {
    await window.sleep(sleepTime); //Задержка для загрузки данных и избежания блокировки соединения

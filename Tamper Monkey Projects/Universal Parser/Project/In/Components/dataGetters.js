@@ -1,8 +1,10 @@
-import {
+import Configuration from "../Utils/Configuration";
+
+const {
    itemsErrorsListName,
    itemsInfoListName,
    itemsLinksListName,
-} from "../Utils/Configuration";
+} = Configuration.get()
 
 export const getItemsData = () => {
    return window.LocalStorageUtil.get(itemsInfoListName) || [];

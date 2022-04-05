@@ -935,18 +935,13 @@ _defineProperty(Configuration, "get", function () {
 });
 
 /* harmony default export */ var Utils_Configuration = (Configuration);
+;// CONCATENATED MODULE: ./Project/In/Components/ClearData.js
 
-var _Configuration$get = Configuration.get(),
-    itemsLinksListName = _Configuration$get.itemsLinksListName,
-    itemsInfoListName = _Configuration$get.itemsInfoListName,
+
+var _Configuration$get = Utils_Configuration.get(),
     itemsErrorsListName = _Configuration$get.itemsErrorsListName,
-    initialPage = _Configuration$get.initialPage,
-    sleepTime = _Configuration$get.sleepTime,
-    writePageUrl = _Configuration$get.writePageUrl,
-    validatePageUrl = _Configuration$get.validatePageUrl;
-
-
-;// CONCATENATED MODULE: ./Project/In/Components/clearData.js
+    itemsInfoListName = _Configuration$get.itemsInfoListName,
+    itemsLinksListName = _Configuration$get.itemsLinksListName;
 
 var clearLinks = function clearLinks() {
   var isConfrim = confirm("Удалить все ссылки на товары?");
@@ -971,16 +966,22 @@ var clearAllData = function clearAllData() {
   clearInfo();
   clearErrors();
 };
-;// CONCATENATED MODULE: ./Project/In/Components/dataGetters.js
+;// CONCATENATED MODULE: ./Project/In/Components/DataGetters.js
+
+
+var DataGetters_Configuration$get = Utils_Configuration.get(),
+    DataGetters_itemsErrorsListName = DataGetters_Configuration$get.itemsErrorsListName,
+    DataGetters_itemsInfoListName = DataGetters_Configuration$get.itemsInfoListName,
+    DataGetters_itemsLinksListName = DataGetters_Configuration$get.itemsLinksListName;
 
 var getItemsData = function getItemsData() {
-  return window.LocalStorageUtil.get(itemsInfoListName) || [];
+  return window.LocalStorageUtil.get(DataGetters_itemsInfoListName) || [];
 };
-var dataGetters_getLinks = function getLinks() {
-  return window.LocalStorageUtil.get(itemsLinksListName) || [];
+var DataGetters_getLinks = function getLinks() {
+  return window.LocalStorageUtil.get(DataGetters_itemsLinksListName) || [];
 };
 var getErrors = function getErrors() {
-  return window.LocalStorageUtil.get(itemsErrorsListName) || [];
+  return window.LocalStorageUtil.get(DataGetters_itemsErrorsListName) || [];
 };
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -1023,21 +1024,27 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
-;// CONCATENATED MODULE: ./Project/In/Components/dataSetters.js
+;// CONCATENATED MODULE: ./Project/In/Components/DataSetters.js
 
+
+
+var DataSetters_Configuration$get = Utils_Configuration.get(),
+    DataSetters_itemsErrorsListName = DataSetters_Configuration$get.itemsErrorsListName,
+    DataSetters_itemsInfoListName = DataSetters_Configuration$get.itemsInfoListName,
+    DataSetters_itemsLinksListName = DataSetters_Configuration$get.itemsLinksListName;
 
 var setItemsLinks = function setItemsLinks(itemsLinks) {
-  window.LocalStorageUtil.set(itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
+  window.LocalStorageUtil.set(DataSetters_itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
 };
 var setItemsInfo = function setItemsInfo(itemsInfo) {
-  window.LocalStorageUtil.set(itemsInfoListName, itemsInfo);
+  window.LocalStorageUtil.set(DataSetters_itemsInfoListName, itemsInfo);
 };
 var setErrorsList = function setErrorsList(errorsList) {
-  window.LocalStorageUtil.set(itemsErrorsListName, errorsList);
+  window.LocalStorageUtil.set(DataSetters_itemsErrorsListName, errorsList);
 };
-;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
-var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"clearErrors()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"transferErrorLinks()\" - \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0442\u0438 \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438 \u0432 \u0441\u0441\u044B\u0434\u043B\u043A\u0438 \u0434\u043B\u044F \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
-;// CONCATENATED MODULE: ./Project/In/Components/downloadData.js
+;// CONCATENATED MODULE: ./Project/In/Utils/Constants.js
+var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"clearErrors()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"transferErrorLinks()\" - \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0442\u0438 \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438 \u0432 \u0441\u0441\u044B\u043B\u043A\u0438 \u0434\u043B\u044F \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
+;// CONCATENATED MODULE: ./Project/In/Components/DownloadData.js
 
 var downloadParsedData = function downloadParsedData() {
   var itemsInfo = getItemsData();
@@ -1047,7 +1054,7 @@ var downloadParsedData = function downloadParsedData() {
     headers: "template"
   }, "parsed-data", "csv");
 };
-/* harmony default export */ var downloadData = (downloadParsedData);
+/* harmony default export */ var DownloadData = (downloadParsedData);
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
@@ -1093,7 +1100,7 @@ var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
 var toNextLink = function toNextLink() {
   var _getLinks;
 
-  var handleUrl = (_getLinks = dataGetters_getLinks()) === null || _getLinks === void 0 ? void 0 : _getLinks[0];
+  var handleUrl = (_getLinks = DataGetters_getLinks()) === null || _getLinks === void 0 ? void 0 : _getLinks[0];
 
   if (handleUrl) {
     window.location.href = handleUrl;
@@ -1162,6 +1169,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
+var PageHandler_Configuration$get = Utils_Configuration.get(),
+    sleepTime = PageHandler_Configuration$get.sleepTime,
+    writePageUrl = PageHandler_Configuration$get.writePageUrl;
+
 var pageHandler = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee() {
     var itemsInfoList, itemsLinksList, itemsErrorsList, handlingURL, dataHandler, itemInfo;
@@ -1222,6 +1233,9 @@ var pageHandler = /*#__PURE__*/function () {
 
 
 
+var Parser_Configuration$get = Utils_Configuration.get(),
+    validatePageUrl = Parser_Configuration$get.validatePageUrl;
+
 var startParse = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(config, pageDataHandler) {
     var itemsLinks, handleUrl, userLinksList, userLinksListHandled;
@@ -1241,7 +1255,7 @@ var startParse = /*#__PURE__*/function () {
             Page_PageDataHandler.set(pageDataHandler); //Установка конфига
 
             config && Utils_Configuration.set(config);
-            itemsLinks = dataGetters_getLinks();
+            itemsLinks = DataGetters_getLinks();
             handleUrl = itemsLinks[0]; //Проверка наличия ссылок на товары
 
             if (!itemsLinks.length) {
@@ -1293,16 +1307,18 @@ var startParse = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var Parser = (startParse);
-;// CONCATENATED MODULE: ./Project/In/Components/transferErrorLinks.js
+;// CONCATENATED MODULE: ./Project/In/Components/TransferErrorLinks.js
+
 
 
 
 var transferErrorLinks = function transferErrorLinks() {
   var errorLinks = getErrors();
-  setItemsLinks(errorLinks);
+  var links = DataGetters_getLinks();
+  if (errorLinks.length) setItemsLinks([].concat(_toConsumableArray(links), _toConsumableArray(errorLinks)));
 };
 
-/* harmony default export */ var Components_transferErrorLinks = (transferErrorLinks);
+/* harmony default export */ var TransferErrorLinks = (transferErrorLinks);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
 
@@ -1313,7 +1329,7 @@ var transferErrorLinks = function transferErrorLinks() {
 
  //Initialize Global
 
-window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, dataGetters_getLinks, getItemsData, downloadData, setItemsLinks, ToNextLink, clearErrors, Components_transferErrorLinks]); //Вывод информации в консоль
+window.initializeMethods([clearAllData, clearInfo, clearLinks, Parser, getErrors, DataGetters_getLinks, getItemsData, DownloadData, setItemsLinks, ToNextLink, clearErrors, TransferErrorLinks]); //Вывод информации в консоль
 
 console.log(consoleInfo);
 }();

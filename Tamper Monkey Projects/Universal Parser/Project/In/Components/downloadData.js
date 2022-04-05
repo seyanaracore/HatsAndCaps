@@ -1,4 +1,4 @@
-import { getItemsData } from "./dataGetters";
+import { getItemsData } from "./DataGetters";
 
 export const downloadParsedData = () => {
    const itemsInfo = getItemsData();

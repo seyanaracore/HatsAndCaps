@@ -1,10 +1,12 @@
-import Configuration, { validatePageUrl } from "../../Utils/Configuration";
+import Configuration from "../../Utils/Configuration";
 import toNextLink from "../ToNextLink";
 import PageDataHandler from "./PageDataHandler";
 import pageHandler from "./PageHandler";
 
-import { setItemsLinks } from "../dataSetters";
-import { getLinks } from "../dataGetters"
+import { setItemsLinks } from "../DataSetters";
+import { getLinks } from "../DataGetters"
+
+const { validatePageUrl } = Configuration.get()
 
 const startParse = async (config, pageDataHandler) => {
    //Проверка наличия обработчика данных страницы

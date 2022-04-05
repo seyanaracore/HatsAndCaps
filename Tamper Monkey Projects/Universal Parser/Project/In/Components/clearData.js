@@ -1,8 +1,10 @@
-import {
+import Configuration from "../Utils/Configuration";
+
+const {
    itemsErrorsListName,
    itemsInfoListName,
    itemsLinksListName,
-} from "../Utils/Configuration";
+} = Configuration.get()
 
 export const clearLinks = () => {
    const isConfrim = confirm("Удалить все ссылки на товары?");

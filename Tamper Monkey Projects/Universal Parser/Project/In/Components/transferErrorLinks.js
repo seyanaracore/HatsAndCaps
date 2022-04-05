@@ -1,5 +1,5 @@
-import { getErrors, getLinks } from "./dataGetters"
-import { setItemsLinks } from "./dataSetters"
+import { getErrors, getLinks } from "./DataGetters"
+import { setItemsLinks } from "./DataSetters"
 
 const transferErrorLinks = () => {
 	const errorLinks = getErrors()

@@ -1,4 +1,4 @@
-import { getLinks } from "./dataGetters";
+import { getLinks } from "./DataGetters";
 
 const toNextLink = () => {
    const handleUrl = getLinks()?.[0];
