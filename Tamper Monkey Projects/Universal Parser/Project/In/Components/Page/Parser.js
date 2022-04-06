@@ -6,7 +6,7 @@ import pageHandler from "./PageHandler";
 import { setItemsLinks } from "../DataSetters";
 import { getLinks } from "../DataGetters";
 
-const startParse = async (config, pageDataHandler) => {
+const startParse = async (pageDataHandler, config) => {
    //Проверка наличия обработчика данных страницы
    if (!pageDataHandler) {
       throw new Error("Excepted function for page data handle.");

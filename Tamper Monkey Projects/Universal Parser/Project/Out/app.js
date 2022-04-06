@@ -1249,7 +1249,7 @@ var pageHandler = /*#__PURE__*/function () {
 
 
 var startParse = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(config, pageDataHandler) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(pageDataHandler, config) {
     var _Configuration$get, validatePageUrl, itemsLinks, handleUrl, userLinksList, userLinksListHandled;
 
     return regenerator_default().wrap(function _callee$(_context) {
