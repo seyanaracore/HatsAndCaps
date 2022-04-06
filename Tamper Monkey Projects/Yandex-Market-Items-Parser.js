@@ -1,3 +1,13 @@
+// @name         Yandex Market Items Parser
+// @namespace    Yandex-Market
+// @version      1.0
+// @match        https://market.yandex.ru/*
+// @icon         chrome://favicon/https://market.yandex.ru/
+// @description  Market Parser
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex%20Market%20-%20parser/Project/Out/app.js
+// @require		  https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex-Market-Items-Parser.js
+// @grant        none
+
 const config = {
 	validatePageUrl: false
 }
