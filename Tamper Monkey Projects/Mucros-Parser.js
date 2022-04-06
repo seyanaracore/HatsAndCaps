@@ -4,7 +4,7 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://mucrosweavers.ie/*
-// @icon         chrome://favicon/http://mucrosweavers.ie/
+// @icon         chrome://favicon/https://mucrosweavers.ie/
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Mucros-Parser.js
 // @grant        none
 
@@ -35,7 +35,7 @@ const getInfo = () => {
    };
    const headers = ["Name", "ImageLink", ...sizesVariants];
    const itemsInfo = getInfo(items);
-   window.copyToClipboard(headers.split("\t") + "\n" + itemsInfo);
+   window.copyToClipboard(headers.join("\t") + "\n" + itemsInfo);
 };
 
 const addListener = () => {
