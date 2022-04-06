@@ -1,3 +1,13 @@
+// @name         Yandex Market Urls Parser
+// @namespace    Yandex-Market
+// @version      1.0
+// @description  try to take over the world!
+// @author       You
+// @match        https://partner.market.yandex.ru/supplier/22047427*
+// @icon         chrome://favicon/https://market.yandex.ru/
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex-Market-Urls-Parser.js
+// @grant        none
+
 const lcKey = "yandexMarketLinks"
 const getFormattedArticle = (article) => {
    let art = article.split("");
