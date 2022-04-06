@@ -15,7 +15,7 @@ const startParse = async (config, pageDataHandler) => {
    PageDataHandler.set(pageDataHandler);
 
    //Установка конфига
-   config && Configuration.set(config);
+   Configuration.set(config);
 
    const { validatePageUrl } = Configuration.get();
    const itemsLinks = getLinks();
