@@ -896,6 +896,15 @@ function _classCheckPrivateStaticAccess(receiver, classConstructor) { if (receiv
 
 function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 
+var defaultConfig = {
+  itemsLinksListName: "itemsLinksList",
+  itemsInfoListName: "itemsInfoList",
+  itemsErrorsListName: "itemsErrorsList",
+  sleepTime: 3,
+  writePageUrl: true,
+  validatePageUrl: true
+};
+
 var Configuration = /*#__PURE__*/function () {
   function Configuration() {
     _classCallCheck(this, Configuration);
@@ -927,15 +936,7 @@ var Configuration = /*#__PURE__*/function () {
 
 var _config = {
   writable: true,
-  value: {
-    itemsLinksListName: "itemsLinksList",
-    itemsInfoListName: "itemsInfoList",
-    itemsErrorsListName: "itemsErrorsList",
-    initialPage: "",
-    sleepTime: 3,
-    writePageUrl: true,
-    validatePageUrl: false
-  }
+  value: defaultConfig
 };
 
 _defineProperty(Configuration, "get", function () {

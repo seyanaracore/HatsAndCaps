@@ -1,13 +1,14 @@
+const defaultConfig = {
+   itemsLinksListName: "itemsLinksList",
+   itemsInfoListName: "itemsInfoList",
+   itemsErrorsListName: "itemsErrorsList",
+   sleepTime: 3,
+   writePageUrl: true,
+   validatePageUrl: true,
+}
+
 class Configuration {
-   static #config = {
-      itemsLinksListName: "itemsLinksList",
-      itemsInfoListName: "itemsInfoList",
-      itemsErrorsListName: "itemsErrorsList",
-      initialPage: "",
-      sleepTime: 3,
-      writePageUrl: true,
-      validatePageUrl: false,
-   };
+   static #config = defaultConfig
 
    static set(configObject) {
       if (configObject && typeof configObject !== "object") {
@@ -18,7 +19,7 @@ class Configuration {
          for (let prop in configObject) {
             this.#config[prop] = configObject[prop];
          }
-         console.log("Config succesful setted:",(() => this.get())());
+         console.log("Config succesful setted:", (() => this.get())());
       }
    }
    static get = () => this.#config;
