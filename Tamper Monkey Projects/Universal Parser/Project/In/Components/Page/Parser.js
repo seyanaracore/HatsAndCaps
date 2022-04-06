@@ -4,20 +4,20 @@ import PageDataHandler from "./PageDataHandler";
 import pageHandler from "./PageHandler";
 
 import { setItemsLinks } from "../DataSetters";
-import { getLinks } from "../DataGetters"
-
+import { getLinks } from "../DataGetters";
 
 const startParse = async (config, pageDataHandler) => {
-   const { validatePageUrl } = Configuration.get()
-   
    //Проверка наличия обработчика данных страницы
-   if (!pageDataHandler) throw new Error("Excepted function for page data handle.")
+   if (!pageDataHandler) {
+      throw new Error("Excepted function for page data handle.");
+   }
    //Установка обработчика данных страницы
-   PageDataHandler.set(pageDataHandler)
+   PageDataHandler.set(pageDataHandler);
 
    //Установка конфига
-   config && Configuration.set(config)
+   config && Configuration.set(config);
 
+   const { validatePageUrl } = Configuration.get();
    const itemsLinks = getLinks();
    const handleUrl = itemsLinks[0];
 
