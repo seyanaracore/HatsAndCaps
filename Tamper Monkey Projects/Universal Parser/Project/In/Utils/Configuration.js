@@ -18,7 +18,7 @@ class Configuration {
          for (let prop in configObject) {
             this.#config[prop] = configObject[prop];
          }
-         console.log(`Config setted: ${this.get()}`);
+         console.log("Config succesful setted:",(() => this.get())());
       }
    }
    static get = () => this.#config;

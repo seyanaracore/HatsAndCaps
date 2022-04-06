@@ -904,6 +904,8 @@ var Configuration = /*#__PURE__*/function () {
   _createClass(Configuration, null, [{
     key: "set",
     value: function set(configObject) {
+      var _this = this;
+
       if (configObject && _typeof(configObject) !== "object") {
         throw new Error("Excepted settings object");
       }
@@ -913,7 +915,9 @@ var Configuration = /*#__PURE__*/function () {
           _classStaticPrivateFieldSpecGet(this, Configuration, _config)[prop] = configObject[prop];
         }
 
-        console.log("Config setted: ".concat(this.get()));
+        console.log("Config succesful setted:", function () {
+          return _this.get();
+        }());
       }
     }
   }]);
