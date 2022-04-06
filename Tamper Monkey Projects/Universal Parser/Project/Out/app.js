@@ -904,12 +904,16 @@ var Configuration = /*#__PURE__*/function () {
   _createClass(Configuration, null, [{
     key: "set",
     value: function set(configObject) {
-      if (configObject && _typeof(configObject) !== "object") throw new Error("Excepted settings object");
+      if (configObject && _typeof(configObject) !== "object") {
+        throw new Error("Excepted settings object");
+      }
 
       if (configObject) {
         for (var prop in configObject) {
           _classStaticPrivateFieldSpecGet(this, Configuration, _config)[prop] = configObject[prop];
         }
+
+        console.log("Config setted: ".concat(this.get()));
       }
     }
   }]);
@@ -937,25 +941,28 @@ _defineProperty(Configuration, "get", function () {
 /* harmony default export */ var Utils_Configuration = (Configuration);
 ;// CONCATENATED MODULE: ./Project/In/Components/ClearData.js
 
-
-var _Configuration$get = Utils_Configuration.get(),
-    itemsErrorsListName = _Configuration$get.itemsErrorsListName,
-    itemsInfoListName = _Configuration$get.itemsInfoListName,
-    itemsLinksListName = _Configuration$get.itemsLinksListName;
-
 var clearLinks = function clearLinks() {
+  var _Configuration$get = Utils_Configuration.get(),
+      itemsLinksListName = _Configuration$get.itemsLinksListName;
+
   var isConfrim = confirm("Удалить все ссылки на товары?");
   if (!isConfrim) return;
   window.LocalStorageUtil["delete"](itemsLinksListName);
   console.log("Ссылки на товары были удалены.");
 };
 var clearInfo = function clearInfo() {
+  var _Configuration$get2 = Utils_Configuration.get(),
+      itemsInfoListName = _Configuration$get2.itemsInfoListName;
+
   var isConfrim = confirm("Удалить всю информацию о товарах?");
   if (!isConfrim) return;
   window.LocalStorageUtil["delete"](itemsInfoListName);
   console.log("Информация о товарах была очищена.");
 };
 var clearErrors = function clearErrors() {
+  var _Configuration$get3 = Utils_Configuration.get(),
+      itemsErrorsListName = _Configuration$get3.itemsErrorsListName;
+
   var isConfrim = confirm("Очистить лог ошибок?");
   if (!isConfrim) return;
   window.LocalStorageUtil["delete"](itemsErrorsListName);
@@ -968,20 +975,23 @@ var clearAllData = function clearAllData() {
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/DataGetters.js
 
-
-var DataGetters_Configuration$get = Utils_Configuration.get(),
-    DataGetters_itemsErrorsListName = DataGetters_Configuration$get.itemsErrorsListName,
-    DataGetters_itemsInfoListName = DataGetters_Configuration$get.itemsInfoListName,
-    DataGetters_itemsLinksListName = DataGetters_Configuration$get.itemsLinksListName;
-
 var getItemsData = function getItemsData() {
-  return window.LocalStorageUtil.get(DataGetters_itemsInfoListName) || [];
+  var _Configuration$get = Utils_Configuration.get(),
+      itemsInfoListName = _Configuration$get.itemsInfoListName;
+
+  return window.LocalStorageUtil.get(itemsInfoListName) || [];
 };
 var DataGetters_getLinks = function getLinks() {
-  return window.LocalStorageUtil.get(DataGetters_itemsLinksListName) || [];
+  var _Configuration$get2 = Utils_Configuration.get(),
+      itemsLinksListName = _Configuration$get2.itemsLinksListName;
+
+  return window.LocalStorageUtil.get(itemsLinksListName) || [];
 };
 var getErrors = function getErrors() {
-  return window.LocalStorageUtil.get(DataGetters_itemsErrorsListName) || [];
+  var _Configuration$get3 = Utils_Configuration.get(),
+      itemsErrorsListName = _Configuration$get3.itemsErrorsListName;
+
+  return window.LocalStorageUtil.get(itemsErrorsListName) || [];
 };
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -1027,20 +1037,23 @@ function _toConsumableArray(arr) {
 ;// CONCATENATED MODULE: ./Project/In/Components/DataSetters.js
 
 
-
-var DataSetters_Configuration$get = Utils_Configuration.get(),
-    DataSetters_itemsErrorsListName = DataSetters_Configuration$get.itemsErrorsListName,
-    DataSetters_itemsInfoListName = DataSetters_Configuration$get.itemsInfoListName,
-    DataSetters_itemsLinksListName = DataSetters_Configuration$get.itemsLinksListName;
-
 var setItemsLinks = function setItemsLinks(itemsLinks) {
-  window.LocalStorageUtil.set(DataSetters_itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
+  var _Configuration$get = Utils_Configuration.get(),
+      itemsLinksListName = _Configuration$get.itemsLinksListName;
+
+  window.LocalStorageUtil.set(itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
 };
 var setItemsInfo = function setItemsInfo(itemsInfo) {
-  window.LocalStorageUtil.set(DataSetters_itemsInfoListName, itemsInfo);
+  var _Configuration$get2 = Utils_Configuration.get(),
+      itemsInfoListName = _Configuration$get2.itemsInfoListName;
+
+  window.LocalStorageUtil.set(itemsInfoListName, itemsInfo);
 };
 var setErrorsList = function setErrorsList(errorsList) {
-  window.LocalStorageUtil.set(DataSetters_itemsErrorsListName, errorsList);
+  var _Configuration$get3 = Utils_Configuration.get(),
+      itemsErrorsListName = _Configuration$get3.itemsErrorsListName;
+
+  window.LocalStorageUtil.set(itemsErrorsListName, errorsList);
 };
 ;// CONCATENATED MODULE: ./Project/In/Utils/Constants.js
 var consoleInfo = "\"clearAllData()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0434\u0430\u043D\u043D\u044B\u0435.\n\"clearInfo()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"clearLinks()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"clearErrors()\" - \u043E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438.\n\"startParse()\" - \u0437\u0430\u043F\u0443\u0441\u043A \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"getErrors()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u043E\u0448\u0438\u0431\u043E\u0447\u043D\u044B\u0435 \u0430\u0440\u0442\u0438\u043A\u0443\u043B\u0430\n\"getLinks()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\n\"getItemsData()\" - \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F \u043E \u0442\u043E\u0432\u0430\u0440\u0430\u0445.\n\"toNextLink()\" - \u043F\u0435\u0440\u0435\u0439\u0442\u0438 \u043F\u043E \u043F\u0435\u0440\u0432\u043E\u0439 \u0441\u0441\u044B\u043B\u043A\u0435.\n\"downloadParsedData()\" - \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442.\n\"transferErrorLinks()\" - \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0442\u0438 \u0441\u0441\u044B\u043B\u043A\u0438 \u0441 \u043E\u0448\u0438\u0431\u043A\u0430\u043C\u0438 \u0432 \u0441\u0441\u044B\u043B\u043A\u0438 \u0434\u043B\u044F \u043F\u0430\u0440\u0441\u0438\u043D\u0433\u0430.\n\"setItemsLinks(linksList) - \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u0442\u043E\u0432\u0430\u0440\u044B.\"\n";
@@ -1169,21 +1182,19 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var PageHandler_Configuration$get = Utils_Configuration.get(),
-    sleepTime = PageHandler_Configuration$get.sleepTime,
-    writePageUrl = PageHandler_Configuration$get.writePageUrl;
-
 var pageHandler = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee() {
-    var itemsInfoList, itemsLinksList, itemsErrorsList, handlingURL, dataHandler, itemInfo;
+    var _Configuration$get, sleepTime, writePageUrl, itemsInfoList, itemsLinksList, itemsErrorsList, handlingURL, dataHandler, itemInfo;
+
     return regenerator_default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _Configuration$get = Utils_Configuration.get(), sleepTime = _Configuration$get.sleepTime, writePageUrl = _Configuration$get.writePageUrl;
+            _context.next = 3;
             return window.sleep(sleepTime);
 
-          case 2:
+          case 3:
             //Задержка для загрузки данных и избежания блокировки соединения
             itemsInfoList = getItemsData();
             itemsLinksList = getLinks();
@@ -1209,7 +1220,7 @@ var pageHandler = /*#__PURE__*/function () {
             setErrorsList(itemsErrorsList);
             ToNextLink();
 
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -1233,12 +1244,10 @@ var pageHandler = /*#__PURE__*/function () {
 
 
 
-var Parser_Configuration$get = Utils_Configuration.get(),
-    validatePageUrl = Parser_Configuration$get.validatePageUrl;
-
 var startParse = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(config, pageDataHandler) {
-    var itemsLinks, handleUrl, userLinksList, userLinksListHandled;
+    var _Configuration$get, validatePageUrl, itemsLinks, handleUrl, userLinksList, userLinksListHandled;
+
     return regenerator_default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -1255,36 +1264,37 @@ var startParse = /*#__PURE__*/function () {
             Page_PageDataHandler.set(pageDataHandler); //Установка конфига
 
             config && Utils_Configuration.set(config);
+            _Configuration$get = Utils_Configuration.get(), validatePageUrl = _Configuration$get.validatePageUrl;
             itemsLinks = DataGetters_getLinks();
             handleUrl = itemsLinks[0]; //Проверка наличия ссылок на товары
 
             if (!itemsLinks.length) {
-              _context.next = 13;
+              _context.next = 14;
               break;
             }
 
             console.log("Осталось: " + itemsLinks.length); //Сравнение текущей ссылки и ссылки на первый товар
 
             if (validatePageUrl && window.location.href !== handleUrl) ToNextLink();
-            _context.next = 11;
+            _context.next = 12;
             return PageHandler();
 
-          case 11:
-            _context.next = 20;
+          case 12:
+            _context.next = 21;
             break;
 
-          case 13:
+          case 14:
             //Если ссылок нет - запросить список
             userLinksList = prompt("Список ссылок пуст. Введите их через запятую:") || [];
 
             if (userLinksList !== null && userLinksList !== void 0 && userLinksList.length) {
-              _context.next = 16;
+              _context.next = 17;
               break;
             }
 
             return _context.abrupt("return");
 
-          case 16:
+          case 17:
             //Если ссылки введены - форматирование, обработка введённых данных
             userLinksListHandled = userLinksList.replace(" ", "").trim();
             userLinksListHandled = userLinksListHandled.split(","); //Запись в хранилище ссылок на товары
@@ -1293,7 +1303,7 @@ var startParse = /*#__PURE__*/function () {
 
             ToNextLink();
 
-          case 20:
+          case 21:
           case "end":
             return _context.stop();
         }
@@ -1311,11 +1321,10 @@ var startParse = /*#__PURE__*/function () {
 
 
 
-
 var transferErrorLinks = function transferErrorLinks() {
   var errorLinks = getErrors();
   var links = DataGetters_getLinks();
-  if (errorLinks.length) setItemsLinks([].concat(_toConsumableArray(links), _toConsumableArray(errorLinks)));
+  if (errorLinks.length) setItemsLinks(links.concat(errorLinks));
 };
 
 /* harmony default export */ var TransferErrorLinks = (transferErrorLinks);
