@@ -1,4 +1,4 @@
-// @name         Stetson Url Parser
+// @name         Stetson Items Parser
 // @namespace    Stetson
 // @version      2.0
 // @description  try to take over the world!
@@ -6,7 +6,7 @@
 // @match        https://preorder.fwshats.de/en/*
 // @icon         chrome://favicon/http://preorder.fwshats.de/
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Universal%20Parser/Project/Out/app.js
-// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Parsers/StetsonUrlsParser.js
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Stetson-Urls-Parser.js
 // @grant        none
 
 const dataHandler = () => {
