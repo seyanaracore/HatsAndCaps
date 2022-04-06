@@ -6,9 +6,10 @@ import pageHandler from "./PageHandler";
 import { setItemsLinks } from "../DataSetters";
 import { getLinks } from "../DataGetters"
 
-const { validatePageUrl } = Configuration.get()
 
 const startParse = async (config, pageDataHandler) => {
+   const { validatePageUrl } = Configuration.get()
+   
    //Проверка наличия обработчика данных страницы
    if (!pageDataHandler) throw new Error("Excepted function for page data handle.")
    //Установка обработчика данных страницы

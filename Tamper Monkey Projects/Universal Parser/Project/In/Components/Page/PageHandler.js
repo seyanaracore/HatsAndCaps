@@ -4,23 +4,21 @@ import toNextLink from "../ToNextLink";
 import PageDataHandler from "./PageDataHandler";
 import Configuration from "../../Utils/Configuration";
 
-const { sleepTime, writePageUrl } = Configuration.get()
-
 const pageHandler = async () => {
+   const { sleepTime, writePageUrl } = Configuration.get();
+
    await window.sleep(sleepTime); //Задержка для загрузки данных и избежания блокировки соединения
    const itemsInfoList = getItemsData();
    const itemsLinksList = getLinks();
    const itemsErrorsList = getErrors();
    const handlingURL = itemsLinksList[0];
-   const dataHandler = PageDataHandler.get()
+   const dataHandler = PageDataHandler.get();
 
    const itemInfo = dataHandler(); //Получение данных о товаре
 
    if (itemInfo) {
       itemsInfoList.push(
-         writePageUrl
-            ? { ...itemInfo, handlingURL }
-            : itemInfo
+         writePageUrl ? { ...itemInfo, handlingURL } : itemInfo
       ); //Добавить в массив данные о товаре
    } else {
       itemsErrorsList.push(handlingURL);
