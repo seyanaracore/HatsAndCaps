@@ -8,6 +8,7 @@ export const consoleInfo = `"clearAllData()" - очистить данные.
 "getItemsData()" - получить информация о товарах.
 "toNextLink()" - перейти по первой ссылке.
 "downloadParsedData()" - загрузить результат.
+"downloadErrors()" - загрузить список ошибок.
 "transferErrorLinks()" - перенести ссылки с ошибками в ссылки для парсинга.
 "setItemsLinks(linksList) - установить ссылки на товары."
 `;

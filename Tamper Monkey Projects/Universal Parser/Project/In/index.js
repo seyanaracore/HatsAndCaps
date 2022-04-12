@@ -1,8 +1,13 @@
-import { clearAllData, clearErrors, clearInfo, clearLinks } from "./Components/ClearData";
+import {
+   clearAllData,
+   clearErrors,
+   clearInfo,
+   clearLinks,
+} from "./Components/ClearData";
 import { getErrors, getItemsData, getLinks } from "./Components/DataGetters";
 import { setItemsLinks } from "./Components/DataSetters";
 import { consoleInfo } from "./Utils/Constants";
-import downloadParsedData from "./Components/DownloadData";
+import downloadParsedData, { downloadErrors } from "./Components/DownloadData";
 import startParse from "./Components/Page/Parser";
 import toNextLink from "./Components/ToNextLink";
 import transferErrorLinks from "./Components/TransferErrorLinks";
@@ -20,7 +25,8 @@ window.initializeMethods([
    setItemsLinks,
    toNextLink,
    clearErrors,
-   transferErrorLinks
+   transferErrorLinks,
+   downloadErrors,
 ]);
 
 //Вывод информации в консоль

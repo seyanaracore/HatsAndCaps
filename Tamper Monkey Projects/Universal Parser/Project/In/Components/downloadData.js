@@ -10,5 +10,14 @@ export const downloadParsedData = () => {
       "csv"
    );
 };
+export const downloadErrors = () => {
+   const errosList = getErrors().map((el) => ({ ErrorsLink: el }));
+
+   window.download(
+      { content: errorsList, headers: "template" },
+      "Errors",
+      "csv"
+   );
+};
 
 export default downloadParsedData;
