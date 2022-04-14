@@ -18,13 +18,14 @@ const getSizes = () => {
 	return sizes;
 };
 const setItemsListToRefund = (itemsList) => {
-	window.LocalStorageUtil.set(lcKey, itemsList);
+	return window.LocalStorageUtil.set(lcKey, itemsList);
 };
 const getItemsToRefund = () => {
-	window.LocalStorageUtil.get(lcKey) || [];
+	return window.LocalStorageUtil.get(lcKey) || [];
 };
 const deleteItemsToRefund = () => {
 	window.LocalStorageUtil.delete(lcKey);
+	console.log(lcKey + " - удалено")
 };
 const getBuyButton = () =>
 	[...document.querySelectorAll(".btn-main")].find(
@@ -33,13 +34,18 @@ const getBuyButton = () =>
 	);
 const findSize = (SKU) => {
 	const itemsList = getItemsToRefund();
-	return itemsList.find((item) => (item.sku === SKU))?.size || null;
+	const size = itemsList.find((item) => (item.sku === SKU))?.size || null
+	console.log("Size to refund: " + size)
+	return size;
 };
 const getWBSKU = () => document.querySelector("#productNmId").textContent
 
 const deleteItemSize = (SKU, size) => {
 	const itemsList = getItemsToRefund();
-	const filteredItemsList = itemsList.filter((item) => item.sku !== SKU && item.size !== size)
+	const filteredItemsList = itemsList.filter((item) => {
+		return item.sku !== SKU && item.size !== size
+	})
+	console.log("Осталось товаров: " + filteredItemsList.length, filteredItemsList)
 	setItemsListToRefund(filteredItemsList);
 }
 
@@ -59,9 +65,9 @@ const dataHandler = () => {
 	const WBSKU = getWBSKU();
 	const sizes = getSizes();
 	const sizeToRefund = findSize(WBSKU);
-	if (!findSize) return null
+	if (!findSize || !sizes) return null
 
-	sizes[sizeToRefund].click();
+	sizes[sizeToRefund]?.click();
 	buyItem(sizeToRefund)
 	return { WBSKU, status: "ok" }
 };
