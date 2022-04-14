@@ -20,12 +20,12 @@ const getSizes = () => {
 const setItemsListToRefund = (itemsList) => {
 	return window.LocalStorageUtil.set(lcKey, itemsList);
 };
-const getItemsToRefund = () => {
+const getItemsListToRefund = () => {
 	return window.LocalStorageUtil.get(lcKey) || [];
 };
-const deleteItemsToRefund = () => {
+const removeItemsListToRefund = () => {
 	window.LocalStorageUtil.delete(lcKey);
-	console.log(lcKey + " - удалено")
+	console.log("Товары к возврату очищены")
 };
 const getBuyButton = () =>
 	[...document.querySelectorAll(".btn-main")].find(
@@ -33,7 +33,7 @@ const getBuyButton = () =>
 			btn.textContent === "        Добавить в корзину        В корзину    "
 	);
 const findSize = (SKU) => {
-	const itemsList = getItemsToRefund();
+	const itemsList = getItemsListToRefund();
 	const size = itemsList.find((item) => (item.sku === SKU))?.size || null
 	console.log("Size to refund: " + size)
 	return size;
@@ -41,7 +41,7 @@ const findSize = (SKU) => {
 const getWBSKU = () => document.querySelector("#productNmId").textContent
 
 const deleteItemSize = (SKU, size) => {
-	const itemsList = getItemsToRefund();
+	const itemsList = getItemsListToRefund();
 	const filteredItemsList = itemsList.filter((item) => {
 		return item.sku !== SKU || item.size !== size
 	})
@@ -49,9 +49,9 @@ const deleteItemSize = (SKU, size) => {
 	setItemsListToRefund(filteredItemsList);
 }
 
-const consoleInfo = `getItemsToRefund() - Получить список товаров;
+const consoleInfo = `getItemsListToRefund() - Получить список товаров;
 setItemsListToRefund([{sku, size}]) - Установить список товаров;
-deleteItemsToRefund() - Очистить список товаров;`
+removeItemsListToRefund() - Очистить список товаров;`
 console.log(consoleInfo)
 
 const dataHandler = () => {
@@ -73,5 +73,9 @@ const dataHandler = () => {
 
 	return { WBSKU, status: "ok" }
 };
+const config = {
+	rmDuplicateUrls: false,
+}
 
-window.initializeMethods([dataHandler, getItemsToRefund, setItemsListToRefund, deleteItemsToRefund]);
+window.initializeMethods([dataHandler, getItemsListToRefund, setItemsListToRefund, removeItemsListToRefund]);
+window.initializeVariables([config])
