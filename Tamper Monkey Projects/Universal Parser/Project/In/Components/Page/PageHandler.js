@@ -14,15 +14,18 @@ const pageHandler = async () => {
    const handlingURL = itemsLinksList[0];
    const dataHandler = PageDataHandler.get();
 
-   const itemInfo = dataHandler(); //Получение данных о товаре
-
-   if (itemInfo) {
-      itemsInfoList.push(
-         writePageUrl ? { ...itemInfo, handlingURL } : itemInfo
-      ); //Добавить в массив данные о товаре
-   } else {
-      itemsErrorsList.push(handlingURL);
+   let itemInfo = null
+   try {
+      itemInfo = dataHandler(); //Получение данных о товаре
+      if (!itemInfo) throw new Error("Data processing error")
+   } catch (err) {
+      itemsErrorsList.push({ "Error": err, handlingURL });
    }
+
+   if (itemInfo) itemsInfoList.push(
+      writePageUrl ? { ...itemInfo, handlingURL } : itemInfo
+   ); //Добавить в массив данные о товаре
+
 
    itemsLinksList.shift(); //Удалить ссылку товара
 

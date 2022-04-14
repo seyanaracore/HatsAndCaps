@@ -1217,15 +1217,33 @@ var pageHandler = /*#__PURE__*/function () {
             itemsErrorsList = DataGetters_getErrors();
             handlingURL = itemsLinksList[0];
             dataHandler = Page_PageDataHandler.get();
+            itemInfo = null;
+            _context.prev = 9;
             itemInfo = dataHandler(); //Получение данных о товаре
 
             if (itemInfo) {
-              itemsInfoList.push(writePageUrl ? _objectSpread(_objectSpread({}, itemInfo), {}, {
-                handlingURL: handlingURL
-              }) : itemInfo); //Добавить в массив данные о товаре
-            } else {
-              itemsErrorsList.push(handlingURL);
+              _context.next = 13;
+              break;
             }
+
+            throw new Error("Data processing error");
+
+          case 13:
+            _context.next = 18;
+            break;
+
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](9);
+            itemsErrorsList.push({
+              "Error": _context.t0,
+              handlingURL: handlingURL
+            });
+
+          case 18:
+            if (itemInfo) itemsInfoList.push(writePageUrl ? _objectSpread(_objectSpread({}, itemInfo), {}, {
+              handlingURL: handlingURL
+            }) : itemInfo); //Добавить в массив данные о товаре
 
             itemsLinksList.shift(); //Удалить ссылку товара
 
@@ -1236,12 +1254,12 @@ var pageHandler = /*#__PURE__*/function () {
             setErrorsList(itemsErrorsList);
             ToNextLink();
 
-          case 17:
+          case 26:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[9, 15]]);
   }));
 
   return function pageHandler() {
