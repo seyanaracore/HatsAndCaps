@@ -902,7 +902,8 @@ var defaultConfig = {
   itemsErrorsListName: "itemsErrorsList",
   sleepTime: 3,
   writePageUrl: true,
-  validatePageUrl: true
+  validatePageUrl: true,
+  rmDuplicateUrls: true
 };
 
 var Configuration = /*#__PURE__*/function () {
@@ -1042,11 +1043,13 @@ function _toConsumableArray(arr) {
 ;// CONCATENATED MODULE: ./Project/In/Components/DataSetters.js
 
 
-var setItemsLinks = function setItemsLinks(itemsLinks) {
+var setItemsLinks = function setItemsLinks(itemsUrls) {
   var _Configuration$get = Utils_Configuration.get(),
-      itemsLinksListName = _Configuration$get.itemsLinksListName;
+      itemsLinksListName = _Configuration$get.itemsLinksListName,
+      rmDuplicateUrls = _Configuration$get.rmDuplicateUrls;
 
-  window.LocalStorageUtil.set(itemsLinksListName, _toConsumableArray(new Set(itemsLinks)));
+  var urls = rmDuplicateUrls ? _toConsumableArray(new Set(itemsLinks)) : itemsUrls;
+  window.LocalStorageUtil.set(itemsLinksListName, urls);
 };
 var setItemsInfo = function setItemsInfo(itemsInfo) {
   var _Configuration$get2 = Utils_Configuration.get(),

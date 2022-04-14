@@ -5,6 +5,7 @@ const defaultConfig = {
    sleepTime: 3,
    writePageUrl: true,
    validatePageUrl: true,
+   rmDuplicateUrls: true,
 }
 
 class Configuration {

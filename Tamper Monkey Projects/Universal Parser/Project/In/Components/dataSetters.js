@@ -1,9 +1,10 @@
 import Configuration from "../Utils/Configuration";
 
-export const setItemsLinks = (itemsLinks) => {
-   const { itemsLinksListName } = Configuration.get();
+export const setItemsLinks = (itemsUrls) => {
+   const { itemsLinksListName, rmDuplicateUrls } = Configuration.get();
+   const urls = rmDuplicateUrls ? [...new Set(itemsLinks)] : itemsUrls
 
-   window.LocalStorageUtil.set(itemsLinksListName, [...new Set(itemsLinks)]);
+   window.LocalStorageUtil.set(itemsLinksListName, urls);
 };
 export const setItemsInfo = (itemsInfo) => {
    const { itemsInfoListName } = Configuration.get();
