@@ -65,7 +65,7 @@ const dataHandler = () => {
 	const WBSKU = getWBSKU();
 	const sizes = getSizes();
 	const sizeToRefund = findSize(WBSKU);
-	if (!findSize || !sizes) return null
+	if (!findSize || !sizes || !sizes[sizeToRefund]) return null
 
 	sizes[sizeToRefund]?.click();
 	buyItem(sizeToRefund)
