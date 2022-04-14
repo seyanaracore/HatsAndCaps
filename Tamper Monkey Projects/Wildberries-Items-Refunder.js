@@ -43,17 +43,10 @@ const getWBSKU = () => document.querySelector("#productNmId").textContent
 const deleteItemSize = (SKU, size) => {
 	const itemsList = getItemsToRefund();
 	const filteredItemsList = itemsList.filter((item) => {
-		return item.sku !== SKU && item.size !== size
+		return item.sku !== SKU || item.size !== size
 	})
 	console.log("Осталось товаров: " + filteredItemsList.length, filteredItemsList)
 	setItemsListToRefund(filteredItemsList);
-}
-
-const buyItem = (size) => {
-	const WBSKU = getWBSKU();
-	const buyButton = getBuyButton()
-	deleteItemSize(WBSKU, size)
-	buyButton.click()
 }
 
 const consoleInfo = `getItemsToRefund() - Получить список товаров;
@@ -62,13 +55,22 @@ deleteItemsToRefund() - Очистить список товаров;`
 console.log(consoleInfo)
 
 const dataHandler = () => {
+	const buyButton = getBuyButton()
 	const WBSKU = getWBSKU();
 	const sizes = getSizes();
 	const sizeToRefund = findSize(WBSKU);
-	if (!findSize || !sizes || !sizes[sizeToRefund]) return null
 
-	sizes[sizeToRefund]?.click();
-	buyItem(sizeToRefund)
+	const errorMsgs = []
+
+	if (!sizes) errorMsgs.push("Нет найдено ни одного размера у товара")
+	if (!sizeToRefund) errorMsgs.push("Не найдено ни 1 размера к возврату у данного SKU: " + getWBSKU)
+	if (!sizes[sizeToRefund]) errorMsgs.push("Не найден нужный размер у данного SKU: " + getWBSKU)
+	if (errorMsgs.length) throw new Error(errorMsgs.join("; "))
+
+	sizes[sizeToRefund].click(); // Выбор нужного размера
+	buyButton.click() //Добавление размера корзину
+	deleteItemSize(WBSKU, sizeToRefund) //Убрать размер к возврату у данного SKU
+
 	return { WBSKU, status: "ok" }
 };
 
