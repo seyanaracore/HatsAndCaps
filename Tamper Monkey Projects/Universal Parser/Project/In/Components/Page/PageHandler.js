@@ -19,6 +19,7 @@ const pageHandler = async () => {
       itemInfo = dataHandler(); //Получение данных о товаре
       if (!itemInfo) throw new Error("Data processing error")
    } catch (err) {
+      console.error(err.message)
       itemsErrorsList.push({ "Error": err.message, handlingURL });
    }
 

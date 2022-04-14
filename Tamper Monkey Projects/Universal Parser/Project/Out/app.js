@@ -1073,11 +1073,7 @@ var downloadParsedData = function downloadParsedData() {
   }, "parsed-data", "csv");
 };
 var downloadErrors = function downloadErrors() {
-  var errorsList = getErrors().map(function (el) {
-    return {
-      ErrorsLink: el
-    };
-  });
+  var errorsList = getErrors();
   window.download({
     content: errorsList,
     headers: "template"
@@ -1229,18 +1225,19 @@ var pageHandler = /*#__PURE__*/function () {
             throw new Error("Data processing error");
 
           case 13:
-            _context.next = 18;
+            _context.next = 19;
             break;
 
           case 15:
             _context.prev = 15;
             _context.t0 = _context["catch"](9);
+            console.error(_context.t0.message);
             itemsErrorsList.push({
               "Error": _context.t0.message,
               handlingURL: handlingURL
             });
 
-          case 18:
+          case 19:
             if (itemInfo) itemsInfoList.push(writePageUrl ? _objectSpread(_objectSpread({}, itemInfo), {}, {
               handlingURL: handlingURL
             }) : itemInfo); //Добавить в массив данные о товаре
@@ -1254,7 +1251,7 @@ var pageHandler = /*#__PURE__*/function () {
             setErrorsList(itemsErrorsList);
             ToNextLink();
 
-          case 26:
+          case 27:
           case "end":
             return _context.stop();
         }
