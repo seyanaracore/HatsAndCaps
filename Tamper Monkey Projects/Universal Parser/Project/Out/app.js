@@ -1073,7 +1073,7 @@ var downloadParsedData = function downloadParsedData() {
   }, "parsed-data", "csv");
 };
 var downloadErrors = function downloadErrors() {
-  var errosList = getErrors().map(function (el) {
+  var errorsList = getErrors().map(function (el) {
     return {
       ErrorsLink: el
     };
@@ -1236,7 +1236,7 @@ var pageHandler = /*#__PURE__*/function () {
             _context.prev = 15;
             _context.t0 = _context["catch"](9);
             itemsErrorsList.push({
-              "Error": _context.t0,
+              "Error": _context.t0.message,
               handlingURL: handlingURL
             });
 

@@ -11,7 +11,7 @@ export const downloadParsedData = () => {
    );
 };
 export const downloadErrors = () => {
-   const errosList = getErrors().map((el) => ({ ErrorsLink: el }));
+   const errorsList = getErrors().map((el) => ({ ErrorsLink: el }));
 
    window.download(
       { content: errorsList, headers: "template" },
