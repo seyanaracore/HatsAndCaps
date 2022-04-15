@@ -77,5 +77,5 @@ const config = {
 	rmDuplicateUrls: false,
 }
 
-window.initializeMethods([dataHandler, getItemsListToRefund, setItemsListToRefund, removeItemsListToRefund]);
 window.initializeVariables([{ name: "config", value: config }])
+window.initializeMethods([dataHandler, getItemsListToRefund, setItemsListToRefund, removeItemsListToRefund]);
