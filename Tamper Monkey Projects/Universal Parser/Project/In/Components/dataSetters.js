@@ -2,7 +2,7 @@ import Configuration from "../Utils/Configuration";
 
 export const setItemsLinks = (itemsUrls) => {
    const { itemsLinksListName, rmDuplicateUrls } = Configuration.get();
-   const urls = rmDuplicateUrls ? [...new Set(itemsLinks)] : itemsUrls
+   const urls = rmDuplicateUrls ? [...new Set(itemsUrls)] : itemsUrls
 
    window.LocalStorageUtil.set(itemsLinksListName, urls);
 };

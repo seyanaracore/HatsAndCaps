@@ -1048,7 +1048,7 @@ var setItemsLinks = function setItemsLinks(itemsUrls) {
       itemsLinksListName = _Configuration$get.itemsLinksListName,
       rmDuplicateUrls = _Configuration$get.rmDuplicateUrls;
 
-  var urls = rmDuplicateUrls ? _toConsumableArray(new Set(itemsLinks)) : itemsUrls;
+  var urls = rmDuplicateUrls ? _toConsumableArray(new Set(itemsUrls)) : itemsUrls;
   window.LocalStorageUtil.set(itemsLinksListName, urls);
 };
 var setItemsInfo = function setItemsInfo(itemsInfo) {
