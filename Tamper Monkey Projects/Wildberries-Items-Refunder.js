@@ -78,4 +78,4 @@ const config = {
 }
 
 window.initializeMethods([dataHandler, getItemsListToRefund, setItemsListToRefund, removeItemsListToRefund]);
-window.initializeVariables([config])
+window.initializeVariables([{ name: "config", value: config }])
