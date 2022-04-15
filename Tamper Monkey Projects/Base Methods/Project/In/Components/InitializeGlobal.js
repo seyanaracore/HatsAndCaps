@@ -2,7 +2,7 @@ const arrayError = "An array is expected";
 
 export const initializeMethods = (methodsList) => {
    if (!Array.isArray(methodsList)) {
-      return console.error(arrayError);
+      throw new Error(arrayError);
    }
 
    for (let method of methodsList) {
@@ -12,7 +12,7 @@ export const initializeMethods = (methodsList) => {
 
 export const initializeClass = (classList) => {
    if (!Array.isArray(classList)) {
-      return console.error(arrayError);
+      throw new Error(arrayError);
    }
 
    for (let item of classList) {
@@ -22,7 +22,20 @@ export const initializeClass = (classList) => {
 
 export const initializeVariables = (variablesList) => {
    if (!Array.isArray(variablesList)) {
-      return console.error(arrayError);
+      throw new Error(arrayError);
+   }
+   if (
+      variablesList.some((varItem) => {
+         return (
+            typeof varItem !== "object" ||
+            !varItem.hasOwnProperty("name") ||
+            !varItem.hasOwnProperty("value")
+         );
+      })
+   ) {
+      throw new Error(
+         "An array of objects {name: string, value: any} is expected"
+      );
    }
 
    for (let item of variablesList) {
