@@ -14,6 +14,7 @@ const config = {
 
 const dataHandler = () => {
    const buyButton = document.querySelector(".x-add-to-cart button");
+   if (!buyButton) throw new Error("Not found button");
    const isDisabled = !!buyButton.getAttribute("disabled");
 
    return { isDisabled };
