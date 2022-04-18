@@ -9,7 +9,7 @@
 // @grant        none
 
 const items = document.querySelectorAll(
-   ".style-offerDetailWrapper___3r9k1 span[data-tid='ae445ad4']"
+   "[data-e2e='sku'] span[data-tid='ae445ad4']"
 );
 
 items.forEach((artNumber) => {
