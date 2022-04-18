@@ -12,12 +12,34 @@ const config = {
    validatePageUrl: false,
 };
 
+const getNumbers = (str) => str.match(/[0-9]/g).join("");
+const getOutOfStock = () => {
+   const sizesBlock = document.querySelectorAll(
+      ".ui-product-page-sizes-chooser-item"
+   );
+   if (!sizesBlock.length) return "Это One Size";
+
+   const inStockSelector = "ui-product-page-sizes-chooser-item_enabled";
+   const sizes = [...sizesBlock].map((sizeBlock) => ({
+      inStock: sizeBlock.classList.contains(inStockSelector),
+      sizeNum: getNumbers(sizeBlock.firstElementChild.textContent),
+   }));
+   return (
+      sizes
+         .filter((sizeObj) => !sizeObj.inStock)
+         .map((size) => size.sizeNum)
+         .join() + ","
+   );
+};
+
 const dataHandler = () => {
    const buyButton = document.querySelector(".x-add-to-cart button");
-   if (!buyButton) throw new Error("Not found button");
+   if (!buyButton) throw new Error("Not found buy button");
+   const sizesOutOfStock = getOutOfStock();
+
    const isDisabled = !!buyButton.getAttribute("disabled");
 
-   return { isDisabled };
+   return { isDisabled, sizesOutOfStock };
 };
 
 window.initializeMethods([dataHandler]);
