@@ -4,7 +4,7 @@
 // @match        https://www.lamoda.ru/*
 // @icon         chrome://favicon/https://www.lamoda.ru/
 // @description  Lamoda Parser
-// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex%20Market%20-%20parser/Project/Out/app.js
+// @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Universal%20Parser/Project/Out/app.js
 // @require		  https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Lamoda-Items-Checker.js
 // @grant        none
 
