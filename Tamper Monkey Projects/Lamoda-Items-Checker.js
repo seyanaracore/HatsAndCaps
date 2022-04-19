@@ -17,19 +17,19 @@ const getOutOfStock = () => {
    const sizesBlock = document.querySelectorAll(
       ".ui-product-page-sizes-chooser-item"
    );
-   if (!sizesBlock.length) return "Это One Size";
+   if (!sizesBlock.length) return "O/S";
 
    const inStockSelector = "ui-product-page-sizes-chooser-item_enabled";
    const sizes = [...sizesBlock].map((sizeBlock) => ({
       inStock: sizeBlock.classList.contains(inStockSelector),
       sizeNum: getNumbers(sizeBlock.firstElementChild.textContent),
    }));
-   return (
+   const filteredSizes =
       sizes
          .filter((sizeObj) => !sizeObj.inStock)
          .map((size) => size.sizeNum)
-         .join() + ","
-   );
+         .join() + ",";
+   return filteredSizes.length > 1 ? filteredSizes : "Всё доступно"
 };
 
 const dataHandler = () => {
