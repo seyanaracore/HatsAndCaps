@@ -61,9 +61,9 @@ const setItemsRequiredQuantity = () => {
 const validateItems = async (itemsList) => {
    const itemsRequiredQuantity = getItemsRequiredQuantity();
    for (const item of itemsList) {
-      const required = itemsRequiredQuantity.find(
-         (el) => +el.SKU === +item.SKU
-      ).required;
+      const required = itemsRequiredQuantity
+         .filter((el) => +el.SKU === +item.SKU)
+         .reduce((reducer, item) => (reducer += item.req), 0);
 
       const countDiff = +required - +item.quanity;
 
@@ -91,4 +91,9 @@ getItemsRequiredQuantity() - получить товары с количеств
 setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;
 `);
 
-window.initializeMethods([clearCart, setCartQuantities, getItemsRequiredQuantity, setItemsRequiredQuantity]);
+window.initializeMethods([
+   clearCart,
+   setCartQuantities,
+   getItemsRequiredQuantity,
+   setItemsRequiredQuantity,
+]);
