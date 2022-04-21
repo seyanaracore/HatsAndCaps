@@ -57,7 +57,7 @@ setItemsListToRefund([{sku, size}]) - Установить список това
 removeItemsListToRefund() - Очистить список товаров;`;
 console.log(consoleInfo);
 
-const dataHandler = () => {
+const dataHandler = async () => {
    const buyButton = getBuyButton();
    const WBSKU = getWBSKU();
    const sizes = getSizes();
@@ -87,6 +87,7 @@ const dataHandler = () => {
    buyButton.click(); //Добавление размера корзину
    deleteItemSize(WBSKU, sizeToRefund); //Убрать размер к возврату у данного SKU
 
+   await window.sleep(0.5)
    return { WBSKU, status: "ok" };
 };
 const config = {
