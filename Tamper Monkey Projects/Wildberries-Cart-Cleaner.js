@@ -62,10 +62,10 @@ const validateItems = async (itemsList) => {
    const itemsRequiredQuantity = getItemsRequiredQuantity();
    for (const item of itemsList) {
       const required = itemsRequiredQuantity.find(
-         (el) => el.SKU === item.SKU
+         (el) => +el.SKU === +item.SKU
       ).required;
 
-      const countDiff = required - item.quanity;
+      const countDiff = +required - +item.quanity;
 
       for (let i = 0; i < Math.abs(countDiff); i++) {
          await window.sleep(0.2);
