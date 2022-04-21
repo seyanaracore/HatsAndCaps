@@ -52,10 +52,11 @@ const getItemsList = () =>
 const lcKey = "ItemsRefundQuantitesList";
 
 const getItemsRequiredQuantity = () => {
-   window.LocaleStorageUtil.get(lcKey) || [];
+   return window.LocaleStorageUtil.get(lcKey) || [];
 };
-const setItemsRequiredQuantity = () => {
-   window.LocaleStorageUtil.get(lcKey) || [];
+const setItemsRequiredQuantity = (itemsList) => {
+   window.LocaleStorageUtil.set(lcKey, itemsList)
+   console.log("Товары установлены")
 };
 
 const validateItems = async (itemsList) => {
@@ -90,8 +91,7 @@ clearCart(название склада) - удалить товары с отп
 clearCart(null) - удалить все видимые товары;
 setCartQuantities() - установить количества товаров до необходимого;
 getItemsRequiredQuantity() - получить товары с количеством более 1;
-setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;
-`);
+setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;`);
 
 window.initializeMethods([
    clearCart,
