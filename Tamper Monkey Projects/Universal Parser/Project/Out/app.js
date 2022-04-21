@@ -1218,21 +1218,25 @@ var pageHandler = /*#__PURE__*/function () {
             dataHandler = Page_PageDataHandler.get();
             itemInfo = null;
             _context.prev = 9;
-            itemInfo = dataHandler(); //Получение данных о товаре
+            _context.next = 12;
+            return dataHandler();
+
+          case 12:
+            itemInfo = _context.sent;
 
             if (itemInfo) {
-              _context.next = 13;
+              _context.next = 15;
               break;
             }
 
             throw new Error("Data processing error");
 
-          case 13:
-            _context.next = 19;
+          case 15:
+            _context.next = 21;
             break;
 
-          case 15:
-            _context.prev = 15;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](9);
             console.error(_context.t0.message);
             itemsErrorsList.push({
@@ -1240,7 +1244,7 @@ var pageHandler = /*#__PURE__*/function () {
               handlingURL: handlingURL
             });
 
-          case 19:
+          case 21:
             if (itemInfo) itemsInfoList.push(writePageUrl ? _objectSpread(_objectSpread({}, itemInfo), {}, {
               handlingURL: handlingURL
             }) : itemInfo); //Добавить в массив данные о товаре
@@ -1254,12 +1258,12 @@ var pageHandler = /*#__PURE__*/function () {
             setErrorsList(itemsErrorsList);
             ToNextLink();
 
-          case 27:
+          case 29:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[9, 15]]);
+    }, _callee, null, [[9, 17]]);
   }));
 
   return function pageHandler() {

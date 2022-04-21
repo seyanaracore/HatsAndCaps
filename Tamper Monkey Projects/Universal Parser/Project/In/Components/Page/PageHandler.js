@@ -16,7 +16,7 @@ const pageHandler = async () => {
 
    let itemInfo = null
    try {
-      itemInfo = dataHandler(); //Получение данных о товаре
+      itemInfo = await dataHandler(); //Получение данных о товаре
       if (!itemInfo) throw new Error("Data processing error")
    } catch (err) {
       console.error(err.message)
