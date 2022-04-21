@@ -61,17 +61,19 @@ const setItemsRequiredQuantity = () => {
 const validateItems = async (itemsList) => {
    const itemsRequiredQuantity = getItemsRequiredQuantity();
    for (const item of itemsList) {
-      const required = itemsRequiredQuantity.find(
-         (el) => el.SKU === item.SKU
-      ).required;
+      const required = itemsRequiredQuantity.reduce(
+         (reducer, el) =>
+            (reducer += item.sku.toString() === el.sku.toString() ? el.req : 0),
+         0
+      );
 
-      const countDiff = required - item.quanity;
+      const countDiff = +required - +item.quanity;
 
       for (let i = 0; i < Math.abs(countDiff); i++) {
          await window.sleep(0.2);
          if (countDiff > 0) {
             item.controlBtns.increase.click();
-         } else {
+         } else if (countDiff < 0) {
             item.controlBtns.reduce.click();
          }
       }
@@ -86,7 +88,14 @@ const setCartQuantities = async () => {
 console.log(`clearCart() - очистить "Склад продавца";
 clearCart(название склада) - удалить товары с отправлением оттуда;
 clearCart(null) - удалить все видимые товары;
-
+setCartQuantities() - установить количества товаров до необходимого;
+getItemsRequiredQuantity() - получить товары с количеством более 1;
+setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;
 `);
 
-window.initializeMethods([clearCart, setCartQuantities, getItemsRequiredQuantity, setItemsRequiredQuantity]);
+window.initializeMethods([
+   clearCart,
+   setCartQuantities,
+   getItemsRequiredQuantity,
+   setItemsRequiredQuantity,
+]);
