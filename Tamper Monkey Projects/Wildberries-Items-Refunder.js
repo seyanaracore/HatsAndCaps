@@ -69,7 +69,7 @@ const dataHandler = () => {
       errorMsgs.push("Кнопка покупки не доступна: " + WBSKU);
    }
    if (!sizes) {
-      errorMsgs.push("Нет найдено ни одного размера у товара");
+      errorMsgs.push("Нет найдено ни одного размера у товара: " + WBSKU);
    }
    if (!sizeToRefund) {
       errorMsgs.push("Не найдено ни 1 размера к возврату: " + WBSKU);
