@@ -30,7 +30,7 @@ const clearCart = async (departureFrom = "Склад продавца") => {
 
 const getItemsList = () =>
    [...document.querySelectorAll(".list-item__good > a")].map((itemLink) => {
-      const SKU = itemLink.href.split("catalog/")[1].slice(0, 8);
+      const SKU = itemLink.href.split("catalog/")[1].split("/")[0];
       const quanity =
          +itemLink.parentNode.parentNode.childNodes[5].firstElementChild
             .firstElementChild.childNodes[3].value;
@@ -55,8 +55,8 @@ const getItemsRequiredQuantity = () => {
    return window.LocaleStorageUtil.get(lcKey) || [];
 };
 const setItemsRequiredQuantity = (itemsList) => {
-   window.LocaleStorageUtil.set(lcKey, itemsList)
-   console.log("Товары установлены")
+   window.LocaleStorageUtil.set(lcKey, itemsList);
+   console.log("Товары установлены");
 };
 
 const validateItems = async (itemsList) => {
@@ -80,22 +80,35 @@ const validateItems = async (itemsList) => {
       }
    }
 };
+const downloadCart = () => {
+   window.download(
+      { content: getItemsList(), headers: "template" },
+      "WB-Cart",
+      "csv"
+   );
+};
 
 const setCartQuantities = async () => {
    const itemsList = getItemsList();
    await validateItems(itemsList);
 };
+const getCartItemsList = getItemsList;
 
 console.log(`clearCart() - очистить "Склад продавца";
 clearCart(название склада) - удалить товары с отправлением оттуда;
 clearCart(null) - удалить все видимые товары;
 setCartQuantities() - установить количества товаров до необходимого;
 getItemsRequiredQuantity() - получить товары с количеством более 1;
-setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;`);
+setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;
+downloadCart() - скачать товары из корзины;
+getCartItemsList() - получить товары из корзины;
+`);
 
 window.initializeMethods([
    clearCart,
    setCartQuantities,
+   getCartItemsList,
+   downloadCart,
    getItemsRequiredQuantity,
    setItemsRequiredQuantity,
 ]);
