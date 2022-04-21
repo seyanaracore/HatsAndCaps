@@ -61,9 +61,11 @@ const setItemsRequiredQuantity = () => {
 const validateItems = async (itemsList) => {
    const itemsRequiredQuantity = getItemsRequiredQuantity();
    for (const item of itemsList) {
-      const required = itemsRequiredQuantity
-         .filter((el) => +el.SKU === +item.SKU)
-         .reduce((reducer, item) => (reducer += item.req), 0);
+      const required = itemsRequiredQuantity.reduce(
+         (reducer, el) =>
+            (reducer += item.sku.toString() === el.sku.toString() ? el.req : 0),
+         0
+      );
 
       const countDiff = +required - +item.quanity;
 
@@ -71,7 +73,7 @@ const validateItems = async (itemsList) => {
          await window.sleep(0.2);
          if (countDiff > 0) {
             item.controlBtns.increase.click();
-         } else {
+         } else if (countDiff < 0) {
             item.controlBtns.reduce.click();
          }
       }
