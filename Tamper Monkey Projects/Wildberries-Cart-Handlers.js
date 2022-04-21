@@ -86,9 +86,7 @@ const setCartQuantities = async () => {
 console.log(`clearCart() - очистить "Склад продавца";
 clearCart(название склада) - удалить товары с отправлением оттуда;
 clearCart(null) - удалить все видимые товары;
-setCartQuantities() - установить количества товаров до необходимого;
-getItemsRequiredQuantity() - получить товары с количеством более 1;
-setItemsRequiredQuantity([{sku, required}]) - установить товары с требуемым количеством;
+
 `);
 
 window.initializeMethods([clearCart, setCartQuantities, getItemsRequiredQuantity, setItemsRequiredQuantity]);
