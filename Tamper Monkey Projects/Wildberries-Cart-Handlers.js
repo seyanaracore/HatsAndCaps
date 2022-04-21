@@ -35,12 +35,12 @@ const getItemsList = () =>
          +itemLink.parentNode.parentNode.childNodes[5].firstElementChild
             .firstElementChild.childNodes[3].value;
       const controlBtns = {
-         reduce:
-            itemLink.parentNode.parentNode.childNodes[5].firstElementChild
-               .firstElementChild.childNodes[1],
-         increase:
-            itemLink.parentNode.parentNode.childNodes[5].firstElementChild
-               .firstElementChild.childNodes[5],
+         reduce() {
+            itemLink.parentNode.parentNode.childNodes[5].firstElementChild.firstElementChild.childNodes[1].click();
+         },
+         increase() {
+            itemLink.parentNode.parentNode.childNodes[5].firstElementChild.firstElementChild.childNodes[5].click();
+         },
       };
       return {
          SKU,
