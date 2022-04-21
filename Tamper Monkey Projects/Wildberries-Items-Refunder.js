@@ -65,15 +65,19 @@ const dataHandler = () => {
 
    const errorMsgs = [];
 
-   if (buyButton.classList.contains("hide"))
+   if (buyButton.classList.contains("hide")) {
       errorMsgs.push("Кнопка покупки не доступна: " + WBSKU);
-   if (!sizes) errorMsgs.push("Нет найдено ни одного размера у товара");
-   if (!sizeToRefund)
-      errorMsgs.push(
-         "Не найдено ни 1 размера к возврату у данного SKU: " + WBSKU
-      );
-   if (!sizes[sizeToRefund])
-      errorMsgs.push("Не найден нужный размер у данного SKU: " + WBSKU);
+   }
+   if (!sizes) {
+      errorMsgs.push("Нет найдено ни одного размера у товара");
+   }
+   if (!sizeToRefund) {
+      errorMsgs.push("Не найдено ни 1 размера к возврату: " + WBSKU);
+   }
+   if (!sizes[sizeToRefund]) {
+      errorMsgs.push("Не найден нужный размер: " + WBSKU);
+   }
+
    if (errorMsgs.length) throw new Error(errorMsgs.join(", "));
 
    sizes[sizeToRefund].click(); // Выбор нужного размера
