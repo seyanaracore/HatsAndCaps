@@ -1050,6 +1050,7 @@ var setItemsLinks = function setItemsLinks(itemsUrls) {
 
   var urls = rmDuplicateUrls ? _toConsumableArray(new Set(itemsUrls)) : itemsUrls;
   window.LocalStorageUtil.set(itemsLinksListName, urls);
+  console.log("Items links setted: " + urls.length, urls);
 };
 var setItemsInfo = function setItemsInfo(itemsInfo) {
   var _Configuration$get2 = Utils_Configuration.get(),
