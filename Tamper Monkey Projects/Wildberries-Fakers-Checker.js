@@ -24,7 +24,7 @@ const config = {
    validatePageUrl: false,
 };
 
-window.initializeMethods([dataHandler]);
 window.initializeVariables([{ name: "config", value: config }])
+window.initializeMethods([dataHandler]);
 
 //() => dataHandler(".catalog-page--non-search" / "#errorPage")
