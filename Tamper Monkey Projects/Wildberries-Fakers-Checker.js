@@ -11,17 +11,18 @@
 
 const lcKey = "wbFakersItems";
 
-const getWBSKU = () => document.querySelector("#productNmId").textContent;
+const getWBSKU = () => document.querySelector("#productNmId")?.textContent;
 
-const dataHandler = async () => {
-   const WBSKU = getWBSKU();
-   const pageError = document.querySelector("#errorPage");
-
+const dataHandler = async (selector = "#errorPage") => {
    await window.sleep(0.5);
-   return { WBSKU, status: pageError ? "blocked" : "notBLocked" };
+   return {
+      status: document.querySelector(selector) ? "blocked" : "not blocked",
+   };
 };
 const config = {
    rmDuplicateUrls: false,
 };
 
 window.initializeMethods([dataHandler]);
+
+//() => dataHandler(".catalog-page--non-search" / "#errorPage")
