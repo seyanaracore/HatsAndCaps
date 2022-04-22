@@ -21,8 +21,10 @@ const dataHandler = async (selector = "#errorPage") => {
 };
 const config = {
    rmDuplicateUrls: false,
+   validatePageUrl: false,
 };
 
 window.initializeMethods([dataHandler]);
+window.initializeVariables([{ name: "config", value: config }])
 
 //() => dataHandler(".catalog-page--non-search" / "#errorPage")
