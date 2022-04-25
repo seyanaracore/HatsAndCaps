@@ -1,5 +1,5 @@
 const itemsList = [...document.querySelectorAll(".j-open-product-popup")]
-   .slice(0, 129)
+   .slice(231, 361)
    .map((el) => ({
       sku: el.getAttribute("data-popup-nm-id"),
       size: el.childNodes[9]?.textContent.trim() || 0,
