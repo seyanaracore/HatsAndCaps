@@ -26,7 +26,7 @@ items.forEach((artNumber) => {
       artNumber.style.cursor = "pointer";
       artNumber.addEventListener("click", (e) => {
          navigator.clipboard.writeText(e.target.textContent.trim());
-         alert("copied");
+         window.notify("copied")
       });
    }
 });
