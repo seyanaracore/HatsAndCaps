@@ -1273,7 +1273,7 @@ var id = "tamperMonkeyNotify";
 var duration = 2;
 
 var initBlock = function initBlock() {
-  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\"></div>");
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\"></div>");
   document.body.insertAdjacentHTML("beforeend", elem);
 };
 

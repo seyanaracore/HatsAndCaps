@@ -9,6 +9,7 @@ const initBlock = () => {
 	right: 10px;
 	bottom: 10px;
 	width: auto;
+	font-size: 16px;
 	padding: 6px 12px;
 	background-color: #00000021;
 	border-radius: 12px;
