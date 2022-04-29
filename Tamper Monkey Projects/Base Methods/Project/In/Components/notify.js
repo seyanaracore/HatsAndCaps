@@ -16,7 +16,7 @@ const initBlock = () => {
 	max-width: 400px;
 	z-index: 99999;
 	border: 1px solid #00000063;"></div>`;
-   document.body.insertAdjacentHTML("beforeend", elem);
+   document.body.insertAdjacentHTML("afterend", elem);
 };
 
 const notify = async (text) => {
