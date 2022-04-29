@@ -1,4 +1,4 @@
-const copyToClipboard = (string) => {
+const copyToClipboard = (string, notificationConent) => {
    let area = document.createElement("textarea");
    document.body.appendChild(area);
    area.value = string;
@@ -6,5 +6,6 @@ const copyToClipboard = (string) => {
    document.execCommand("copy");
    document.body.removeChild(area);
    console.log("copied");
+   notificationConent && window.notify(notificationConent);
 };
 export default copyToClipboard;

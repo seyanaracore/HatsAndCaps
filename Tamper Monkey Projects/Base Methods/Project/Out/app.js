@@ -1074,7 +1074,7 @@ var sleep = function sleep() {
 
 /* harmony default export */ var Components_sleep = (sleep);
 ;// CONCATENATED MODULE: ./Project/In/Components/copyToClipboard.js
-var copyToClipboard = function copyToClipboard(string) {
+var copyToClipboard = function copyToClipboard(string, notificationConent) {
   var area = document.createElement("textarea");
   document.body.appendChild(area);
   area.value = string;
@@ -1082,6 +1082,7 @@ var copyToClipboard = function copyToClipboard(string) {
   document.execCommand("copy");
   document.body.removeChild(area);
   console.log("copied");
+  notificationConent && window.notify(notificationConent);
 };
 
 /* harmony default export */ var Components_copyToClipboard = (copyToClipboard);
@@ -1265,6 +1266,48 @@ var toBottomElement = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var Components_toBottomElement = (toBottomElement);
+;// CONCATENATED MODULE: ./Project/In/Components/notify.js
+
+
+var id = "tamperMonkeyNotify";
+var duration = 2;
+
+var initBlock = function initBlock() {
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\"></div>");
+  document.body.insertAdjacentHTML("beforeend", elem);
+};
+
+var notifify = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(text) {
+    var block;
+    return regenerator_default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            block = document.getElementById(id);
+            block.innerText = text;
+            block.style.opacity = 1;
+            _context.next = 5;
+            return window.sleep(duration);
+
+          case 5:
+            block.style.opacity = 0;
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function notifify(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+initBlock();
+/* harmony default export */ var notify = (notifify);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
 
@@ -1272,8 +1315,9 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 
+
 initializeClass([localStorageUtil]);
-initializeMethods([Components_sleep, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
+initializeMethods([Components_sleep, notify, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
 }();
 /******/ })()
 ;
