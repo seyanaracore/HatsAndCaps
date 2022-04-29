@@ -25,8 +25,9 @@ items.forEach((artNumber) => {
       artNumber.innerText = art;
       artNumber.style.cursor = "pointer";
       artNumber.addEventListener("click", (e) => {
-         navigator.clipboard.writeText(e.target.textContent.trim());
-         window.notify("copied")
+         const SKU = e.target.textContent.trim()
+         navigator.clipboard.writeText(SKU);
+         window.notify(SKU + " copied")
       });
    }
 });
