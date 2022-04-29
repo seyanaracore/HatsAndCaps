@@ -8,11 +8,11 @@
 // @grant        none
 
 window.sleep(1).then(() => {
-   const element = document.querySelector('[data-widget="webDetailSKU"]')
+   const element = document.querySelector('[data-widget="webDetailSKU"]');
    element.onclick = (e) => {
       const SKU = e.target.textContent.split(" ")[2];
       console.log(SKU);
-      window.copyToClipboard(SKU);
+      window.copyToClipboard(SKU, "copied: " + SKU);
    };
-   element.style.cursor = "pointer"
+   element.style.cursor = "pointer";
 });
