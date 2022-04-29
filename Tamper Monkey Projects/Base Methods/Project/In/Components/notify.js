@@ -19,7 +19,7 @@ const initBlock = () => {
    document.body.insertAdjacentHTML("beforeend", elem);
 };
 
-const notifify = async (text) => {
+const notify = async (text) => {
    const block = document.getElementById(id);
 
    block.innerText = text;
@@ -31,4 +31,4 @@ const notifify = async (text) => {
 
 initBlock();
 
-export default notifify
+export default notify

@@ -8,13 +8,13 @@ import sleep from "./Components/sleep.js";
 import copyToClipboard from "./Components/copyToClipboard.js";
 import LocalStorageUtil from "./Components/localStorageUtil.js";
 import toBottomElement from "./Components/toBottomElement.js";
-import notifify from "./Components/notify.js";
+import notify from "./Components/notify.js";
 
 initializeClass([LocalStorageUtil]);
 
 initializeMethods([
    sleep,
-   notifify,
+   notify,
    download,
    copyToClipboard,
    toBottomElement,

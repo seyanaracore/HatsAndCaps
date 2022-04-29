@@ -1277,7 +1277,7 @@ var initBlock = function initBlock() {
   document.body.insertAdjacentHTML("beforeend", elem);
 };
 
-var notifify = /*#__PURE__*/function () {
+var notify = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(text) {
     var block;
     return regenerator_default().wrap(function _callee$(_context) {
@@ -1301,13 +1301,13 @@ var notifify = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function notifify(_x) {
+  return function notify(_x) {
     return _ref.apply(this, arguments);
   };
 }();
 
 initBlock();
-/* harmony default export */ var notify = (notifify);
+/* harmony default export */ var Components_notify = (notify);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
 
@@ -1317,7 +1317,7 @@ initBlock();
 
 
 initializeClass([localStorageUtil]);
-initializeMethods([Components_sleep, notify, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
+initializeMethods([Components_sleep, Components_notify, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
 }();
 /******/ })()
 ;
