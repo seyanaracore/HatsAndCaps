@@ -1081,7 +1081,7 @@ var copyToClipboard = function copyToClipboard(string) {
   area.select();
   document.execCommand("copy");
   document.body.removeChild(area);
-  console.log("\ncopied");
+  console.log("copied");
 };
 
 /* harmony default export */ var Components_copyToClipboard = (copyToClipboard);
