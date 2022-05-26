@@ -41,7 +41,8 @@ function setOrderNumberHandler() {
    );
    const newTitleEl = document.createElement("span");
 
-   newTitleEl.innerText = titleElement.textContent.split(" / ")[1];
+   newTitleEl.innerText =
+      titleElement.textContent.split(" / ")[1] || titleElement.textContent;
    newTitleEl.style.backgroundColor = "yellow";
    newTitleEl.style.cursor = "pointer";
    newTitleEl.addEventListener("click", (e) => {
