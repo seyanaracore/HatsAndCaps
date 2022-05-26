@@ -53,3 +53,14 @@ function setOrderNumberHandler() {
    titleElement.innerHTML = "Заказ № ";
    titleElement.insertAdjacentElement("beforeend", newTitleEl);
 }
+
+function setDataHandler() {
+   const dataEl = document.querySelector('[data-tid-prop="31bb50f9 1dace6d8"]');
+   dataEl.style.cursor = "pointer";
+   dataEl.style.backgroundColor = "yellow";
+   dataEl.addEventListener("click", (e) => {
+      const data = e.target.textContent.trim();
+      navigator.clipboard.writeText(data);
+      window.notify(data + " copied");
+   });
+}
