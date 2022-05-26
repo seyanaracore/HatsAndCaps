@@ -25,6 +25,7 @@ function setItemsArtHandler() {
 
          artNumber.innerText = art;
          artNumber.style.cursor = "pointer";
+         artNumber.style.backgroundColor = "yellow";
          artNumber.addEventListener("click", (e) => {
             const SKU = e.target.textContent.trim();
             navigator.clipboard.writeText(SKU);
