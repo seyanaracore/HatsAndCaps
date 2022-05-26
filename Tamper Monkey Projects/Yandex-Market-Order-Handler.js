@@ -8,26 +8,47 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex-Market-Order-Handler.js
 // @grant        none
 
-const items = document.querySelectorAll(
-   "[data-e2e='sku'] span[data-tid='ae445ad4']"
-);
+function setItemsArtHandler() {
+   const items = document.querySelectorAll(
+      "[data-e2e='sku'] span[data-tid='ae445ad4']"
+   );
 
-items.forEach((artNumber) => {
-   if (!artNumber.classList.length) {
-      let art = artNumber.textContent.split("");
+   items.forEach((artNumber) => {
+      if (!artNumber.classList.length) {
+         let art = artNumber.textContent.split("");
 
-      art.splice(2, 0, "-");
-      art.splice(6, 0, "-");
-      art.splice(9, 0, "-");
+         art.splice(2, 0, "-");
+         art.splice(6, 0, "-");
+         art.splice(9, 0, "-");
 
-      art = art.join("");
+         art = art.join("");
 
-      artNumber.innerText = art;
-      artNumber.style.cursor = "pointer";
-      artNumber.addEventListener("click", (e) => {
-         const SKU = e.target.textContent.trim()
-         navigator.clipboard.writeText(SKU);
-         window.notify(SKU + " copied")
-      });
-   }
-});
+         artNumber.innerText = art;
+         artNumber.style.cursor = "pointer";
+         artNumber.addEventListener("click", (e) => {
+            const SKU = e.target.textContent.trim();
+            navigator.clipboard.writeText(SKU);
+            window.notify(SKU + " copied");
+         });
+      }
+   });
+}
+
+function setOrderNumberHandler() {
+   const titleElement = document.querySelector(
+      ".p-layout__header-title-wrapper"
+   );
+   const newTitleEl = document.createElement("span");
+
+   newTitleEl.innerText = titleElement.textContent.split(" / ")[1];
+   newTitleEl.style.backgroundColor = "yellow";
+   newTitleEl.style.cursor = "pointer";
+   newTitleEl.addEventListener("click", (e) => {
+      const orderNumber = e.target.textContent.trim();
+      navigator.clipboard.writeText(orderNumber);
+      window.notify(orderNumber + " copied");
+   });
+
+   titleElement.innerHTML = "Заказ № ";
+   titleElement.insertAdjacentElement("beforeend", newTitleEl);
+}
