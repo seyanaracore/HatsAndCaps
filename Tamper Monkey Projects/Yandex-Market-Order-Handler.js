@@ -40,9 +40,9 @@ function setOrderNumberHandler() {
       ".p-layout__header-title-wrapper"
    );
    const newTitleEl = document.createElement("span");
+   const orderNum = titleElement.textContent.split(" / ")[1] || titleElement.textContent.split(" № ")[1]
 
-   newTitleEl.innerText =
-      titleElement.textContent.split(" / ")[1] || titleElement.textContent;
+   newTitleEl.innerText = orderNum;
    newTitleEl.style.backgroundColor = "yellow";
    newTitleEl.style.cursor = "pointer";
    newTitleEl.addEventListener("click", (e) => {
