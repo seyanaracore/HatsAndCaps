@@ -11,7 +11,7 @@
 // @grant        none
 
 const handleItemsLinksToCopy = (itemsList) =>
-   itemsList.map((el) => el.link + "\t" + el.img);
+   itemsList.map((el) => el.link + "\t" + el.img.replace("/wc250", ""));
 
 const initButtonLinksCollector = () => {
    const collectLinks = () => {
@@ -28,7 +28,7 @@ const initButtonLinksCollector = () => {
 
       const data = handleItemsLinksToCopy(items);
       window.copyToClipboard(
-         "Item link\tItem image\n" + data.join("\n"),
+         /*"Item link\tItem image\n" + */data.join("\n"),
          `Ссылки скопированы в буфер обмена. ${items.length} шт.`
       );
    };
