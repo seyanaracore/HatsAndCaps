@@ -12,7 +12,7 @@ const parseItem = () => {
       imgKey,
    };
 
-   setParsedItems(...alreadyParsedItems, item);
+   setParsedItems([...alreadyParsedItems, item]);
 };
 
 const initParseItemBtn = () => {

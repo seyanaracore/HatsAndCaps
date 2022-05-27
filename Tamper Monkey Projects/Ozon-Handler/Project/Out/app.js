@@ -95,16 +95,26 @@ var getParsedItems = function getParsedItems() {
 
 
 
-var selectAlreadyParsedItems = function selectAlreadyParsedItems() {
+var selectAlreadyParsedItems =
+/*async*/
+function selectAlreadyParsedItems() {
   var pageItems = collectPageItems();
   var parsedItems = getParsedItems();
-  pageItems.forEach(function (pageItem) {
+
+  var _loop = function _loop(i) {
+    var pageItem = pageItems[i];
+    /*await window.sleep(0.1);*/
+
     if (parsedItems.find(function (item) {
       return item.imgKey === pageItem.imgKey;
     })) {
       pageItem.domEl.parentElement.style.border = "2px solid black";
     }
-  });
+  };
+
+  for (var i = 0; i < pageItems.length; i++) {
+    _loop(i);
+  }
 };
 
 /* harmony default export */ var checkOnParsing = (selectAlreadyParsedItems);
@@ -121,6 +131,7 @@ var clearParsedItems = function clearParsedItems() {
 
 
 
+
 var handleItemsLinksToCopy = function handleItemsLinksToCopy(itemsList) {
   return itemsList.map(function (el) {
     return el.link + "\t" + el.img.replace("/wc250", "");
@@ -129,14 +140,20 @@ var handleItemsLinksToCopy = function handleItemsLinksToCopy(itemsList) {
 
 var handleData = function handleData() {
   var alreadyParsedItems = getParsedItems();
-  var items = collectPageItems().filter(function (item) {
+  console.log("already parsed:", alreadyParsedItems);
+  var items = collectPageItems();
+  console.log("page items:", items);
+  var filteredItems = items.filter(function (item) {
     return !alreadyParsedItems.find(function (parsedItem) {
       return parsedItem.link === item.link;
     });
   });
-  var allItemsList = items.concat(alreadyParsedItems);
+  console.log("new items:", filteredItems);
+  var allItemsList = filteredItems.concat(alreadyParsedItems);
+  console.log("already parsed + new items:", allItemsList);
   setParsedItems(allItemsList);
-  window.copyToClipboard(handleItemsLinksToCopy(allItemsList).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
+  window.copyToClipboard(handleItemsLinksToCopy(items).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
+  checkOnParsing();
 };
 
 var initButtonLinksCollector = function initButtonLinksCollector() {
@@ -161,7 +178,7 @@ var parseItem = function parseItem() {
     link: link,
     imgKey: imgKey
   };
-  setParsedItems.apply(void 0, _toConsumableArray(alreadyParsedItems).concat([item]));
+  setParsedItems([].concat(_toConsumableArray(alreadyParsedItems), [item]));
 };
 
 var initParseItemBtn = function initParseItemBtn() {
@@ -183,11 +200,11 @@ var pageUrl = window.location.href;
 if (pageUrl.includes("https://www.ozon.ru/product/")) {
   window.sleep(1).then(function () {
     Components_parseItem();
-    checkOnParsing();
+    selectVariants();
   });
 } else if (pageUrl.includes("https://www.ozon.ru/seller/") || pageUrl.includes("https://www.ozon.ru/brand/")) {
   window.sleep(1).then(function () {
-    checkOnParsing();
+    // selectAlreadyParsedItems();
     initButtonLinksCollector();
   });
 }

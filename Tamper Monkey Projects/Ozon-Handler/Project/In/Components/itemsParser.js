@@ -1,3 +1,4 @@
+import selectAlreadyParsedItems from "./checkOnParsing";
 import collectItems from "./collectPageItems";
 import { getParsedItems } from "./getters";
 import { setParsedItems } from "./setters";
@@ -7,18 +8,24 @@ const handleItemsLinksToCopy = (itemsList) =>
 
 const handleData = () => {
    const alreadyParsedItems = getParsedItems();
-   const items = collectItems().filter(
+   console.log("already parsed:", alreadyParsedItems);
+   const items = collectItems();
+   console.log("page items:", items);
+   const filteredItems = items.filter(
       (item) =>
          !alreadyParsedItems.find((parsedItem) => parsedItem.link === item.link)
    );
-   const allItemsList = items.concat(alreadyParsedItems);
+   console.log("new items:", filteredItems);
+   const allItemsList = filteredItems.concat(alreadyParsedItems);
+   console.log("already parsed + new items:", allItemsList);
 
    setParsedItems(allItemsList);
 
    window.copyToClipboard(
-      handleItemsLinksToCopy(allItemsList).join("\n"),
+      handleItemsLinksToCopy(items).join("\n"),
       `Ссылки скопированы в буфер обмена. ${items.length} шт.`
    );
+   selectAlreadyParsedItems()
 };
 
 export const initButtonLinksCollector = () => {
