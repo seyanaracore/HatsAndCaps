@@ -21,3 +21,5 @@ if (pageUrl.includes("https://www.ozon.ru/product/")) {
 }
 
 window.initializeMethods([clearParsedItems]);
+
+console.log('Удаление спаршенных товаров - clearParsedItems()')

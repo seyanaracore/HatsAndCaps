@@ -7,15 +7,16 @@ const handleItemsLinksToCopy = (itemsList) =>
 
 const handleData = () => {
    const alreadyParsedItems = getParsedItems();
-   const items = collectItems().filter((item) =>
-      !alreadyParsedItems.find((parsedItem) => parsedItem.link === item.link)
+   const items = collectItems().filter(
+      (item) =>
+         !alreadyParsedItems.find((parsedItem) => parsedItem.link === item.link)
    );
    const allItemsList = items.concat(alreadyParsedItems);
 
    setParsedItems(allItemsList);
 
    window.copyToClipboard(
-      handleItemsLinksToCopy(data).join("\n"),
+      handleItemsLinksToCopy(allItemsList).join("\n"),
       `Ссылки скопированы в буфер обмена. ${items.length} шт.`
    );
 };

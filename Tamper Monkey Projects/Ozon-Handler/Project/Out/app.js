@@ -136,7 +136,7 @@ var handleData = function handleData() {
   });
   var allItemsList = items.concat(alreadyParsedItems);
   setParsedItems(allItemsList);
-  window.copyToClipboard(handleItemsLinksToCopy(data).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
+  window.copyToClipboard(handleItemsLinksToCopy(allItemsList).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
 };
 
 var initButtonLinksCollector = function initButtonLinksCollector() {
@@ -193,5 +193,6 @@ if (pageUrl.includes("https://www.ozon.ru/product/")) {
 }
 
 window.initializeMethods([clearParsedItems]);
+console.log('Удаление спаршенных товаров - clearParsedItems()');
 /******/ })()
 ;
