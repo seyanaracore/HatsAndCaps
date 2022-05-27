@@ -29,7 +29,7 @@ function setItemsArtHandler() {
          artNumber.addEventListener("click", (e) => {
             const SKU = e.target.textContent.trim();
             navigator.clipboard.writeText(SKU);
-            window.notify(SKU + " copied");
+            window.notify(SKU + " скопировано");
          });
       }
    });
@@ -40,7 +40,9 @@ function setOrderNumberHandler() {
       ".p-layout__header-title-wrapper"
    );
    const newTitleEl = document.createElement("span");
-   const orderNum = titleElement.textContent.split(" / ")[1] || titleElement.textContent.split(" № ")[1]
+   const orderNum =
+      titleElement.textContent.split(" / ")[1] ||
+      titleElement.textContent.split(" № ")[1];
 
    newTitleEl.innerText = orderNum;
    newTitleEl.style.backgroundColor = "yellow";
@@ -48,7 +50,7 @@ function setOrderNumberHandler() {
    newTitleEl.addEventListener("click", (e) => {
       const orderNumber = e.target.textContent.trim();
       navigator.clipboard.writeText(orderNumber);
-      window.notify(orderNumber + " copied");
+      window.notify(orderNumber + " скопировано");
    });
 
    titleElement.innerHTML = "Заказ № ";
@@ -62,6 +64,12 @@ function setDataHandler() {
    dataEl.addEventListener("click", (e) => {
       const data = e.target.textContent.trim();
       navigator.clipboard.writeText(data);
-      window.notify(data + " copied");
+      window.notify(data + " скопировано");
    });
 }
+
+window.sleep(1).then(() => {
+   setItemsArtHandler();
+   setOrderNumberHandler();
+   setDataHandler();
+});
