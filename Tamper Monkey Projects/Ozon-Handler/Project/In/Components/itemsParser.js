@@ -1,10 +1,8 @@
 import selectAlreadyParsedItems from "./checkOnParsing";
 import collectItems from "./collectPageItems";
+import { handleItems } from "./finallyDataHandlers";
 import { getParsedItems } from "./getters";
 import { setParsedItems } from "./setters";
-
-const handleItemsLinksToCopy = (itemsList) =>
-   itemsList.map((el) => el.link + "\t" + el.img.replace("/wc250", ""));
 
 const handleData = () => {
    const alreadyParsedItems = getParsedItems();
@@ -22,16 +20,16 @@ const handleData = () => {
    setParsedItems(allItemsList);
 
    window.copyToClipboard(
-      handleItemsLinksToCopy(items).join("\n"),
+      handleItems(items).join("\n"),
       `Ссылки скопированы в буфер обмена. ${items.length} шт.`
    );
-   selectAlreadyParsedItems()
+   selectAlreadyParsedItems();
 };
 
 export const initButtonLinksCollector = () => {
    const pageHead = document.querySelector('[data-widget="column"]');
    const collectLinksBtn = document.createElement("button");
-   collectLinksBtn.innerText = "Собрать ссылки";
+   collectLinksBtn.innerText = "Собрать товары";
    collectLinksBtn.addEventListener("click", handleData);
 
    pageHead.insertAdjacentElement("beforeend", collectLinksBtn);

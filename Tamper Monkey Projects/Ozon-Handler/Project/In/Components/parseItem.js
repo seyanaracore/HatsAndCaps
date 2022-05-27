@@ -12,13 +12,15 @@ const parseItem = () => {
       imgKey,
    };
 
+   console.log("Добавлен в список:", item);
+   window.notify(`Успех. Добавлен в список: ${item.link}`)
    setParsedItems([...alreadyParsedItems, item]);
 };
 
 const initParseItemBtn = () => {
    const SKU = document.querySelector('[data-widget="webDetailSKU"]');
    const parseItemBTN = document.createElement("button");
-   parseItemBTN.textContent = "Добавить в парсинг";
+   parseItemBTN.textContent = "Спарсить";
    parseItemBTN.addEventListener("click", parseItem);
 
    SKU.insertAdjacentElement("beforebegin", parseItemBTN);

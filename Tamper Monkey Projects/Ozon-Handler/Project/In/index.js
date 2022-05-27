@@ -1,4 +1,8 @@
-import selectAlreadyParsedItems from "./Components/checkOnParsing";
+import {
+   copyParsedItems,
+   downloadParsedItems,
+} from "./Components/finallyDataHandlers";
+import selectVariants from "./Components/handleItemVariants";
 import { initButtonLinksCollector } from "./Components/itemsParser";
 import initParseItemBtn from "./Components/parseItem";
 import { clearParsedItems } from "./Components/setters";
@@ -20,6 +24,12 @@ if (pageUrl.includes("https://www.ozon.ru/product/")) {
    });
 }
 
-window.initializeMethods([clearParsedItems]);
+window.initializeMethods([
+   clearParsedItems,
+   copyParsedItems,
+   downloadParsedItems,
+]);
 
-console.log('Удаление спаршенных товаров - clearParsedItems()')
+console.log(
+   "Удаление товаров - clearParsedItems()\nСкачать товары - downloadParsedItems()\nКопировать в буфер - copyParsedItems()"
+);

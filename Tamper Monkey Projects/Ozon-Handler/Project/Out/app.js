@@ -2,21 +2,31 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
+var lcKey = "ozonItemsList";
+;// CONCATENATED MODULE: ./Project/In/Components/getters.js
 
-  return obj;
-}
+var getParsedItems = function getParsedItems() {
+  return window.LocalStorageUtil.get(lcKey) || [];
+};
+;// CONCATENATED MODULE: ./Project/In/Components/finallyDataHandlers.js
+
+var handleItems = function handleItems(itemsList) {
+  return itemsList.map(function (el) {
+    return el.link + "\t" + el.img.replace("/wc250", "").replace("/wc1200", "");
+  });
+};
+var downloadParsedItems = function downloadParsedItems() {
+  var parsedData = getParsedItems();
+  window.download({
+    content: handleItems(parsedData),
+    headers: "template"
+  }, "Ozon-Items", "csv");
+};
+var copyParsedItems = function copyParsedItems() {
+  var parsedData = getParsedItems();
+  window.copyToClipboard(handleItems(parsedData).join("\n"), "\u0422\u043E\u0432\u0430\u0440\u044B \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(parsedData.length, " \u0448\u0442."));
+};
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
@@ -58,6 +68,47 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
+;// CONCATENATED MODULE: ./Project/In/Components/handleItemVariants.js
+
+
+
+var collectVariants = function collectVariants() {
+  return _toConsumableArray(document.querySelectorAll('[data-widget="webAspects"] img'));
+};
+
+var selectVariants = function selectVariants() {
+  var parsedItems = getParsedItems();
+  var variants = collectVariants().map(function (variant) {
+    return {
+      domEl: variant,
+      imgId: variant.src.split("/").at(-1).split(".")[0]
+    };
+  });
+  variants.forEach(function (itemVariant, idx) {
+    if (parsedItems.find(function (parsedItem) {
+      return parsedItem.img.includes(itemVariant.imgId);
+    })) {
+      itemVariant.domEl.parentElement.style.border = "2px solid black";
+    }
+  });
+};
+
+/* harmony default export */ var handleItemVariants = (selectVariants);
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 ;// CONCATENATED MODULE: ./Project/In/Components/collectPageItems.js
 
 
@@ -84,13 +135,6 @@ var collectItems = function collectItems() {
   });
 };
 /* harmony default export */ var collectPageItems = (collectItems);
-;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
-var lcKey = "ozonItemsList";
-;// CONCATENATED MODULE: ./Project/In/Components/getters.js
-
-var getParsedItems = function getParsedItems() {
-  return window.LocalStorageUtil.get(lcKey) || [];
-};
 ;// CONCATENATED MODULE: ./Project/In/Components/checkOnParsing.js
 
 
@@ -121,10 +165,12 @@ function selectAlreadyParsedItems() {
 ;// CONCATENATED MODULE: ./Project/In/Components/setters.js
 
 var setParsedItems = function setParsedItems(data) {
-  return window.LocalStorageUtil.set(lcKey, data);
+  window.LocalStorageUtil.set(lcKey, data);
+  console.log("Данные установлены:", data);
 };
 var clearParsedItems = function clearParsedItems() {
-  return window.LocalStorageUtil["delete"](lcKey);
+  window.LocalStorageUtil["delete"](lcKey);
+  console.log("Данные удалены.");
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/itemsParser.js
 
@@ -132,11 +178,6 @@ var clearParsedItems = function clearParsedItems() {
 
 
 
-var handleItemsLinksToCopy = function handleItemsLinksToCopy(itemsList) {
-  return itemsList.map(function (el) {
-    return el.link + "\t" + el.img.replace("/wc250", "");
-  });
-};
 
 var handleData = function handleData() {
   var alreadyParsedItems = getParsedItems();
@@ -152,14 +193,14 @@ var handleData = function handleData() {
   var allItemsList = filteredItems.concat(alreadyParsedItems);
   console.log("already parsed + new items:", allItemsList);
   setParsedItems(allItemsList);
-  window.copyToClipboard(handleItemsLinksToCopy(items).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
+  window.copyToClipboard(handleItems(items).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
   checkOnParsing();
 };
 
 var initButtonLinksCollector = function initButtonLinksCollector() {
   var pageHead = document.querySelector('[data-widget="column"]');
   var collectLinksBtn = document.createElement("button");
-  collectLinksBtn.innerText = "Собрать ссылки";
+  collectLinksBtn.innerText = "Собрать товары";
   collectLinksBtn.addEventListener("click", handleData);
   pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
 };
@@ -178,13 +219,15 @@ var parseItem = function parseItem() {
     link: link,
     imgKey: imgKey
   };
+  console.log("Добавлен в список:", item);
+  window.notify("\u0423\u0441\u043F\u0435\u0445. \u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u0441\u043F\u0438\u0441\u043E\u043A: ".concat(item.link));
   setParsedItems([].concat(_toConsumableArray(alreadyParsedItems), [item]));
 };
 
 var initParseItemBtn = function initParseItemBtn() {
   var SKU = document.querySelector('[data-widget="webDetailSKU"]');
   var parseItemBTN = document.createElement("button");
-  parseItemBTN.textContent = "Добавить в парсинг";
+  parseItemBTN.textContent = "Спарсить";
   parseItemBTN.addEventListener("click", parseItem);
   SKU.insertAdjacentElement("beforebegin", parseItemBTN);
 };
@@ -195,12 +238,13 @@ var initParseItemBtn = function initParseItemBtn() {
 
 
 
+
 var pageUrl = window.location.href;
 
 if (pageUrl.includes("https://www.ozon.ru/product/")) {
   window.sleep(1).then(function () {
     Components_parseItem();
-    selectVariants();
+    handleItemVariants();
   });
 } else if (pageUrl.includes("https://www.ozon.ru/seller/") || pageUrl.includes("https://www.ozon.ru/brand/")) {
   window.sleep(1).then(function () {
@@ -209,7 +253,7 @@ if (pageUrl.includes("https://www.ozon.ru/product/")) {
   });
 }
 
-window.initializeMethods([clearParsedItems]);
-console.log('Удаление спаршенных товаров - clearParsedItems()');
+window.initializeMethods([clearParsedItems, copyParsedItems, downloadParsedItems]);
+console.log("Удаление товаров - clearParsedItems()\nСкачать товары - downloadParsedItems()\nКопировать в буфер - copyParsedItems()");
 /******/ })()
 ;

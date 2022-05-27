@@ -1,5 +1,10 @@
 import { lcKey } from "../Utils/constants";
 
-export const setParsedItems = (data) =>
+export const setParsedItems = (data) => {
    window.LocalStorageUtil.set(lcKey, data);
-export const clearParsedItems = () => window.LocalStorageUtil.delete(lcKey);
+   console.log("Данные установлены:", data);
+};
+export const clearParsedItems = () => {
+   window.LocalStorageUtil.delete(lcKey);
+   console.log("Данные удалены.");
+};
