@@ -1,4 +1,4 @@
-import { collectItems } from "./collectPageItems";
+import collectItems from "./collectPageItems";
 import { getParsedItems } from "./getters";
 
 const selectAlreadyParsedItems = () => {

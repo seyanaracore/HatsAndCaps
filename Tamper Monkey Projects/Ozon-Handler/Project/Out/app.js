@@ -83,15 +83,7 @@ var collectItems = function collectItems() {
     });
   });
 };
-
-var collectLinks = function collectLinks() {
-  return collectItems().map(function (item) {
-    delete item.domEl;
-    return item;
-  });
-};
-
-/* harmony default export */ var collectPageItems = (collectLinks);
+/* harmony default export */ var collectPageItems = (collectItems);
 ;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
 var lcKey = "ozonItemsList";
 ;// CONCATENATED MODULE: ./Project/In/Components/getters.js
@@ -104,7 +96,7 @@ var getParsedItems = function getParsedItems() {
 
 
 var selectAlreadyParsedItems = function selectAlreadyParsedItems() {
-  var pageItems = collectItems();
+  var pageItems = collectPageItems();
   var parsedItems = getParsedItems();
   pageItems.forEach(function (pageItem) {
     if (parsedItems.find(function (item) {
@@ -116,55 +108,15 @@ var selectAlreadyParsedItems = function selectAlreadyParsedItems() {
 };
 
 /* harmony default export */ var checkOnParsing = (selectAlreadyParsedItems);
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/isNativeReflectConstruct.js
-function _isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/construct.js
-
-
-function _construct(Parent, args, Class) {
-  if (_isNativeReflectConstruct()) {
-    _construct = Reflect.construct;
-  } else {
-    _construct = function _construct(Parent, args, Class) {
-      var a = [null];
-      a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
-      if (Class) _setPrototypeOf(instance, Class.prototype);
-      return instance;
-    };
-  }
-
-  return _construct.apply(null, arguments);
-}
 ;// CONCATENATED MODULE: ./Project/In/Components/setters.js
 
 var setParsedItems = function setParsedItems(data) {
   return window.LocalStorageUtil.set(lcKey, data);
 };
+var clearParsedItems = function clearParsedItems() {
+  return window.LocalStorageUtil["delete"](lcKey);
+};
 ;// CONCATENATED MODULE: ./Project/In/Components/itemsParser.js
-
-
 
 
 
@@ -176,9 +128,14 @@ var handleItemsLinksToCopy = function handleItemsLinksToCopy(itemsList) {
 };
 
 var handleData = function handleData() {
-  var items = collectPageItems();
   var alreadyParsedItems = getParsedItems();
-  setParsedItems(_toConsumableArray(_construct(Set, _toConsumableArray(items).concat(_toConsumableArray(alreadyParsedItems)))));
+  var items = collectPageItems().filter(function (item) {
+    return !alreadyParsedItems.find(function (parsedItem) {
+      return parsedItem.link === item.link;
+    });
+  });
+  var allItemsList = items.concat(alreadyParsedItems);
+  setParsedItems(allItemsList);
   window.copyToClipboard(handleItemsLinksToCopy(data).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
 };
 
@@ -189,12 +146,52 @@ var initButtonLinksCollector = function initButtonLinksCollector() {
   collectLinksBtn.addEventListener("click", handleData);
   pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
 };
+;// CONCATENATED MODULE: ./Project/In/Components/parseItem.js
+
+
+
+
+var parseItem = function parseItem() {
+  var alreadyParsedItems = getParsedItems();
+  var img = document.querySelector('[data-widget="webGallery"] img').src;
+  var link = window.location.href.split("/?")[0];
+  var imgKey = img.split("/").at(-1).split(".")[0];
+  var item = {
+    img: img,
+    link: link,
+    imgKey: imgKey
+  };
+  setParsedItems.apply(void 0, _toConsumableArray(alreadyParsedItems).concat([item]));
+};
+
+var initParseItemBtn = function initParseItemBtn() {
+  var SKU = document.querySelector('[data-widget="webDetailSKU"]');
+  var parseItemBTN = document.createElement("button");
+  parseItemBTN.textContent = "Добавить в парсинг";
+  parseItemBTN.addEventListener("click", parseItem);
+  SKU.insertAdjacentElement("beforebegin", parseItemBTN);
+};
+
+/* harmony default export */ var Components_parseItem = (initParseItemBtn);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
 
-window.sleep(1).then(function () {
-  checkOnParsing();
-  initButtonLinksCollector();
-});
+
+
+var pageUrl = window.location.href;
+
+if (pageUrl.includes("https://www.ozon.ru/product/")) {
+  window.sleep(1).then(function () {
+    Components_parseItem();
+    checkOnParsing();
+  });
+} else if (pageUrl.includes("https://www.ozon.ru/seller/") || pageUrl.includes("https://www.ozon.ru/brand/")) {
+  window.sleep(1).then(function () {
+    checkOnParsing();
+    initButtonLinksCollector();
+  });
+}
+
+window.initializeMethods([clearParsedItems]);
 /******/ })()
 ;

@@ -15,11 +15,4 @@ export const collectItems = () =>
          imgKey: item.img.split("/").at(-1).split(".")[0],
       }));
 
-const collectLinks = () =>
-   collectItems().map((item) => {
-      delete item.domEl;
-
-      return item;
-   });
-
-export default collectLinks;
+export default collectItems;
