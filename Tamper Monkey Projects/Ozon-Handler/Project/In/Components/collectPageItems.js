@@ -8,9 +8,12 @@ export const collectItems = () =>
          domEl: el,
          link: el.href.split("/?")[0],
          img: el.querySelector("img")?.src,
-         imgKey: item.img.split("/").at(-1).split(".")[0],
       }))
-      .filter((item) => item.img);
+      .filter((item) => item.img)
+      .map((item) => ({
+         ...item,
+         imgKey: item.img.split("/").at(-1).split(".")[0],
+      }));
 
 const collectLinks = () =>
    collectItems().map((item) => {

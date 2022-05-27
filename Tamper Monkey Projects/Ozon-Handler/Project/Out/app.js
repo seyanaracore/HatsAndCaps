@@ -2,6 +2,21 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
@@ -45,6 +60,12 @@ function _toConsumableArray(arr) {
 }
 ;// CONCATENATED MODULE: ./Project/In/Components/collectPageItems.js
 
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
 var collectItems = function collectItems() {
   return _toConsumableArray(document.querySelectorAll(".widget-search-result-container a.tile-hover-target")).map(function (el) {
     var _el$querySelector;
@@ -52,11 +73,14 @@ var collectItems = function collectItems() {
     return {
       domEl: el,
       link: el.href.split("/?")[0],
-      img: (_el$querySelector = el.querySelector("img")) === null || _el$querySelector === void 0 ? void 0 : _el$querySelector.src,
-      imgKey: item.img.split("/").at(-1).split(".")[0]
+      img: (_el$querySelector = el.querySelector("img")) === null || _el$querySelector === void 0 ? void 0 : _el$querySelector.src
     };
   }).filter(function (item) {
     return item.img;
+  }).map(function (item) {
+    return _objectSpread(_objectSpread({}, item), {}, {
+      imgKey: item.img.split("/").at(-1).split(".")[0]
+    });
   });
 };
 
