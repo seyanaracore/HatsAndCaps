@@ -1,3 +1,13 @@
+// @name         Ozon Links Collector
+// @namespace    Ozon
+// @version      1.0
+// @match        https://www.ozon.ru/brand/*
+// @match        https://www.ozon.ru/seller/*
+// @icon         chrome://favicon/https://www.ozon.ru/
+// @description  Ozon items links collector and copy to buffer
+// @require		  https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Ozon-Links-Collector.js
+// @grant        none
+
 const initButtonLinksCollector = () => {
    const collectLinks = () => {
       const links = [
