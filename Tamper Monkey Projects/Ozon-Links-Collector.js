@@ -3,6 +3,8 @@
 // @version      1.0
 // @match        https://www.ozon.ru/brand/*
 // @match        https://www.ozon.ru/seller/*
+// @match        https://www.ozon.ru/seller/*/*
+// @match        https://www.ozon.ru/seller/*/*/*
 // @icon         chrome://favicon/https://www.ozon.ru/
 // @description  Ozon items links collector and copy to buffer
 // @require		  https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Ozon-Links-Collector.js
@@ -33,3 +35,5 @@ const initButtonLinksCollector = () => {
 
    pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
 };
+
+window.sleep(1).then(() => initButtonLinksCollector());
