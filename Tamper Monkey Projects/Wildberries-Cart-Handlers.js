@@ -52,10 +52,10 @@ const getItemsList = () =>
 const lcKey = "ItemsRefundQuantitesList";
 
 const getItemsRequiredQuantity = () => {
-   return window.LocaleStorageUtil.get(lcKey) || [];
+   return window.LocalStorageUtil.get(lcKey) || [];
 };
 const setItemsRequiredQuantity = (itemsList) => {
-   window.LocaleStorageUtil.set(lcKey, itemsList);
+   window.LocalStorageUtil.set(lcKey, itemsList);
    console.log("Товары установлены");
 };
 
