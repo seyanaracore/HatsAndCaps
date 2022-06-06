@@ -92,7 +92,7 @@ const setCartQuantities = async () => {
    const itemsList = getItemsList();
    await validateItems(itemsList);
 };
-const getCartItemsList = getItemsList;
+const getCartItemsList = () => getItemsList();
 
 console.log(`clearCart() - очистить "Склад продавца";
 clearCart(название склада) - удалить товары с отправлением оттуда;
