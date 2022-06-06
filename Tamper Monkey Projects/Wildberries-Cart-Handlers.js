@@ -30,7 +30,7 @@ const clearCart = async (departureFrom = "Склад продавца") => {
 
 const getItemsList = () =>
    [...document.querySelectorAll(".list-item__good > a")].map((itemLink) => {
-      const SKU = itemLink.href.split("catalog/")[1].split("/")[0];
+      const sku = itemLink.href.split("catalog/")[1].split("/")[0];
       const quanity =
          +itemLink.parentNode.parentNode.childNodes[5].firstElementChild
             .firstElementChild.childNodes[3].value;
@@ -43,7 +43,7 @@ const getItemsList = () =>
          },
       };
       return {
-         SKU,
+         sku,
          quanity,
          controlBtns,
       };
@@ -64,18 +64,19 @@ const validateItems = async (itemsList) => {
    for (const item of itemsList) {
       const required = itemsRequiredQuantity.reduce(
          (reducer, el) =>
-            (reducer += item.sku.toString() === el.sku.toString() ? el.req : 0),
+            (reducer +=
+               item.sku.toString() === el.sku.toString() ? el.required : 0),
          0
       );
 
-      const countDiff = +required - +item.quanity;
+      const countDiff = +required > 1 ? +required - +item.quanity : 0;
 
       for (let i = 0; i < Math.abs(countDiff); i++) {
          await window.sleep(0.2);
          if (countDiff > 0) {
-            item.controlBtns.increase.click();
+            item.controlBtns.increase();
          } else if (countDiff < 0) {
-            item.controlBtns.reduce.click();
+            item.controlBtns.reduce();
          }
       }
    }
