@@ -11,9 +11,14 @@ var getParsedItems = function getParsedItems() {
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/finallyDataHandlers.js
 
+
+var deleteImgSize = function deleteImgSize(str) {
+  return str.replace(str.split("/").at(-2) + "/", "");
+};
+
 var handleItems = function handleItems(itemsList) {
   return itemsList.map(function (el) {
-    return el.link + "\t" + el.img.replace("/wc250", "").replace("/wc1200", "");
+    return el.link + "\t" + deleteImgSize(el.img);
   });
 };
 var downloadParsedItems = function downloadParsedItems() {

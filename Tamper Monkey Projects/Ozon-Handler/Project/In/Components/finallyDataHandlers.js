@@ -1,7 +1,9 @@
 import { getParsedItems } from "./getters";
 
+const deleteImgSize = (str) => str.replace(str.split("/").at(-2) + "/", "");
+
 export const handleItems = (itemsList) =>
-   itemsList.map((el) => el.link + "\t" + el.img.replace("/wc250", "").replace("/wc1200", ""));
+   itemsList.map((el) => el.link + "\t" + deleteImgSize(el.img));
 
 export const downloadParsedItems = () => {
    const parsedData = getParsedItems();
