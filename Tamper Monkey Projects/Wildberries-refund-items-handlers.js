@@ -11,7 +11,7 @@ window.download(
 );
 
 const items = [...document.querySelectorAll(".goods-list-delivery img")]
-   .slice(6, 900)
+   .slice(5, 160)
    .map((img) => ({
       sku: img.src.split("/").at(-1).split("-")[0],
       size: img.parentNode.childNodes[5]?.textContent.trim() || 0,
@@ -19,6 +19,6 @@ const items = [...document.querySelectorAll(".goods-list-delivery img")]
 
 window.download(
    { content: items, headers: "template" },
-   "2 возврат",
+   "CAPSLAB Возврат",
    "csv"
 );
