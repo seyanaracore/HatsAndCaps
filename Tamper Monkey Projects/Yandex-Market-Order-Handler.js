@@ -37,7 +37,7 @@ function setItemsArtHandler() {
 
 function setOrderNumberHandler() {
    const titleElement = document.querySelector(
-      ".p-layout__header-title-wrapper"
+      '[data-e2e-i18n-key="pages.order-info:page-title-current-order-detailed-no-arrow"]'
    );
    const newTitleEl = document.createElement("span");
    const orderNum =
