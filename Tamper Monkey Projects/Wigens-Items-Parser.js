@@ -68,4 +68,22 @@ const dataHandler = () => {
    return products;
 };
 
-window.intializeMethods([dataHandler]);
+const downloadItems = () => {
+   const itemsInfo = getItemsData().map(el => el[0]).flat();
+   if (!itemsInfo.length) throw new Error("Items data list is empty.");
+
+   window.download(
+      { content: itemsInfo, headers: "template" },
+      "Wigens",
+      "csv"
+   );
+}
+
+/*
+   1. setItemsLinks([])
+   2. downloadItems()
+
+
+   window.initializeMethods([downloadItems])
+   startParse(dataHandler)
+*/
