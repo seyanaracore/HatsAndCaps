@@ -9,37 +9,63 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Wigens-Items-Parser.js
 // @grant        none
 
-const $ = (sel) => document.querySelectorAll(sel)
+const $ = (sel) => document.querySelectorAll(sel);
 
-const getColors = () => {
-   const colorsList = document.querySelectorAll('.swatch-option.image')
+const getVariants = () => {
+   const variantsList = [...$(".swatch-option.image")];
+   const downloadUrl = $("#download-image")[0].href.split("/");
+   const imgBaseUrl =
+      downloadUrl.slice(0, downloadUrl.length - 1).join("/") + "/";
 
-   return colorsList.map(color => {
+   return variantsList.map((color) => {
       return {
-         colorName: color.getAttribute("aria-label"),
-         imgLink: color,
-      }
-   })
-}
+         color: color.getAttribute("aria-label"),
+         imgLink:
+            imgBaseUrl +
+            color.style.background
+               .match(/\"(.*?)\"/g, "")[0]
+               .split("/")
+               .at(-1)
+               .split(".")[0] +
+            ".png",
+      };
+   });
+};
+
+const generateProductsFromVariants = (product) => {
+   const products = [];
+
+   product.variants.forEach((variant) => {
+      const newProduct = { ...product };
+      delete newProduct.variants;
+      products.push({
+         ...newProduct,
+         color: variant.color,
+         imgLink: variant.imgLink,
+      });
+   });
+
+   return products;
+};
 
 const dataHandler = () => {
-   const productData = {
-      art,
-      name,
-      colors: [],
-      sizes,
-      country,
-      material,
-      lining,
-   };
+   const productData = {};
 
-   productData.art = $('[data-th="Art.no"]')[0].textContent
-   productData.name = $('[data-ui-id="page-title-wrapper"]')[0].textContent
-   productData.colors = getColors()
-   productData.sizes = 
-   productData.country = 
-   productData.material = 
-   productData.lining = 
+   productData.art = $('[data-th="Art.no"]')[0].textContent;
+   productData.productName = $(
+      '[data-ui-id="page-title-wrapper"]'
+   )[0].textContent;
+   productData.variants = getVariants();
+   productData.sizes = [...$(".swatch-option.text")]
+      .map((size) => size.textContent)
+      .join(",");
+   productData.country = $('[data-th="Country of origin"]')[0].textContent;
+   productData.material = $('[data-th="Material"]')[0].textContent;
+   productData.lining = $('[data-th="Lining"]')[0].textContent;
+
+   const products = generateProductsFromVariants(productData);
+
+   return products;
 };
 
 window.intializeMethods([dataHandler]);
