@@ -14,7 +14,7 @@ window.download(
 //Доставки, вписать нужный слайс
 
 const items = [...document.querySelectorAll(".goods-list-delivery img")]
-   .slice(1, 209)
+   .slice(0, 390)
    .map((img) => ({
       sku: img.src.split("/").at(-1).split("-")[0],
       size: img.parentNode.children[4]?.textContent.trim() || "Some went wrong",
