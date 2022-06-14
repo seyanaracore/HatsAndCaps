@@ -1,6 +1,6 @@
 const defaultSep = ";";
 
-const createCSV = (params = { content, headers, sep }) => {
+export const createCSV = (params = { content, headers, sep }) => {
    //Ошибки
    if (!params) throw new Error("props {content, headers, sep}");
    const { content } = params;

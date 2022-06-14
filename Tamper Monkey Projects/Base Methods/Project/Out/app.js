@@ -933,7 +933,6 @@ function _defineProperty(obj, key, value) {
 ;// CONCATENATED MODULE: ./Project/In/Components/createCSV.js
 
 var defaultSep = ";";
-
 var createCSV = function createCSV() {
   var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     content: content,
@@ -1316,8 +1315,9 @@ initBlock();
 
 
 
+
 initializeClass([localStorageUtil]);
-initializeMethods([Components_sleep, Components_notify, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables]);
+initializeMethods([Components_sleep, Components_notify, downloadData, Components_copyToClipboard, Components_toBottomElement, initializeMethods, initializeClass, initializeVariables, Components_createCSV]);
 }();
 /******/ })()
 ;

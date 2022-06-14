@@ -9,6 +9,7 @@ import copyToClipboard from "./Components/copyToClipboard.js";
 import LocalStorageUtil from "./Components/localStorageUtil.js";
 import toBottomElement from "./Components/toBottomElement.js";
 import notify from "./Components/notify.js";
+import createCSV from "./Components/createCSV.js";
 
 initializeClass([LocalStorageUtil]);
 
@@ -21,4 +22,5 @@ initializeMethods([
    initializeMethods,
    initializeClass,
    initializeVariables,
+   createCSV
 ]);
