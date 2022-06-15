@@ -11,6 +11,9 @@
 
 const $ = (sel) => document.querySelectorAll(sel);
 const someError = "Some went wrong";
+const config = {
+   sleepTime: 4,
+};
 
 const getVariants = () => {
    const variantsList = [...$(".swatch-option.image")];
@@ -65,8 +68,10 @@ const dataHandler = () => {
    productData.sizes = [...$(".swatch-option.text")]
       .map((size) => size?.textContent || someError)
       .join(",");
-   productData.country = $('[data-th="Country of origin"]')[0]?.textContent || someError;
-   productData.material = $('[data-th="Material"]')[0]?.textContent || someError;
+   productData.country =
+      $('[data-th="Country of origin"]')[0]?.textContent || someError;
+   productData.material =
+      $('[data-th="Material"]')[0]?.textContent || someError;
    productData.lining = $('[data-th="Lining"]')[0]?.textContent || someError;
 
    const products = generateProductsFromVariants(productData);
@@ -74,7 +79,7 @@ const dataHandler = () => {
    return products;
 };
 
-const downloadItems = () => {
+const downloadWigens = () => {
    const itemsInfo = getItemsData()
       .map((el) => ({ ...el[0], handlingUrl: el.handlingURL }))
       .flat();
@@ -86,12 +91,13 @@ const downloadItems = () => {
       "csv"
    );
 };
+console.log("downloadWigens() - download parsed items.");
 
 /*
    1. setItemsLinks([])
-   2. downloadItems()
+   2. downloadWigens
 
 
-   window.initializeMethods([downloadItems])
-   startParse(dataHandler)
+   window.initializeMethods([downloadWigens])
+   startParse(dataHandler, config)
 */
