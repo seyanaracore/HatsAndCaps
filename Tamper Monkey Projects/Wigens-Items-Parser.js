@@ -38,6 +38,25 @@ const getVariants = () => {
    });
 };
 
+const handleVariant = () => {
+   const productData = {};
+   productData.art = $('[data-th="Art.no"]')[0]?.textContent || someError;
+   productData.productName =
+      $('[data-ui-id="page-title-wrapper"]')[0]?.textContent || someError;
+   productData.imgLink = $("#download-image")[0]?.href || "No image";
+   productData.sizes = [...$(".swatch-option.text")]
+      .filter((size) => !size.classList.contains("disabled"))
+      .map((size) => size?.textContent || someError)
+      .join(",");
+   productData.country =
+      $('[data-th="Country of origin"]')[0]?.textContent || someError;
+   productData.material =
+      $('[data-th="Material"]')[0]?.textContent || someError;
+   productData.lining = $('[data-th="Lining"]')[0]?.textContent || someError;
+
+   return productData;
+};
+
 const generateProductsFromVariants = (product) => {
    const products = [];
 
@@ -54,37 +73,36 @@ const generateProductsFromVariants = (product) => {
    return products;
 };
 
-const dataHandler = () => {
-   const productData = {};
+const dataHandler = async () => {
+   const variantsList = [...$(".swatch-attribute.ac_color .swatch-option")];
+   const variantsData = [];
 
-   productData.art = $('[data-th="Art.no"]')[0]?.textContent || someError;
-   productData.productName =
-      $('[data-ui-id="page-title-wrapper"]')[0]?.textContent || someError;
+   for (const variant of variantsList) {
+      await window.sleep(0.4);
+      variant.click();
+      const variantData = handleVariant();
+      variantData.color = variant.getAttribute("aria-label");
 
-   try {
-      productData.variants = getVariants();
-   } catch (err) {
-      productData.variants = someError;
+      variantsData.push(variantData);
    }
 
-   productData.sizes = [...$(".swatch-option.text")]
-      .map((size) => size?.textContent || someError)
-      .join(",");
-   productData.country =
-      $('[data-th="Country of origin"]')[0]?.textContent || someError;
-   productData.material =
-      $('[data-th="Material"]')[0]?.textContent || someError;
-   productData.lining = $('[data-th="Lining"]')[0]?.textContent || someError;
-
-   const products = generateProductsFromVariants(productData);
-
-   return products;
+   return variantsData;
 };
 
 const downloadWigens = () => {
    const itemsInfo = getItemsData()
-      .map((el) => ({ ...el[0], handlingUrl: el.handlingURL }))
+      .map((el) => {
+         const items = [];
+
+         Object.keys(el).forEach((item) => {
+            if (item !== "handlingURL")
+               items.push({ ...el[item], handlingUrl: el.handlingURL });
+         });
+
+         return items;
+      })
       .flat();
+
    if (!itemsInfo.length) throw new Error("Items data list is empty.");
 
    window.download(
