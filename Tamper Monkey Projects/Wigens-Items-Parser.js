@@ -16,22 +16,24 @@ const config = {
 };
 
 const getVariants = () => {
-   const variantsList = [...$(".swatch-option.image")];
+   const variantsList = [...$(".swatch-attribute.ac_color .swatch-option")];
    const downloadUrl = $("#download-image")[0].href.split("/");
    const imgBaseUrl =
       downloadUrl.slice(0, downloadUrl.length - 1).join("/") + "/";
 
    return variantsList.map((color) => {
+      const colorImgLink = color.style.background
+         .match(/\"(.*?)\"/g, "")?.[0]
+         .split("/")
+         .at(-1)
+         .split(".")[0];
+      const generatedFullLink = colorImgLink
+         ? imgBaseUrl + colorImgLink + ".png"
+         : someError;
+
       return {
          color: color.getAttribute("aria-label"),
-         imgLink:
-            imgBaseUrl +
-            color.style.background
-               .match(/\"(.*?)\"/g, "")[0]
-               .split("/")
-               .at(-1)
-               .split(".")[0] +
-            ".png",
+         imgLink: generatedFullLink,
       };
    });
 };
