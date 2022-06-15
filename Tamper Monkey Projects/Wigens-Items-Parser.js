@@ -12,7 +12,7 @@
 const $ = (sel) => document.querySelectorAll(sel);
 const someError = "Some went wrong";
 const config = {
-   sleepTime: 4,
+   sleepTime: 3,
 };
 
 const getVariants = () => {
