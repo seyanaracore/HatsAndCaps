@@ -88,6 +88,9 @@ const dataHandler = async () => {
 
    return variantsData;
 };
+const parsePrice = () => {
+   return $(".price").textContent.slice(1,99)
+}
 
 const downloadWigens = () => {
    const itemsInfo = getItemsData()
