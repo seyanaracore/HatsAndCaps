@@ -14,7 +14,7 @@ window.download(
 //Доставки, вписать нужный слайс
 
 const items = [...document.querySelectorAll(".goods-list-delivery img")]
-   .slice(5,11)
+   .slice(7,999)
    .map((img) => ({
       sku: img.src.split("/").at(-1).split("-")[0],
       size: img.parentNode.children[4]?.textContent.trim() || "Some went wrong",
@@ -22,6 +22,6 @@ const items = [...document.querySelectorAll(".goods-list-delivery img")]
 
 window.download(
    { content: items, headers: "template" },
-   "5 возврат",
+   "6 возврат",
    "csv"
 );
