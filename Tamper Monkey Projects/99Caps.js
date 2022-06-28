@@ -29,6 +29,8 @@ const dataHandler = () => {
    };
 };
 
-window.intializeMethods([dataHandler, downloadPageItems, handlePageItems]);
+const globalMethodsList = [dataHandler, downloadPageItems, handlePageItems]
 
-console.log("Methods: dataHandler, downloadPageItems, handlePageItems");
+window.intializeMethods(globalMethodsList);
+
+console.log("Methods: " + globalMethodsList.join(", "));
