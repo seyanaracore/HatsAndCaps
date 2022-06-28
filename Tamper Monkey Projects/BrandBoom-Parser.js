@@ -17,12 +17,12 @@ const selectAllCartItems = () => {
 };
 
 const clearCart = async () => {
+   deleteItems();
    selectAllCartItems();
    await window.sleep(0.2);
    document.querySelector(".primary-btn.btn.btn-white.order-only").click();
    await window.sleep(1);
    document.querySelector(".modal-footer > .btn").click();
-   deleteItems();
 };
 
 const getBtns = () => {
@@ -49,21 +49,19 @@ const parseItem = async () => {
    window.LocalStorageUtil.set(localStrName, itemsInfo);
 };
 const parseAll = async () => {
-   let btns = window.getBtns();
+   let btns = getBtns();
    let btnsCounter = 0;
    while (btns.length) {
       for (let btn of btns) {
          if (btnsCounter % 4 == 0) document.documentElement.scrollTop += 350;
          await window.sleep(window.sleepTime);
-         window.itemsInfo += window.decomposeObjToTable(
-            await window.getItemInfo(btn)
-         );
+         window.itemsInfo += decomposeObjToTable(await getItemInfo(btn));
          btn.click();
          btnsCounter += 1;
       }
+      window.LocalStorageUtil.set(localStrName, itemsInfo);
       btns = getBtns();
    }
-   window.LocalStorageUtil.set(localStrName, itemsInfo);
    console.log("Finished");
 };
 const getItemInfo = async (btn) => {
@@ -135,9 +133,13 @@ const getItemInfo = async (btn) => {
    }
    return itemInfoObj;
 };
-window.getExcel = () => {
+const getExcel = () => {
    window.copyToClipboard(window.LocalStorageUtil.get(localStrName));
 };
+const getTitles = () =>
+   [
+      ...document.querySelectorAll(".section-content >.text-center.title-text"),
+   ].map((el) => el.textContent.replace(/[\t\n\r]/g, ""));
 
 const columns = [
    "ImageLink",
@@ -153,17 +155,18 @@ const columns = [
    "Sizes",
    "Description",
 ];
-let itemsInfo =
-   window.LocalStorageUtil.get(localStrName) || columns.join("\t") + "\n";
-const sleepTime = 0.5;
 const localStrName = "itemsInfo";
+const sleepTime = 0.5;
+window.itemsInfo =
+   window.LocalStorageUtil.get(localStrName) || columns.join("\t") + "\n";
 
 console.log(
-   `"clearCart()" в корзине, для её очистки;
+   `"clearCart()" в корзине, для её очистки и LocalStorage;
 "parseAll()" парсинг 1 блока в зоне видимости;
 "parseItem()" парсинг и запись 1 открой вещи;
 "await getItemInfo()" вывод информации о товаре в консоль;
 "getExcel()" получение конечной информации;
+"getTitles()" получить заголовки секций.
 `
 );
 
@@ -173,4 +176,5 @@ window.initializeMethods([
    parseItem,
    getItemInfo,
    getExcel,
+   getTitles,
 ]);
