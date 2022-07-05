@@ -7,7 +7,6 @@
 // @icon         chrome://favicon/https://market.yandex.ru/
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/Yandex-Market-Order-Handler.js
 // @grant        none
-const items = getSKUList().map((el) => ({ clicked: false, item: el }));
 
 function setItemsArtHandler() {
    items.forEach((el) => {
@@ -99,6 +98,8 @@ function trackCopyArts() {
 }
 
 window.sleep(1).then(() => {
+   window.items = getSKUList().map((el) => ({ clicked: false, item: el }));
+
    setItemsArtHandler();
    setOrderNumberHandler();
    setDataHandler();
