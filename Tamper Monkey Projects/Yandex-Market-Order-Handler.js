@@ -32,10 +32,10 @@ function setItemsArtHandler() {
       if (orderedMoreThanOne) itemOrderCount.style.color = "red";
 
       artNumber.addEventListener("click", (e) => {
-         if (orderedMoreThanOne) alert("Внимание, количество больше 1 штуки");
          const SKU = e.target.textContent.trim();
          navigator.clipboard.writeText(SKU);
          window.notify(SKU + " скопировано");
+         if (orderedMoreThanOne) alert("Внимание, количество больше 1 штуки");
       });
    });
 }
