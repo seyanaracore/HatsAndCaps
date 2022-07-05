@@ -1,5 +1,4 @@
 const id = "tamperMonkeyNotify";
-const duration = 2;
 
 const initBlock = () => {
    const elem = `<div id=${id} style="
@@ -19,7 +18,7 @@ const initBlock = () => {
    document.body.insertAdjacentHTML("afterend", elem);
 };
 
-const notify = async (text) => {
+const notify = async (text, duration = 2) => {
    const block = document.getElementById(id);
 
    block.innerText = text;
