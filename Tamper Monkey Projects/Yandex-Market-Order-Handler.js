@@ -11,7 +11,8 @@ const items = getSKUList().map((el) => ({ clicked: false, item: el }));
 
 function setItemsArtHandler() {
    items.forEach((el) => {
-      let art = el.item.textContent.split("");
+      const artNumber = el.item;
+      let art = artNumber.textContent.split("");
 
       art.splice(2, 0, "-");
       art.splice(6, 0, "-");
