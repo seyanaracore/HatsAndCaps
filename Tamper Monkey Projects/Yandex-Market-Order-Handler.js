@@ -9,7 +9,7 @@
 // @grant        none
 
 function setItemsArtHandler() {
-   items.forEach((el) => {
+   items.forEach((el, idx) => {
       const artNumber = el.item;
       let art = artNumber.textContent.split("");
 
@@ -32,6 +32,7 @@ function setItemsArtHandler() {
       if (orderedMoreThanOne) itemOrderCount.style.color = "red";
 
       artNumber.addEventListener("click", (e) => {
+         items[idx].clicked = true;
          const SKU = e.target.textContent.trim();
          navigator.clipboard.writeText(SKU);
          window.notify(SKU + " скопировано");
@@ -83,16 +84,10 @@ function getSKUList() {
 
 function trackCopyArts() {
    window.addEventListener("beforeunload", (event) => {
-      if (items.find((el) => el.clicked === true)) {
-         const indifference = confirm(
-            "Внимание! Не все артикулы были скопированы."
-         );
-
-         if (!indifference) {
-            event.preventDefault();
-            // Chrome требует установки возвратного значения.
-            event.returnValue = "";
-         }
+      if (items.find((el) => el.clicked !== true)) {
+         event.preventDefault();
+         event.returnValue = "Внимание! Не все артикулы были скопированы.";
+         window.notify("Внимание! Не все артикулы были скопированы.", 5);
       }
    });
 }
