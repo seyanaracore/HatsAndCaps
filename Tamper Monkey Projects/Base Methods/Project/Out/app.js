@@ -1265,36 +1265,20 @@ var toBottomElement = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var Components_toBottomElement = (toBottomElement);
-;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
 ;// CONCATENATED MODULE: ./Project/In/Components/notify.js
-
-
-
-var _templateObject;
 
 
 var id = "tamperMonkeyNotify";
 
 var initBlock = function initBlock() {
   var elem = document.createElement("div");
-  elem.innerHTML("<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\topacity: 1;\n\twidth: auto;\"></div>"));
+  elem.innerHTML = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\topacity: 1;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
 };
 
 var getNotifyBlock = function getNotifyBlock(content) {
   var elem = document.createElement("div");
-  return elem.innerHTML(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div id=", " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\">", "</div>"])), id, content);
+  return elem.innerHTML = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\">").concat(content, "</div>");
 };
 
 var notify = /*#__PURE__*/function () {
