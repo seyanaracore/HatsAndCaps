@@ -1265,36 +1265,61 @@ var toBottomElement = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ var Components_toBottomElement = (toBottomElement);
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
 ;// CONCATENATED MODULE: ./Project/In/Components/notify.js
+
+
+
+var _templateObject;
 
 
 var id = "tamperMonkeyNotify";
 
 var initBlock = function initBlock() {
-  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\"></div>");
+  var elem = document.createElement("div");
+  elem.innerHTML("<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\topacity: 1;\n\twidth: auto;\"></div>"));
   document.body.insertAdjacentHTML("afterend", elem);
+};
+
+var getNotifyBlock = function getNotifyBlock(content) {
+  var elem = document.createElement("div");
+  return elem.innerHTML(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div id=", " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\">", "</div>"])), id, content);
 };
 
 var notify = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(text) {
     var duration,
-        block,
+        container,
+        notifyContent,
         _args = arguments;
     return regenerator_default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             duration = _args.length > 1 && _args[1] !== undefined ? _args[1] : 2;
-            block = document.getElementById(id);
-            block.innerText = text;
+            container = document.getElementById(id);
+            notifyContent = getNotifyBlock(text);
+            container.insertAdjacentHTML("beforeend", notifyContent);
             block.style.opacity = 1;
-            _context.next = 6;
+            _context.next = 7;
             return window.sleep(duration);
 
-          case 6:
-            block.style.opacity = 0;
-
           case 7:
+            block.style.opacity = 0;
+            container.removeChild(notifyContent);
+
+          case 9:
           case "end":
             return _context.stop();
         }
