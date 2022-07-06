@@ -1269,18 +1269,15 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 var id = "tamperMonkeyNotify";
-var animDuration = 0.5;
 
 var initBlock = function initBlock() {
-  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
 };
 
 var getNotifyBlock = function getNotifyBlock(content) {
   var elem = document.createElement("div");
   var styleElem = elem.style;
-  styleElem.transition = "".concat(animDuration, "s");
-  styleElem.opacity = "0";
   styleElem.right = "10px";
   styleElem.bottom = "10px";
   styleElem.width = "auto";
@@ -1311,22 +1308,12 @@ var notify = /*#__PURE__*/function () {
             notifyContent = getNotifyBlock(text);
             container.insertAdjacentElement("beforeend", notifyContent);
             _context.next = 6;
-            return window.sleep(animDuration);
-
-          case 6:
-            notifyContent.style.opacity = 1;
-            _context.next = 9;
             return window.sleep(duration);
 
-          case 9:
-            notifyContent.style.opacity = 0;
-            _context.next = 12;
-            return window.sleep(animDuration);
-
-          case 12:
+          case 6:
             container.removeChild(notifyContent);
 
-          case 13:
+          case 7:
           case "end":
             return _context.stop();
         }
