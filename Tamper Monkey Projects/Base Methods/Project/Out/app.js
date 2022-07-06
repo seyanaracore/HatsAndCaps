@@ -1269,16 +1269,31 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 var id = "tamperMonkeyNotify";
+var animDuration = 0.5;
 
 var initBlock = function initBlock() {
-  var elem = document.createElement("div");
-  elem.innerHTML = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\topacity: 1;\n\twidth: auto;\"></div>");
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: all 0.5s ease 0s;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
 };
 
 var getNotifyBlock = function getNotifyBlock(content) {
   var elem = document.createElement("div");
-  return elem.innerHTML = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\ttransition: 0.5s;\n\topacity: 0;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n\tfont-size: 16px;\n\tpadding: 6px 12px;\n\tbackground-color: #00000021;\n\tborder-radius: 12px;\n\tmax-width: 400px;\n\tz-index: 99999;\n\tborder: 1px solid #00000063;\">").concat(content, "</div>");
+  var styleElem = elem.style;
+  styleElem.transition = "".concat(animDuration, "s");
+  styleElem.opacity = "0";
+  styleElem.right = "10px";
+  styleElem.bottom = "10px";
+  styleElem.width = "auto";
+  styleElem.fontSize = "16px";
+  styleElem.padding = "6px 12px";
+  styleElem.backgroundColor = "#fff3cd";
+  styleElem.borderRadius = "12px";
+  styleElem.maxWidth = "400px";
+  styleElem.zIndex = "99999";
+  styleElem.border = "1px solid #ffeeba";
+  styleElem.margin = "4px 0";
+  elem.innerText = content;
+  return elem;
 };
 
 var notify = /*#__PURE__*/function () {
@@ -1294,16 +1309,24 @@ var notify = /*#__PURE__*/function () {
             duration = _args.length > 1 && _args[1] !== undefined ? _args[1] : 2;
             container = document.getElementById(id);
             notifyContent = getNotifyBlock(text);
-            container.insertAdjacentHTML("beforeend", notifyContent);
-            block.style.opacity = 1;
-            _context.next = 7;
+            container.insertAdjacentElement("beforeend", notifyContent);
+            _context.next = 6;
+            return window.sleep(animDuration);
+
+          case 6:
+            notifyContent.style.opacity = 1;
+            _context.next = 9;
             return window.sleep(duration);
 
-          case 7:
-            block.style.opacity = 0;
+          case 9:
+            notifyContent.style.opacity = 0;
+            _context.next = 12;
+            return window.sleep(animDuration);
+
+          case 12:
             container.removeChild(notifyContent);
 
-          case 9:
+          case 13:
           case "end":
             return _context.stop();
         }
