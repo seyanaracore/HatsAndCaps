@@ -1269,12 +1269,13 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 initBlock();
+var container;
 var id = "tamperMonkeyNotify";
-var container = document.getElementById(id);
 
 function initBlock() {
   var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
+  container = document.getElementById(id);
 }
 
 var deleteNotify = function deleteNotify(notify) {

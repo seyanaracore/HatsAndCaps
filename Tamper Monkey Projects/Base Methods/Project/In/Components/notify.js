@@ -1,15 +1,15 @@
-initBlock();
+let container;
 const id = "tamperMonkeyNotify";
-const container = document.getElementById(id);
 
-function initBlock() {
+const initBlock = () => {
    const elem = `<div id=${id} style="
 	position: fixed;
 	right: 10px;
 	bottom: 10px;
 	width: auto;"></div>`;
    document.body.insertAdjacentHTML("afterend", elem);
-}
+   container = document.getElementById(id);
+};
 
 const deleteNotify = (notify) => {
    try {
@@ -47,5 +47,7 @@ const notify = async (text, duration = 3) => {
 
    deleteNotify(notifyContent);
 };
+
+initBlock();
 
 export default notify;
