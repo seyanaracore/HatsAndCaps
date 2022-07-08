@@ -8,7 +8,11 @@
 // @require      https://raw.githubusercontent.com/seyanaracore/HatsAndCaps/main/Tamper%20Monkey%20Projects/BrandBoom-Parser.js
 // @grant        none
 
-const deleteItems = () => window.LocalStorageUtil.delete(localStrName);
+const deleteItems = () => {
+   window.LocalStorageUtil.delete(localStrName);
+   console.log("Data deleted");
+   window.notify("Данные удалены", 4);
+};
 
 const selectAllCartItems = () => {
    return document
@@ -45,8 +49,7 @@ const decomposeObjToTable = (obj) => {
 };
 
 const parseItem = async () => {
-   itemsInfo += decomposeObjToTable(await getItemInfo());
-   window.LocalStorageUtil.set(localStrName, itemsInfo);
+   itemsData.info = decomposeObjToTable(await getItemInfo());
 };
 const parseAll = async () => {
    let btns = getBtns();
@@ -55,11 +58,10 @@ const parseAll = async () => {
       for (let btn of btns) {
          if (btnsCounter % 4 == 0) document.documentElement.scrollTop += 350;
          await window.sleep(window.sleepTime);
-         window.itemsInfo += decomposeObjToTable(await getItemInfo(btn));
+         itemsData.info = decomposeObjToTable(await getItemInfo(btn));
          btn.click();
          btnsCounter += 1;
       }
-      window.LocalStorageUtil.set(localStrName, itemsInfo);
       btns = getBtns();
    }
    console.log("Finished");
@@ -134,7 +136,7 @@ const getItemInfo = async (btn) => {
    return itemInfoObj;
 };
 const getExcel = () => {
-   window.copyToClipboard(window.LocalStorageUtil.get(localStrName));
+   window.copyToClipboard(itemsData.info);
 };
 const getTitles = () =>
    [
@@ -157,8 +159,17 @@ const columns = [
 ];
 const localStrName = "itemsInfo";
 const sleepTime = 0.5;
-window.itemsInfo =
-   window.LocalStorageUtil.get(localStrName) || columns.join("\t") + "\n";
+const itemsData = {
+   itemInfo:
+      window.LocalStorageUtil.get(localStrName) || columns.join("\t") + "\n",
+   set info(data) {
+      this.itemInfo += data;
+      window.LocalStorageUtil.set(localStrName, itemsInfo);
+   },
+   get info() {
+      return this.itemInfo;
+   },
+};
 
 console.log(
    `"clearCart()" в корзине, для её очистки и LocalStorage;
