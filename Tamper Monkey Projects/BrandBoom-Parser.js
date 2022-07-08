@@ -178,6 +178,7 @@ console.log(
 "await getItemInfo()" вывод информации о товаре в консоль;
 "getExcel()" получение конечной информации;
 "getTitles()" получить заголовки секций.
+"itemsData.info" - строка с данными.
 `
 );
 
@@ -189,3 +190,5 @@ window.initializeMethods([
    getExcel,
    getTitles,
 ]);
+
+window.initializeVariables([{ name: "itemsData", value: itemsData }]);
