@@ -1,12 +1,14 @@
 let container;
-const id = "tamperMonkeyNotify";
 
 const initBlock = () => {
+   const id = "tamperMonkeyNotify";
+
    const elem = `<div id=${id} style="
 	position: fixed;
 	right: 10px;
 	bottom: 10px;
-	width: auto;"></div>`;
+	width: auto;
+   z-index: 9999;"></div>`;
    document.body.insertAdjacentHTML("afterend", elem);
    container = document.getElementById(id);
 };
@@ -29,7 +31,6 @@ const getNotifyBlock = (content) => {
    styleElem.backgroundColor = "#fff3cd";
    styleElem.borderRadius = "12px";
    styleElem.maxWidth = "400px";
-   styleElem.zIndex = "99999";
    styleElem.border = "1px solid #ffeeba";
    styleElem.margin = "4px 0";
 

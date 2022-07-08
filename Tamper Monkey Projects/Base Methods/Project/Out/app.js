@@ -1268,15 +1268,14 @@ var toBottomElement = /*#__PURE__*/function () {
 ;// CONCATENATED MODULE: ./Project/In/Components/notify.js
 
 
-initBlock();
 var container;
-var id = "tamperMonkeyNotify";
 
-function initBlock() {
-  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
+var initBlock = function initBlock() {
+  var id = "tamperMonkeyNotify";
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n   z-index: 9999;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
   container = document.getElementById(id);
-}
+};
 
 var deleteNotify = function deleteNotify(notify) {
   try {
@@ -1295,7 +1294,6 @@ var getNotifyBlock = function getNotifyBlock(content) {
   styleElem.backgroundColor = "#fff3cd";
   styleElem.borderRadius = "12px";
   styleElem.maxWidth = "400px";
-  styleElem.zIndex = "99999";
   styleElem.border = "1px solid #ffeeba";
   styleElem.margin = "4px 0";
   elem.innerText = content;
@@ -1336,6 +1334,7 @@ var notify = /*#__PURE__*/function () {
   };
 }();
 
+initBlock();
 /* harmony default export */ var Components_notify = (notify);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
