@@ -1268,16 +1268,19 @@ var toBottomElement = /*#__PURE__*/function () {
 ;// CONCATENATED MODULE: ./Project/In/Components/notify.js
 
 
+initBlock();
 var id = "tamperMonkeyNotify";
 var container = document.getElementById(id);
 
-var initBlock = function initBlock() {
+function initBlock() {
   var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
-};
+}
 
 var deleteNotify = function deleteNotify(notify) {
-  container.removeChild(notify);
+  try {
+    container.removeChild(notify);
+  } catch (e) {}
 };
 
 var getNotifyBlock = function getNotifyBlock(content) {
@@ -1309,7 +1312,9 @@ var notify = /*#__PURE__*/function () {
           case 0:
             duration = _args.length > 1 && _args[1] !== undefined ? _args[1] : 3;
             notifyContent = getNotifyBlock(text);
-            notifyContent.addEventListener("click", deleteNotify);
+            notifyContent.addEventListener("click", function (e) {
+              return deleteNotify(e.target);
+            });
             container.insertAdjacentElement("beforeend", notifyContent);
             _context.next = 6;
             return window.sleep(duration);
@@ -1330,7 +1335,6 @@ var notify = /*#__PURE__*/function () {
   };
 }();
 
-initBlock();
 /* harmony default export */ var Components_notify = (notify);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
