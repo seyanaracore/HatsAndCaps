@@ -110,6 +110,7 @@ var setParsedItems = function setParsedItems(data) {
 var clearParsedItems = function clearParsedItems() {
   window.LocalStorageUtil["delete"](lcKey);
   console.log("Данные удалены.");
+  window.notify("Данные удалены.", 4);
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/parseItem.js
 
