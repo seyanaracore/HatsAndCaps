@@ -101,6 +101,85 @@ var selectVariants = function selectVariants() {
 };
 
 /* harmony default export */ var handleItemVariants = (selectVariants);
+;// CONCATENATED MODULE: ./Project/In/Components/setters.js
+
+var setParsedItems = function setParsedItems(data) {
+  window.LocalStorageUtil.set(lcKey, data);
+  console.log("Данные установлены:", data);
+};
+var clearParsedItems = function clearParsedItems() {
+  window.LocalStorageUtil["delete"](lcKey);
+  console.log("Данные удалены.");
+};
+;// CONCATENATED MODULE: ./Project/In/Components/parseItem.js
+
+
+
+var parseItem = function parseItem() {
+  var alreadyParsedItems = getParsedItems();
+  var img = document.querySelector('[data-widget="webGallery"] img').src;
+  var link = window.location.href.split("/?")[0];
+  var imgKey = img.split("/").at(-1).split(".")[0];
+  var item = {
+    img: img,
+    link: link,
+    imgKey: imgKey
+  };
+  console.log("Добавлен в список:", item);
+  window.notify("\u0423\u0441\u043F\u0435\u0445. \u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u0441\u043F\u0438\u0441\u043E\u043A: ".concat(item.link));
+  setParsedItems([].concat(_toConsumableArray(alreadyParsedItems), [item]));
+};
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+;// CONCATENATED MODULE: ./Project/In/Components/UI/buttonConstructor.js
+
+
+
+var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContructor(btnText, handler, selector) {
+  _classCallCheck(this, pageButtonContructor);
+
+  var container = document.querySelector(selector);
+  var uiButton = document.createElement("button");
+  uiButton.innerText = btnText;
+  uiButton.addEventListener("click", handler);
+  container.insertAdjacentElement("beforeend", uiButton);
+});
+
+/* harmony default export */ var buttonConstructor = (pageButtonContructor);
+;// CONCATENATED MODULE: ./Project/In/Components/UI/itemButtons.js
+
+
+
+
+var containerSelector = '[data-widget="webPdpGrid"]';
+function initItemButtons() {
+  new buttonConstructor("Спарсить вариант", parseItem, containerSelector);
+  new buttonConstructor("Очистить все данные", clearParsedItems, containerSelector);
+  new buttonConstructor("Скопировать все данные", copyParsedItems, containerSelector);
+}
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -170,19 +249,7 @@ function selectAlreadyParsedItems() {
 };
 
 /* harmony default export */ var checkOnParsing = (selectAlreadyParsedItems);
-;// CONCATENATED MODULE: ./Project/In/Components/setters.js
-
-var setParsedItems = function setParsedItems(data) {
-  window.LocalStorageUtil.set(lcKey, data);
-  console.log("Данные установлены:", data);
-};
-var clearParsedItems = function clearParsedItems() {
-  window.LocalStorageUtil["delete"](lcKey);
-  console.log("Данные удалены.");
-  window.notify("Данные удалены.");
-};
 ;// CONCATENATED MODULE: ./Project/In/Components/itemsParser.js
-
 
 
 
@@ -190,72 +257,32 @@ var clearParsedItems = function clearParsedItems() {
 
 var handleData = function handleData() {
   var alreadyParsedItems = getParsedItems();
-  console.log("already parsed:", alreadyParsedItems);
+  console.log("Уже были:", alreadyParsedItems);
   var items = collectPageItems();
-  console.log("page items:", items);
+  console.log("Товары на странице:", items);
   var filteredItems = items.filter(function (item) {
     return !alreadyParsedItems.find(function (parsedItem) {
       return parsedItem.link === item.link;
     });
   });
-  console.log("new items:", filteredItems);
+  console.log("Новые товары:", filteredItems);
   var allItemsList = filteredItems.concat(alreadyParsedItems);
-  console.log("already parsed + new items:", allItemsList);
+  console.log("Старые + новые товары:", allItemsList);
   setParsedItems(allItemsList);
   window.copyToClipboard(handleItems(items).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
   checkOnParsing();
 };
-
-var initButtonLinksCollector = function initButtonLinksCollector() {
-  var pageHead = document.querySelector('[data-widget="column"]');
-  var collectLinksBtn = document.createElement("button");
-  collectLinksBtn.innerText = "Собрать товары";
-  collectLinksBtn.addEventListener("click", handleData);
-  pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
-};
-var initButtonClearData = function initButtonClearData() {
-  var pageHead = document.querySelector('[data-widget="column"]');
-  var clearDataBtn = document.createElement("button");
-  clearDataBtn.innerText = "Очистить данные";
-  clearDataBtn.addEventListener("click", clearParsedItems);
-  pageHead.insertAdjacentElement("beforeend", clearDataBtn);
-};
-;// CONCATENATED MODULE: ./Project/In/Components/parseItem.js
+;// CONCATENATED MODULE: ./Project/In/Components/UI/productsListButtons.js
 
 
 
 
-var parseItem = function parseItem() {
-  var alreadyParsedItems = getParsedItems();
-  var img = document.querySelector('[data-widget="webGallery"] img').src;
-  var link = window.location.href.split("/?")[0];
-  var imgKey = img.split("/").at(-1).split(".")[0];
-  var item = {
-    img: img,
-    link: link,
-    imgKey: imgKey
-  };
-  console.log("Добавлен в список:", item);
-  window.notify("\u0423\u0441\u043F\u0435\u0445. \u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u0441\u043F\u0438\u0441\u043E\u043A: ".concat(item.link));
-  setParsedItems([].concat(_toConsumableArray(alreadyParsedItems), [item]));
-};
-
-var initParseItemBtn = function initParseItemBtn() {
-  var SKU = document.querySelector('[data-widget="webDetailSKU"]');
-  var parseItemBTN = document.createElement("button");
-  parseItemBTN.textContent = "Спарсить";
-  parseItemBTN.addEventListener("click", parseItem);
-  SKU.insertAdjacentElement("beforebegin", parseItemBTN);
-};
-
-var initClearDataBtn = function initClearDataBtn() {
-  var SKU = document.querySelector('[data-widget="webDetailSKU"]');
-  var clearDataBTN = document.createElement("button");
-  clearDataBTN.textContent = "Очистить данные";
-  clearDataBTN.addEventListener("click", clearParsedItems);
-  SKU.insertAdjacentElement("beforebegin", clearDataBTN);
-};
-/* harmony default export */ var Components_parseItem = (initParseItemBtn);
+var productsListButtons_containerSelector = '[data-widget="column"]';
+function initProductsListButtons() {
+  new buttonConstructor("Собрать товары", handleData, productsListButtons_containerSelector);
+  new buttonConstructor("Очистить все данные", clearParsedItems, productsListButtons_containerSelector);
+  new buttonConstructor("Скопировать все данные", copyParsedItems, productsListButtons_containerSelector);
+}
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
 
@@ -266,15 +293,12 @@ var pageUrl = window.location.href;
 
 if (pageUrl.includes("https://www.ozon.ru/product/")) {
   window.sleep(1).then(function () {
-    Components_parseItem();
     handleItemVariants();
-    initClearDataBtn();
+    initItemButtons();
   });
 } else if (pageUrl.includes("https://www.ozon.ru/seller/") || pageUrl.includes("https://www.ozon.ru/brand/")) {
   window.sleep(1).then(function () {
-    // selectAlreadyParsedItems();
-    initButtonLinksCollector();
-    initButtonClearData();
+    initProductsListButtons();
   });
 }
 

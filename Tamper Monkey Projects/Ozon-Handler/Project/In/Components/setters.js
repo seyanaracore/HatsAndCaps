@@ -7,5 +7,4 @@ export const setParsedItems = (data) => {
 export const clearParsedItems = () => {
    window.LocalStorageUtil.delete(lcKey);
    console.log("Данные удалены.");
-   window.notify("Данные удалены.");
 };

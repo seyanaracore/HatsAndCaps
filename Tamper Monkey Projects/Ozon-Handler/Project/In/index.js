@@ -3,29 +3,23 @@ import {
    downloadParsedItems,
 } from "./Components/finallyDataHandlers";
 import selectVariants from "./Components/handleItemVariants";
-import {
-   initButtonClearData,
-   initButtonLinksCollector,
-} from "./Components/itemsParser";
-import initParseItemBtn, { initClearDataBtn } from "./Components/parseItem";
 import { clearParsedItems } from "./Components/setters";
+import { initItemButtons } from "./Components/UI/itemButtons";
+import { initProductsListButtons } from "./Components/UI/productsListButtons";
 
 const pageUrl = window.location.href;
 
 if (pageUrl.includes("https://www.ozon.ru/product/")) {
    window.sleep(1).then(() => {
-      initParseItemBtn();
       selectVariants();
-      initClearDataBtn();
+      initItemButtons();
    });
 } else if (
    pageUrl.includes("https://www.ozon.ru/seller/") ||
    pageUrl.includes("https://www.ozon.ru/brand/")
 ) {
    window.sleep(1).then(() => {
-      // selectAlreadyParsedItems();
-      initButtonLinksCollector();
-      initButtonClearData();
+      initProductsListButtons();
    });
 }
 

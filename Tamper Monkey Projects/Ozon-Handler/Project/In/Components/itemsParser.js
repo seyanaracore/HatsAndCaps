@@ -2,20 +2,20 @@ import selectAlreadyParsedItems from "./checkOnParsing";
 import collectItems from "./collectPageItems";
 import { handleItems } from "./finallyDataHandlers";
 import { getParsedItems } from "./getters";
-import { clearParsedItems, setParsedItems } from "./setters";
+import { setParsedItems } from "./setters";
 
-const handleData = () => {
+export const handleData = () => {
    const alreadyParsedItems = getParsedItems();
-   console.log("already parsed:", alreadyParsedItems);
+   console.log("Уже были:", alreadyParsedItems);
    const items = collectItems();
-   console.log("page items:", items);
+   console.log("Товары на странице:", items);
    const filteredItems = items.filter(
       (item) =>
          !alreadyParsedItems.find((parsedItem) => parsedItem.link === item.link)
    );
-   console.log("new items:", filteredItems);
+   console.log("Новые товары:", filteredItems);
    const allItemsList = filteredItems.concat(alreadyParsedItems);
-   console.log("already parsed + new items:", allItemsList);
+   console.log("Старые + новые товары:", allItemsList);
 
    setParsedItems(allItemsList);
 
@@ -24,21 +24,4 @@ const handleData = () => {
       `Ссылки скопированы в буфер обмена. ${items.length} шт.`
    );
    selectAlreadyParsedItems();
-};
-
-export const initButtonLinksCollector = () => {
-   const pageHead = document.querySelector('[data-widget="column"]');
-   const collectLinksBtn = document.createElement("button");
-   collectLinksBtn.innerText = "Собрать товары";
-   collectLinksBtn.addEventListener("click", handleData);
-
-   pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
-};
-export const initButtonClearData = () => {
-   const pageHead = document.querySelector('[data-widget="column"]');
-   const clearDataBtn = document.createElement("button");
-   clearDataBtn.innerText = "Очистить данные";
-   clearDataBtn.addEventListener("click", clearParsedItems);
-
-   pageHead.insertAdjacentElement("beforeend", clearDataBtn);
 };
