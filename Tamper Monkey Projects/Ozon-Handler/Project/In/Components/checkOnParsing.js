@@ -1,3 +1,4 @@
+import { itemSelectBorder } from "../Utils/constants";
 import collectItems from "./collectPageItems";
 import { getParsedItems } from "./getters";
 
@@ -10,7 +11,7 @@ const selectAlreadyParsedItems = /*async*/ () => {
 
       /*await window.sleep(0.1);*/
       if (parsedItems.find((item) => item.imgKey === pageItem.imgKey)) {
-         pageItem.domEl.parentElement.style.border = "2px solid black";
+         pageItem.domEl.parentElement.style.border = itemSelectBorder;
       }
    }
 };

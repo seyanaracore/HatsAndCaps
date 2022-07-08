@@ -1,3 +1,4 @@
+import { itemSelectBorder } from "../Utils/constants";
 import { getParsedItems } from "./getters";
 
 const collectVariants = () => [
@@ -17,7 +18,7 @@ const selectVariants = () => {
             parsedItem.img.includes(itemVariant.imgId)
          )
       ) {
-         itemVariant.domEl.parentElement.style.border = "2px solid black";
+         itemVariant.domEl.parentElement.style.border = itemSelectBorder;
       }
    });
 };

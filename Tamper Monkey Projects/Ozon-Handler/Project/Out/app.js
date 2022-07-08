@@ -4,6 +4,7 @@ var __webpack_exports__ = {};
 
 ;// CONCATENATED MODULE: ./Project/In/Utils/constants.js
 var lcKey = "ozonItemsList";
+var itemSelectBorder = "2px solid red";
 ;// CONCATENATED MODULE: ./Project/In/Components/getters.js
 
 var getParsedItems = function getParsedItems() {
@@ -77,6 +78,7 @@ function _toConsumableArray(arr) {
 
 
 
+
 var collectVariants = function collectVariants() {
   return _toConsumableArray(document.querySelectorAll('[data-widget="webAspects"] img'));
 };
@@ -93,7 +95,7 @@ var selectVariants = function selectVariants() {
     if (parsedItems.find(function (parsedItem) {
       return parsedItem.img.includes(itemVariant.imgId);
     })) {
-      itemVariant.domEl.parentElement.style.border = "2px solid black";
+      itemVariant.domEl.parentElement.style.border = itemSelectBorder;
     }
   });
 };
@@ -144,6 +146,7 @@ var collectItems = function collectItems() {
 
 
 
+
 var selectAlreadyParsedItems =
 /*async*/
 function selectAlreadyParsedItems() {
@@ -157,7 +160,7 @@ function selectAlreadyParsedItems() {
     if (parsedItems.find(function (item) {
       return item.imgKey === pageItem.imgKey;
     })) {
-      pageItem.domEl.parentElement.style.border = "2px solid black";
+      pageItem.domEl.parentElement.style.border = itemSelectBorder;
     }
   };
 
