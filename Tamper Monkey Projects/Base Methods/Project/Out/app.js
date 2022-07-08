@@ -1269,10 +1269,15 @@ var toBottomElement = /*#__PURE__*/function () {
 
 
 var id = "tamperMonkeyNotify";
+var container = document.getElementById(id);
 
 var initBlock = function initBlock() {
   var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
+};
+
+var deleteNotify = function deleteNotify(notify) {
+  container.removeChild(notify);
 };
 
 var getNotifyBlock = function getNotifyBlock(content) {
@@ -1296,22 +1301,21 @@ var getNotifyBlock = function getNotifyBlock(content) {
 var notify = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regenerator_default().mark(function _callee(text) {
     var duration,
-        container,
         notifyContent,
         _args = arguments;
     return regenerator_default().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            duration = _args.length > 1 && _args[1] !== undefined ? _args[1] : 2;
-            container = document.getElementById(id);
+            duration = _args.length > 1 && _args[1] !== undefined ? _args[1] : 3;
             notifyContent = getNotifyBlock(text);
+            notifyContent.addEventListener("click", deleteNotify);
             container.insertAdjacentElement("beforeend", notifyContent);
             _context.next = 6;
             return window.sleep(duration);
 
           case 6:
-            container.removeChild(notifyContent);
+            deleteNotify(notifyContent);
 
           case 7:
           case "end":

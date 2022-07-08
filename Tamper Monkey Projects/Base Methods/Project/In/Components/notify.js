@@ -1,4 +1,5 @@
 const id = "tamperMonkeyNotify";
+const container = document.getElementById(id);
 
 const initBlock = () => {
    const elem = `<div id=${id} style="
@@ -8,6 +9,10 @@ const initBlock = () => {
 	width: auto;"></div>`;
    document.body.insertAdjacentHTML("afterend", elem);
 };
+const deleteNotify = (notify) => {
+   container.removeChild(notify);
+};
+
 const getNotifyBlock = (content) => {
    const elem = document.createElement("div");
    const styleElem = elem.style;
@@ -22,21 +27,21 @@ const getNotifyBlock = (content) => {
    styleElem.maxWidth = "400px";
    styleElem.zIndex = "99999";
    styleElem.border = "1px solid #ffeeba";
-	styleElem.margin = "4px 0";
+   styleElem.margin = "4px 0";
 
    elem.innerText = content;
 
    return elem;
 };
 
-const notify = async (text, duration = 2) => {
-   const container = document.getElementById(id);
+const notify = async (text, duration = 3) => {
    const notifyContent = getNotifyBlock(text);
+   notifyContent.addEventListener("click", deleteNotify);
    container.insertAdjacentElement("beforeend", notifyContent);
-	
+
    await window.sleep(duration);
 
-   container.removeChild(notifyContent);
+   deleteNotify(notifyContent);
 };
 
 initBlock();
