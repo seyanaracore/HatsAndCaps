@@ -8,7 +8,11 @@ const initBlock = () => {
 	right: 10px;
 	bottom: 10px;
 	width: auto;
-   z-index: 9999;"></div>`;
+   z-index: 9999;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+   "></div>`;
    document.body.insertAdjacentHTML("afterend", elem);
    container = document.getElementById(id);
 };
@@ -25,7 +29,7 @@ const getNotifyBlock = (content) => {
 
    styleElem.right = "10px";
    styleElem.bottom = "10px";
-   styleElem.width = "auto";
+   styleElem.width = "min-content";
    styleElem.fontSize = "16px";
    styleElem.padding = "6px 12px";
    styleElem.backgroundColor = "#fff3cd";

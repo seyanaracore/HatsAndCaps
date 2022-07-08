@@ -1272,7 +1272,7 @@ var container;
 
 var initBlock = function initBlock() {
   var id = "tamperMonkeyNotify";
-  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n   z-index: 9999;\"></div>");
+  var elem = "<div id=".concat(id, " style=\"\n\tposition: fixed;\n\tright: 10px;\n\tbottom: 10px;\n\twidth: auto;\n   z-index: 9999;\n   display: flex;\n   flex-direction: column;\n   align-items: flex-end;\n   \"></div>");
   document.body.insertAdjacentHTML("afterend", elem);
   container = document.getElementById(id);
 };
@@ -1288,7 +1288,7 @@ var getNotifyBlock = function getNotifyBlock(content) {
   var styleElem = elem.style;
   styleElem.right = "10px";
   styleElem.bottom = "10px";
-  styleElem.width = "auto";
+  styleElem.width = "min-content";
   styleElem.fontSize = "16px";
   styleElem.padding = "6px 12px";
   styleElem.backgroundColor = "#fff3cd";
