@@ -164,7 +164,7 @@ const itemsData = {
       window.LocalStorageUtil.get(localStrName) || columns.join("\t") + "\n",
    set info(data) {
       this.itemInfo += data;
-      window.LocalStorageUtil.set(localStrName, itemsInfo);
+      window.LocalStorageUtil.set(localStrName, this.itemInfo);
    },
    get info() {
       return this.itemInfo;
