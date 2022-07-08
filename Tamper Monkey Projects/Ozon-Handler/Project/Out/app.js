@@ -176,6 +176,7 @@ var setParsedItems = function setParsedItems(data) {
 var clearParsedItems = function clearParsedItems() {
   window.LocalStorageUtil["delete"](lcKey);
   console.log("Данные удалены.");
+  window.notify("Данные удалены.");
 };
 ;// CONCATENATED MODULE: ./Project/In/Components/itemsParser.js
 
@@ -209,6 +210,13 @@ var initButtonLinksCollector = function initButtonLinksCollector() {
   collectLinksBtn.addEventListener("click", handleData);
   pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
 };
+var initButtonClearData = function initButtonClearData() {
+  var pageHead = document.querySelector('[data-widget="column"]');
+  var clearDataBtn = document.createElement("button");
+  clearDataBtn.innerText = "Очистить данные";
+  clearDataBtn.addEventListener("click", clearParsedItems);
+  pageHead.insertAdjacentElement("beforeend", clearDataBtn);
+};
 ;// CONCATENATED MODULE: ./Project/In/Components/parseItem.js
 
 
@@ -237,6 +245,13 @@ var initParseItemBtn = function initParseItemBtn() {
   SKU.insertAdjacentElement("beforebegin", parseItemBTN);
 };
 
+var initClearDataBtn = function initClearDataBtn() {
+  var SKU = document.querySelector('[data-widget="webDetailSKU"]');
+  var clearDataBTN = document.createElement("button");
+  clearDataBTN.textContent = "Очистить данные";
+  clearDataBTN.addEventListener("click", clearParsedItems);
+  SKU.insertAdjacentElement("beforebegin", clearDataBTN);
+};
 /* harmony default export */ var Components_parseItem = (initParseItemBtn);
 ;// CONCATENATED MODULE: ./Project/In/index.js
 
@@ -250,11 +265,13 @@ if (pageUrl.includes("https://www.ozon.ru/product/")) {
   window.sleep(1).then(function () {
     Components_parseItem();
     handleItemVariants();
+    initClearDataBtn();
   });
 } else if (pageUrl.includes("https://www.ozon.ru/seller/") || pageUrl.includes("https://www.ozon.ru/brand/")) {
   window.sleep(1).then(function () {
     // selectAlreadyParsedItems();
     initButtonLinksCollector();
+    initButtonClearData();
   });
 }
 

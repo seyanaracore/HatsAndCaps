@@ -2,7 +2,7 @@ import selectAlreadyParsedItems from "./checkOnParsing";
 import collectItems from "./collectPageItems";
 import { handleItems } from "./finallyDataHandlers";
 import { getParsedItems } from "./getters";
-import { setParsedItems } from "./setters";
+import { clearParsedItems, setParsedItems } from "./setters";
 
 const handleData = () => {
    const alreadyParsedItems = getParsedItems();
@@ -33,4 +33,12 @@ export const initButtonLinksCollector = () => {
    collectLinksBtn.addEventListener("click", handleData);
 
    pageHead.insertAdjacentElement("beforeend", collectLinksBtn);
+};
+export const initButtonClearData = () => {
+   const pageHead = document.querySelector('[data-widget="column"]');
+   const clearDataBtn = document.createElement("button");
+   clearDataBtn.innerText = "Очистить данные";
+   clearDataBtn.addEventListener("click", clearParsedItems);
+
+   pageHead.insertAdjacentElement("beforeend", clearDataBtn);
 };
