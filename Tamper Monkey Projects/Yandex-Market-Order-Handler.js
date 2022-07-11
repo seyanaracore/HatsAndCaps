@@ -26,7 +26,9 @@ function setItemsArtHandler() {
       const itemOrderCount =
          artNumber.parentElement.parentElement.parentElement.parentElement
             .parentElement.parentElement.nextSibling.nextSibling.children[0]
-            .children[0].children[0];
+            .children[0].children[0] || artNumber.parentElement.parentElement.parentElement.parentElement
+               .parentElement.parentElement.nextSibling.nextSibling.children[0]
+               .children[1].children[0];
       const orderedMoreThanOne = parseInt(itemOrderCount.textContent) > 1;
 
       if (orderedMoreThanOne) itemOrderCount.style.color = "red";
