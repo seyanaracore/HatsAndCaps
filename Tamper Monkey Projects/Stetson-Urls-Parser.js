@@ -16,7 +16,10 @@ const dataHandler = () => {
    return { itemLink };
 };
 const imgHandler = () => {
-   const imgLink = document.querySelector(".product--image")?.src;
+   const imgLink = document.querySelector(".image--media img")?.src;
    if (!imgLink) return null;
    return { imgLink };
+};
+const config = {
+   validatePageUrl: false,
 };
