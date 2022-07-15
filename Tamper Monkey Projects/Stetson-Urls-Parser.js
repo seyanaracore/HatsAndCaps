@@ -15,4 +15,8 @@ const dataHandler = () => {
    if (!itemLink) return null;
    return { itemLink };
 };
-window.initializeMethods([dataHandler]);
+const imgHandler = () => {
+   const imgLink = document.querySelector(".product--image")?.src;
+   if (!imgLink) return null;
+   return { imgLink };
+};
