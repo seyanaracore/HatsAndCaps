@@ -14,14 +14,14 @@ window.download(
 //Доставки, вписать нужный слайс
 
 const items = [...document.querySelectorAll(".goods-list-delivery img")]
-   .slice(19,240)
+   .slice(26,44)
    .map((img) => ({
-      sku: img.src.split("/").at(-1).split("-")[0],
+      sku: img.src.split("/").at(-4).split("-")[0],
       size: img.parentNode.children[4]?.textContent.trim() || "Some went wrong",
    }));
 
 window.download(
    { content: items, headers: "template" },
-   "6 возврат",
+   "Браки",
    "csv"
 );
