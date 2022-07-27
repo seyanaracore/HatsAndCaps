@@ -84,6 +84,9 @@ const dataHandler = async () => {
    if (errorMsgs.length) throw new Error(errorMsgs.join(", "));
 
    sizes[sizeToRefund].click(); // Выбор нужного размера
+
+   if(document.querySelector(".delivery__store").textContent === ' со склада продавца') throw new Error("склад продавца")
+
    buyButton.click(); //Добавление размера корзину
    deleteItemSize(WBSKU, sizeToRefund); //Убрать размер к возврату у данного SKU
 
