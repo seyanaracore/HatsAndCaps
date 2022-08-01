@@ -170,7 +170,7 @@ var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContruct
 
 /* harmony default export */ var buttonConstructor = (pageButtonContructor);
 ;// CONCATENATED MODULE: ./Project/In/Components/UI/getContainer.js
-/* harmony default export */ var UI_getContainer = (getContainer = function getContainer() {
+var getContainer = function getContainer() {
   var container = document.createElement("div");
   container.style.position = "fixed";
   container.style.bottom = "10px";
@@ -181,7 +181,9 @@ var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContruct
   container.style.border = "1px solid black";
   container.style.borderRadius = "12px";
   return container;
-});
+};
+
+/* harmony default export */ var UI_getContainer = (getContainer);
 ;// CONCATENATED MODULE: ./Project/In/Components/UI/itemButtons.js
 
 
