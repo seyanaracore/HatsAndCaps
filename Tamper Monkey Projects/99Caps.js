@@ -1,36 +1,27 @@
-const handlePageItems = () => {
-   const items = document.querySelectorAll(".product.catalog__item");
-   const itemsData = [];
-
-   items.forEach((item) => {
-      const itemData = {};
-
-      itemData.link = item.href;
-      itemData.name = item.children[1].children[0].textContent;
-      itemData.price = item.children[1].children[1].textContent;
-      itemData.imgLink = item.children[0].children[0].src;
-
-      itemsData.push(itemData);
-   });
-
-   return itemsData;
-};
-const downloadPageItems = () => {
-   window.download(
-      { content: handlePageItems(), headers: "template" },
-      "99caps_New-Era",
-      "csv"
+const parseLinks = () => {
+   const links = [...document.querySelectorAll(".product.catalog__item")].map(
+      (el) => el.href
    );
-};
-const dataHandler = () => {
-   return {
-      vendorCode: document.querySelector(".product-description__vendor-code")
-         ?.textContent,
-   };
+   window.copyToClipboard(links.join("\n"));
+   window.toBottomElement("body");
 };
 
-const globalMethodsList = [dataHandler, downloadPageItems, handlePageItems]
+function handler() {
+   try {
+      const $ = (sel) => document.querySelector(sel);
+      const code = $(".product-description__vendor-code").textContent.split(
+         ". "
+      )[1];
+      const title = $(".product-description__title").textContent;
+      const brand = $(".product-description__brand").textContent;
+      const price = $(
+         ".product-description__discounted-price"
+      ).textContent.split(" ")[0];
+      const inSale = $(".product-description__stock-mark").textContent;
+      const imgLink = $(".product-photos__photo").children[1].src;
 
-window.intializeMethods(globalMethodsList);
-
-console.log("Methods: " + globalMethodsList.join(", "));
+      return { code, title, brand, price, inSale, imgLink };
+   } catch (e) {
+      return null;
+   }
+}
