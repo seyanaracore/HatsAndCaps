@@ -159,10 +159,9 @@ function _classCallCheck(instance, Constructor) {
 
 
 
-var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContructor(btnText, handler, selector) {
+var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContructor(btnText, handler, container) {
   _classCallCheck(this, pageButtonContructor);
 
-  var container = document.querySelector(selector);
   var uiButton = document.createElement("button");
   uiButton.innerText = btnText;
   uiButton.addEventListener("click", handler);
@@ -176,10 +175,19 @@ var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContruct
 
 
 var containerSelector = '[data-widget="webPdpGrid"]';
+
+var getContainer = function getContainer() {
+  var container = document.createElement("div");
+  container.innerHTML = "\n<div style='\n   position: fixed;\n   bottom: 10px;\n   z-index: 9999;\n   padding: 10px;\n   background: aliceblue;\n   border: 1px solid black;\n   border-radius: 12px;\n'></div>";
+  return container;
+};
+
 function initItemButtons() {
-  new buttonConstructor("Спарсить вариант", parseItem, containerSelector);
-  new buttonConstructor("Очистить все данные", clearParsedItems, containerSelector);
-  new buttonConstructor("Скопировать все данные", copyParsedItems, containerSelector);
+  var container = getContainer();
+  new buttonConstructor("Спарсить вариант", parseItem, container);
+  new buttonConstructor("Очистить все данные", clearParsedItems, container);
+  new buttonConstructor("Скопировать все данные", copyParsedItems, container);
+  document.body.insertAdjacentElement("beforeend", container);
 }
 ;// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
 function _defineProperty(obj, key, value) {
