@@ -178,7 +178,14 @@ var containerSelector = '[data-widget="webPdpGrid"]';
 
 var getContainer = function getContainer() {
   var container = document.createElement("div");
-  container.innerHTML = "\n<div style='\n   position: fixed;\n   bottom: 10px;\n   z-index: 9999;\n   padding: 10px;\n   background: aliceblue;\n   border: 1px solid black;\n   border-radius: 12px;\n'></div>";
+  container.style.position = "fixed";
+  container.style.bottom = "10px";
+  container.style.left = "10px";
+  container.style.zIndex = "9999";
+  container.style.padding = "10px";
+  container.style.background = "aliceblue";
+  container.style.border = "1px solid black";
+  container.style.borderRadius = "12px";
   return container;
 };
 
