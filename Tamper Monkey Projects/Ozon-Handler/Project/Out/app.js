@@ -169,14 +169,8 @@ var pageButtonContructor = /*#__PURE__*/_createClass(function pageButtonContruct
 });
 
 /* harmony default export */ var buttonConstructor = (pageButtonContructor);
-;// CONCATENATED MODULE: ./Project/In/Components/UI/itemButtons.js
-
-
-
-
-var containerSelector = '[data-widget="webPdpGrid"]';
-
-var getContainer = function getContainer() {
+;// CONCATENATED MODULE: ./Project/In/Components/UI/getContainer.js
+/* harmony default export */ var UI_getContainer = (getContainer = function getContainer() {
   var container = document.createElement("div");
   container.style.position = "fixed";
   container.style.bottom = "10px";
@@ -187,10 +181,16 @@ var getContainer = function getContainer() {
   container.style.border = "1px solid black";
   container.style.borderRadius = "12px";
   return container;
-};
+});
+;// CONCATENATED MODULE: ./Project/In/Components/UI/itemButtons.js
 
+
+
+
+
+var containerSelector = '[data-widget="webPdpGrid"]';
 function initItemButtons() {
-  var container = getContainer();
+  var container = UI_getContainer();
   new buttonConstructor("Спарсить вариант", parseItem, container);
   new buttonConstructor("Очистить все данные", clearParsedItems, container);
   new buttonConstructor("Скопировать все данные", copyParsedItems, container);
@@ -293,11 +293,14 @@ var handleData = function handleData() {
 
 
 
+
 var productsListButtons_containerSelector = '[data-widget="column"]';
 function initProductsListButtons() {
-  new buttonConstructor("Собрать товары", handleData, productsListButtons_containerSelector);
-  new buttonConstructor("Очистить все данные", clearParsedItems, productsListButtons_containerSelector);
-  new buttonConstructor("Скопировать все данные", copyParsedItems, productsListButtons_containerSelector);
+  var container = UI_getContainer();
+  new buttonConstructor("Собрать товары", handleData, container);
+  new buttonConstructor("Очистить все данные", clearParsedItems, container);
+  new buttonConstructor("Скопировать все данные", copyParsedItems, container);
+  document.body.insertAdjacentElement("beforeend", container);
 }
 ;// CONCATENATED MODULE: ./Project/In/index.js
 

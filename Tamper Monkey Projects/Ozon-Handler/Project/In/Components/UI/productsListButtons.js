@@ -2,19 +2,24 @@ import { copyParsedItems } from "../finallyDataHandlers";
 import { handleData } from "../itemsParser";
 import { clearParsedItems } from "../setters";
 import pageButtonContructor from "./buttonConstructor";
+import getContainer from "./getContainer";
 
 const containerSelector = '[data-widget="column"]';
 
 export function initProductsListButtons() {
-   new pageButtonContructor("Собрать товары", handleData, containerSelector);
+   const container = getContainer()
+
+   new pageButtonContructor("Собрать товары", handleData, container);
    new pageButtonContructor(
       "Очистить все данные",
       clearParsedItems,
-      containerSelector
+      container
    );
    new pageButtonContructor(
       "Скопировать все данные",
       copyParsedItems,
-      containerSelector
+      container
    );
+
+   document.body.insertAdjacentElement("beforeend", container);
 }
