@@ -1,13 +1,23 @@
 //Доставленные
 const itemsList = [...document.querySelectorAll(".j-open-product-popup")]
-   .slice(231, 361)
-   .map((el) => ({
-      sku: el.getAttribute("data-popup-nm-id"),
-      size: el.childNodes[9]?.textContent.trim() || 0,
-   }));
+   .slice(0, 551)
+   .map((el) => {
+      const feedbackBtn =
+         el.parentElement.children[1].children[2].children[10].children[1];
+
+      return {
+         sku: el.getAttribute("data-popup-nm-id"),
+         size: el.childNodes[9]?.textContent.trim() || 0,
+         recieving:
+            el.parentElement.children[1].children[2].children[6].children[3]
+               .textContent,
+         feedbackBtn,
+      };
+   })
+   .filter((el) => el.feedbackBtn);
 window.download(
    { content: itemsList, headers: "template" },
-   "1 возврат",
+   "Возврат",
    "csv"
 );
 
@@ -35,10 +45,14 @@ const getItems = (date, startWith = 0) => {
    );
    return slicedItems.map((el) => {
       delete el.date;
-      delete el.el
+      delete el.el;
       return el;
    });
 };
 
 const items = getItems("27.07.2022", 1);
-window.download({ content: items, headers: "template" }, "Возврат шляпы 2707", "csv");
+window.download(
+   { content: items, headers: "template" },
+   "Возврат шляпы 2707",
+   "csv"
+);
