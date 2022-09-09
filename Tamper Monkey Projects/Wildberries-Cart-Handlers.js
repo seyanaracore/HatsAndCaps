@@ -12,9 +12,7 @@ const clearCart = async (departureFrom = "Склад продавца") => {
    const btns = [...document.querySelectorAll(".btn__del.j-basket-item-del")];
    const btnsObjects = btns.map((btn) => {
       const departure = departureFrom
-         ? btn.parentElement.parentElement.parentElement.childNodes[3]
-              .childNodes[3].childNodes[8].firstElementChild.firstElementChild
-              .textContent
+         ? btn.parentElement.parentElement.parentElement.children[1].children[1].children[5].children[2].children[0].textContent
          : null;
       return { departure, rmButton: btn };
    });

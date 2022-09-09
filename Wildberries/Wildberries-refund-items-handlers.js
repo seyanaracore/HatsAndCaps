@@ -23,7 +23,7 @@ window.download(
 
 //Доставки, вписать нужный слайс
 
-const getItems = (date, startWith = 0) => {
+const getItems = (date = null , startWith = 0) => {
    const items = [
       ...document.querySelectorAll(
          ".delivery-block__content .goods-list-delivery img"
@@ -37,7 +37,7 @@ const getItems = (date, startWith = 0) => {
             .children[0].children[3]?.children[0].textContent,
          el: img,
       }))
-      .filter((item) => item.date === date);
+      .filter((item) => date ? item.date === date : true);
    const slicedItems = items.slice(startWith, items.length);
    slicedItems.forEach(
       (item) =>
@@ -50,9 +50,9 @@ const getItems = (date, startWith = 0) => {
    });
 };
 
-const items = getItems("27.07.2022", 1);
+const items = getItems(false, 24);
 window.download(
    { content: items, headers: "template" },
-   "Возврат шляпы 2707",
+   "Возврат шляпы 2908",
    "csv"
 );
