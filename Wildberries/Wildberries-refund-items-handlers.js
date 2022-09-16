@@ -50,7 +50,7 @@ const getItems = (date = null , startWith = 0) => {
    });
 };
 
-const items = getItems(false, 24);
+const items = getItems("", 24);
 window.download(
    { content: items, headers: "template" },
    "Возврат шляпы 2908",
