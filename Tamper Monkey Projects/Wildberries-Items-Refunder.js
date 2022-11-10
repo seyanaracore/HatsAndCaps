@@ -85,7 +85,7 @@ const dataHandler = async () => {
 
    sizes[sizeToRefund].click(); // Выбор нужного размера
    await window.sleep(0.5)
-   if(document.querySelector(".delivery__store").textContent === ' со склада продавца') throw new Error("склад продавца")
+   if(document.querySelector(".delivery__store").textContent.includes("склада продавца")) throw new Error("склад продавца")
 
    buyButton.click(); //Добавление размера корзину
    deleteItemSize(WBSKU, sizeToRefund); //Убрать размер к возврату у данного SKU
