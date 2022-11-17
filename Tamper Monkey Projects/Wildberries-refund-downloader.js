@@ -1,4 +1,4 @@
-const parseItems = () => {
+const копироватьДанные = () => {
 	const itemsList = [...document.querySelectorAll(".j-open-product-popup")]
 	.map((el) => {
 		 return {
@@ -18,4 +18,6 @@ const parseItems = () => {
 
 console.log('копироватьДанные() - для того, чтобы скопировать товары со страницы.')
 
-window.копироватьДанные = parseItems
+window.initializeMethods([
+	копироватьДанные
+]);
