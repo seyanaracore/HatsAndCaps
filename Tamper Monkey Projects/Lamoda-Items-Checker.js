@@ -33,7 +33,7 @@ const getOutOfStock = () => {
 };
 
 const dataHandler = () => {
-   const buyButton = document.querySelector(".x-add-to-cart button");
+   const buyButton = document.querySelector(".recaptcha > .x-button.x-button_primaryPremium");
    if (!buyButton) throw new Error("Not found buy button");
    const sizesOutOfStock = getOutOfStock();
 
