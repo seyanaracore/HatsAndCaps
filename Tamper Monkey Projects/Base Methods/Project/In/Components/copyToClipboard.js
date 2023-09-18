@@ -1,11 +1,12 @@
-const copyToClipboard = (string, notificationConent) => {
-   let area = document.createElement("textarea");
-   document.body.appendChild(area);
-   area.value = string;
-   area.select();
-   document.execCommand("copy");
-   document.body.removeChild(area);
-   console.log("copied");
+const copyToClipboard = (clipboardData, notificationConent) => {
+   const listener = function(ev) {
+      ev.preventDefault();
+      ev.clipboardData.setData('text/html', clipboardData);
+      ev.clipboardData.setData('text/plain', clipboardData);
+   };
+   document.addEventListener('copy', listener);
+   document.execCommand('copy');
+   document.removeEventListener('copy', listener);
    notificationConent && window.notify(notificationConent);
 };
 export default copyToClipboard;

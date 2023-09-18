@@ -1073,14 +1073,16 @@ var sleep = function sleep() {
 
 /* harmony default export */ var Components_sleep = (sleep);
 ;// CONCATENATED MODULE: ./Project/In/Components/copyToClipboard.js
-var copyToClipboard = function copyToClipboard(string, notificationConent) {
-  var area = document.createElement("textarea");
-  document.body.appendChild(area);
-  area.value = string;
-  area.select();
-  document.execCommand("copy");
-  document.body.removeChild(area);
-  console.log("copied");
+var copyToClipboard = function copyToClipboard(clipboardData, notificationConent) {
+  var listener = function listener(ev) {
+    ev.preventDefault();
+    ev.clipboardData.setData('text/html', clipboardData);
+    ev.clipboardData.setData('text/plain', clipboardData);
+  };
+
+  document.addEventListener('copy', listener);
+  document.execCommand('copy');
+  document.removeEventListener('copy', listener);
   notificationConent && window.notify(notificationConent);
 };
 
