@@ -1,6 +1,7 @@
 import { lcKey } from "../Utils/constants";
 
 export const setParsedItems = (data) => {
+   console.log(data)
    window.LocalStorageUtil.set(lcKey, data);
    console.log("Данные установлены:", data);
 };

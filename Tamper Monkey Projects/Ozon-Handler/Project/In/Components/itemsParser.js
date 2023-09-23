@@ -17,7 +17,9 @@ export const handleData = () => {
    const allItemsList = filteredItems.concat(alreadyParsedItems);
    console.log("Старые + новые товары:", allItemsList);
 
-   setParsedItems(allItemsList);
+   const itemsForSave = deleteDomEl(allItemsList)
+
+   setParsedItems(itemsForSave);
 
    window.copyToClipboard(
       handleItems(items).join("\n"),

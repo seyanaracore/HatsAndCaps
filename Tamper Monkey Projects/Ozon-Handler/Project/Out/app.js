@@ -22,6 +22,15 @@ var handleItems = function handleItems(itemsList) {
     return el.link + "\t" + deleteImgSize(el.img);
   });
 };
+var finallyDataHandlers_deleteDomEl = function deleteDomEl(itemsList) {
+  return itemsList.map(function (item) {
+    return {
+      img: item.img,
+      imgKey: item.imgKey,
+      link: item.link
+    };
+  });
+};
 var downloadParsedItems = function downloadParsedItems() {
   var parsedData = getParsedItems();
   window.download({
@@ -104,6 +113,7 @@ var selectVariants = function selectVariants() {
 ;// CONCATENATED MODULE: ./Project/In/Components/setters.js
 
 var setParsedItems = function setParsedItems(data) {
+  console.log(data);
   window.LocalStorageUtil.set(lcKey, data);
   console.log("Данные установлены:", data);
 };
@@ -286,7 +296,8 @@ var handleData = function handleData() {
   console.log("Новые товары:", filteredItems);
   var allItemsList = filteredItems.concat(alreadyParsedItems);
   console.log("Старые + новые товары:", allItemsList);
-  setParsedItems(allItemsList);
+  var itemsForSave = deleteDomEl(allItemsList);
+  setParsedItems(itemsForSave);
   window.copyToClipboard(handleItems(items).join("\n"), "\u0421\u0441\u044B\u043B\u043A\u0438 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u044B \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0435\u043D\u0430. ".concat(items.length, " \u0448\u0442."));
   checkOnParsing();
 };
