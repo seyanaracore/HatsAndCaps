@@ -1,6 +1,6 @@
 import selectAlreadyParsedItems from "./checkOnParsing";
 import collectItems from "./collectPageItems";
-import { handleItems } from "./finallyDataHandlers";
+import { handleItems, deleteDomEl } from "./finallyDataHandlers";
 import { getParsedItems } from "./getters";
 import { setParsedItems } from "./setters";
 

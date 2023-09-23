@@ -22,7 +22,7 @@ var handleItems = function handleItems(itemsList) {
     return el.link + "\t" + deleteImgSize(el.img);
   });
 };
-var finallyDataHandlers_deleteDomEl = function deleteDomEl(itemsList) {
+var deleteDomEl = function deleteDomEl(itemsList) {
   return itemsList.map(function (item) {
     return {
       img: item.img,
