@@ -1073,17 +1073,32 @@ var sleep = function sleep() {
 
 /* harmony default export */ var Components_sleep = (sleep);
 ;// CONCATENATED MODULE: ./Project/In/Components/copyToClipboard.js
-var copyToClipboard = function copyToClipboard(clipboardData, notificationConent) {
+var copyWithRich = function copyWithRich(data) {
   var listener = function listener(ev) {
     ev.preventDefault();
-    ev.clipboardData.setData('text/html', clipboardData);
-    ev.clipboardData.setData('text/plain', clipboardData);
+    ev.clipboardData.setData('text/html', data);
+    ev.clipboardData.setData('text/plain', data);
   };
 
   document.addEventListener('copy', listener);
   document.execCommand('copy');
   document.removeEventListener('copy', listener);
-  notificationConent && window.notify(notificationConent);
+};
+
+var baseCopy = function baseCopy(data) {
+  var area = document.createElement("textarea");
+  document.body.appendChild(area);
+  area.value = data;
+  area.select();
+  document.execCommand("copy");
+  document.body.removeChild(area);
+};
+
+var copyToClipboard = function copyToClipboard(data, notificationConent) {
+  var richText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  if (richText) copyWithRich(data);else baseCopy(data);
+  console.log("copied");
+  if (notificationConent) window.notify(notificationConent);
 };
 
 /* harmony default export */ var Components_copyToClipboard = (copyToClipboard);
