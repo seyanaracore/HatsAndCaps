@@ -10,41 +10,46 @@
 // @grant        none
 
 const lcKey = "wbItemsToRefund";
+
 const getSizes = () => {
    const sizes = {};
    document.querySelectorAll(".sizes-list__size").forEach((size) => {
       sizes[size.textContent] = size.parentNode;
    });
+
    return sizes;
 };
+
 const setItemsListToRefund = (itemsList) => {
    return window.LocalStorageUtil.set(lcKey, itemsList);
 };
+
 const getItemsListToRefund = () => {
    return window.LocalStorageUtil.get(lcKey) || [];
 };
 const removeItemsListToRefund = () => {
    window.LocalStorageUtil.delete(lcKey);
+
    console.log("Товары к возврату очищены");
 };
-const getBuyButton = () =>
-   [...document.querySelectorAll(".btn-main")].find(
-      (btn) =>
-         btn.textContent === "        Добавить в корзину        В корзину    "
-   );
+
+const getBuyButton = () => document.querySelector(`button[aria-label="Добавить в корзину"]`)
+
 const findSize = (SKU) => {
    const itemsList = getItemsListToRefund();
    const size = itemsList.find((item) => item.sku === SKU)?.size || null;
+
    console.log("Size to refund: " + size);
+
    return size;
 };
+
 const getWBSKU = () => document.querySelector("#productNmId").textContent;
 
 const deleteItemSize = (SKU, size) => {
    const itemsList = getItemsListToRefund();
-   const filteredItemsList = itemsList.filter((item) => {
-      return item.sku !== SKU || item.size !== size;
-   });
+   const filteredItemsList = itemsList.filter((item) => item.sku !== SKU || item.size !== size);
+
    console.log(
       "Осталось товаров: " + filteredItemsList.length,
       filteredItemsList
@@ -84,13 +89,19 @@ const dataHandler = async () => {
    if (errorMsgs.length) throw new Error(errorMsgs.join(", "));
 
    sizes[sizeToRefund].click(); // Выбор нужного размера
+
    await window.sleep(0.5)
-   if(document.querySelector(".delivery__store").textContent.includes("склада продавца")) throw new Error("склад продавца")
+
+   // это склад продавца
+   const isSellerWarehouse = document.querySelector(".delivery__store").textContent.toLowerCase().includes("склад продавца")
+
+   if (isSellerWarehouse) throw new Error("склад продавца")
 
    buyButton.click(); //Добавление размера корзину
    deleteItemSize(WBSKU, sizeToRefund); //Убрать размер к возврату у данного SKU
 
    await window.sleep(0.5)
+
    return { WBSKU, status: "ok" };
 };
 const config = {
