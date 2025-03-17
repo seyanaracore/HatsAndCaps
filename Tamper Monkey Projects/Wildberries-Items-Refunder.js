@@ -90,7 +90,7 @@ const dataHandler = async () => {
 
    sizes[sizeToRefund].click(); // Выбор нужного размера
 
-   await window.sleep(0.5)
+   await window.sleep(1)
 
    // это склад продавца
    const isSellerWarehouse = document.querySelector(".delivery__store").textContent.toLowerCase().includes("склад продавца")
@@ -100,7 +100,7 @@ const dataHandler = async () => {
    buyButton.click(); //Добавление размера корзину
    deleteItemSize(WBSKU, sizeToRefund); //Убрать размер к возврату у данного SKU
 
-   await window.sleep(0.5)
+   await window.sleep(1)
 
    return { WBSKU, status: "ok" };
 };
